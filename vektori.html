@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Programirajmo u R-u</title>
+  <meta name="description" content="Udžbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i računarstva, Sveučilište u Zagrebu.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Programirajmo u R-u" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Udžbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i računarstva, Sveučilište u Zagrebu." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Programirajmo u R-u" />
+  
+  <meta name="twitter:description" content="Udžbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i računarstva, Sveučilište u Zagrebu." />
+  
+
+<meta name="author" content="Damir Pintar">
+
+
+<meta name="date" content="2018-10-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="tipovi.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<style type="text/css">
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF; 
+  width: 140px;
+  height: 4	0px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  font-size:10 pt;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
+}
+</style>
+
+<script>
+ $(document).ready(function() {
+
+  $chunks = $('.fold');
+
+  $chunks.each(function () {
+
+    // add button to source code chunks
+    if ( $(this).hasClass('s') ) {
+      $('pre.r', this).prepend("<div class=\"showopt\">Prikaži rješenje</div><br style=\"line-height:22px;\"/>");
+      $('pre.r', this).children('code').attr('class', 'folded');
+    }
+
+    // add button to output chunks
+    if ( $(this).hasClass('o') ) {
+      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\">Prikaži ispis</div><br style=\"line-height:22px;\"/>");
+      $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
+
+      // add button to plots
+      $(this).find('img').wrap('<pre class=\"plot\"></pre>');
+      $('pre.plot', this).prepend("<div class=\"showopt\">Prikaži sliku</div><br style=\"line-height:22px;\"/>");
+      $('pre.plot', this).children('img').addClass('folded');
+
+    }
+  });
+
+  // hide all chunks when document is loaded
+  $('.folded').css('display', 'none')
+
+  // function to toggle the visibility
+  $('.showopt').click(function() {
+    var label = $(this).html();
+    if (label.indexOf("Prikaži") >= 0) {
+      $(this).html(label.replace("Prikaži", "Sakrij"));
+    } else {
+      $(this).html(label.replace("Sakrij", "Prikaži"));
+    }
+    $(this).siblings('code, img').slideToggle('fast', 'swing');
+  });
+});
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>(Udžbenik za vještinu “Osnove programskog jezika R”)</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#predgovor"><i class="fa fa-check"></i>Predgovor</a></li>
+</ul></li>
+<li class="part"><span><b>I Osnovni elementi jezika R</b></span></li>
+<li class="chapter" data-level="1" data-path="uvod.html"><a href="uvod.html"><i class="fa fa-check"></i><b>1</b> Uvod</a><ul>
+<li class="chapter" data-level="1.1" data-path="uvod.html"><a href="uvod.html#sto-je-programski-jezik-r"><i class="fa fa-check"></i><b>1.1</b> Što je programski jezik R?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="uvod.html"><a href="uvod.html#opcenito-o-r-u"><i class="fa fa-check"></i><b>1.1.1</b> Općenito o R-u</a></li>
+<li class="chapter" data-level="1.1.2" data-path="uvod.html"><a href="uvod.html#alternative-jeziku-r"><i class="fa fa-check"></i><b>1.1.2</b> Alternative jeziku R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="uvod.html"><a href="uvod.html#instalacija-programske-podrske"><i class="fa fa-check"></i><b>1.2</b> Instalacija programske podrške</a></li>
+<li class="chapter" data-level="1.3" data-path="uvod.html"><a href="uvod.html#pregled-razvojnog-sucelja-rstudio"><i class="fa fa-check"></i><b>1.3</b> Pregled razvojnog sučelja <em>RStudio</em></a><ul>
+<li class="chapter" data-level="1.3.1" data-path="uvod.html"><a href="uvod.html#interaktivna-konzola"><i class="fa fa-check"></i><b>1.3.1</b> Interaktivna konzola</a></li>
+<li class="chapter" data-level="1.3.2" data-path="uvod.html"><a href="uvod.html#pisanje-r-skripti"><i class="fa fa-check"></i><b>1.3.2</b> Pisanje R skripti</a></li>
+<li class="chapter" data-level="1.3.3" data-path="uvod.html"><a href="uvod.html#r-markdown"><i class="fa fa-check"></i><b>1.3.3</b> <em>R Markdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="uvod.html"><a href="uvod.html#kako-koristiti-ovaj-udzbenik"><i class="fa fa-check"></i><b>1.4</b> Kako koristiti ovaj udžbenik?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tipovi.html"><a href="tipovi.html"><i class="fa fa-check"></i><b>2</b> Osnovni tipovi podataka i operatori</a><ul>
+<li class="chapter" data-level="2.1" data-path="tipovi.html"><a href="tipovi.html#osnovni-tipovi-podataka"><i class="fa fa-check"></i><b>2.1</b> Osnovni tipovi podataka</a></li>
+<li class="chapter" data-level="2.2" data-path="tipovi.html"><a href="tipovi.html#operatori"><i class="fa fa-check"></i><b>2.2</b> Operatori</a></li>
+<li class="chapter" data-level="2.3" data-path="tipovi.html"><a href="tipovi.html#nedostajuce-nepoznate-i-nemoguce-vrijednosti"><i class="fa fa-check"></i><b>2.3</b> Nedostajuće, nepoznate i nemoguće vrijednosti</a></li>
+<li class="chapter" data-level="" data-path="tipovi.html"><a href="tipovi.html#zadaci-za-vjezbu"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="vektori.html"><a href="vektori.html"><i class="fa fa-check"></i><b>3</b> Vektori, matrice i liste</a><ul>
+<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori-1"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="vektori.html"><a href="vektori.html#stvaranje-vektora"><i class="fa fa-check"></i><b>3.1.1</b> Stvaranje vektora</a></li>
+<li class="chapter" data-level="3.1.2" data-path="vektori.html"><a href="vektori.html#operator"><i class="fa fa-check"></i><b>3.1.2</b> Operator <code>[</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="vektori.html"><a href="vektori.html#principi-vektorizacije-i-recikliranja"><i class="fa fa-check"></i><b>3.1.3</b> Principi vektorizacije i recikliranja</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vektori.html"><a href="vektori.html#indeksni-vektori"><i class="fa fa-check"></i><b>3.2</b> Indeksni vektori</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="vektori.html"><a href="vektori.html#lokacijsko-referenciranje"><i class="fa fa-check"></i><b>3.2.1</b> Lokacijsko referenciranje</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vektori.html"><a href="vektori.html#uvjetno-referenciranje"><i class="fa fa-check"></i><b>3.2.2</b> Uvjetno referenciranje</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vektori.html"><a href="vektori.html#imensko-referenciranje"><i class="fa fa-check"></i><b>3.2.3</b> Imensko referenciranje</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="vektori.html"><a href="vektori.html#matrice-i-polja"><i class="fa fa-check"></i><b>3.3</b> Matrice i polja</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="vektori.html"><a href="vektori.html#rezanje-matrica"><i class="fa fa-check"></i><b>3.3.1</b> Rezanje matrica</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="vektori.html"><a href="vektori.html#liste"><i class="fa fa-check"></i><b>3.4</b> Liste</a></li>
+<li class="chapter" data-level="" data-path="vektori.html"><a href="vektori.html#zadaci-za-vjezbu-1"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programirajmo u R-u</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vektori" class="section level1">
+<h1><span class="header-section-number">3</span> Vektori, matrice i liste</h1>
+<hr />
+<div id="vektori-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Vektori</h2>
+<p>Vektor je jedan od “složenih” tipova podataka u jeziku R, u smislu da sadržava više vrijednosti istog tipa. On je kao takav sličan pojmu “polja” u jeziku C. No ovdje postoji jedna bitna razlika, koju je nužno usvojiti budući da se radi o jednoj od najvažnijih karakteristika jezika R - u R-u je (gotovo) svaki tip varijable zapravo vektor. Čak i varijable i konstante koje smo koristili u prethodnoj lekciji su zapravo bili jednoelementni vektori. Ovo ima dalekosežne posljedice o kojima ćemo detaljno raspravljati u nastavku, a za početak se prvo upoznajmo sa sintaksom stvaranja i upravljanja vektorima.</p>
+<div id="stvaranje-vektora" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Stvaranje vektora</h3>
+<p>Novi vektor (koji ima više od jednog elementa) stvaramo uz pomoć funkcije <code>c</code> (od engl. <em>combine</em>).</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co"># numerički vektor</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">m &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)  </a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="co"># logički vektor</span></a>
+<a class="sourceLine" id="cb46-5" data-line-number="5">v &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, T)</a>
+<a class="sourceLine" id="cb46-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="co"># znakovni vektor</span></a>
+<a class="sourceLine" id="cb46-8" data-line-number="8">imena &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ivo&quot;</span>, <span class="st">&quot;Pero&quot;</span>, <span class="st">&quot;Ana&quot;</span>)</a></code></pre></div>
+<p>Dakle, jednostavno rečeno, <strong>vektor je uređeni skup elemenata istog tipa</strong>. Ovo konkretno znači da svi elementi vektora <strong>moraju biti istog tipa</strong>. Ako stvaramo novi vektor sa elementima različitih tipova podataka, R će sve elemente automatski pretvoriti u “najjači” tip, što će na kraju postati i tip samog vektora (termin “jači” tip u ovom kontekstu označavaju mogućnost tipa da pohrani svu informaciju “pohranjenu u slabiji”slabijeg&quot;&quot; tipa, a u općenitom slučaju pretvorba ide u smjeru <em>logički -&gt; numerički -&gt; znakovni</em> tip).</p>
+<hr />
+<p><strong>Zadatak 3.1 - stvaranje vektora</strong></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># stvorite novi vektor `x` sa četiri proizvoljna elementa sljedećih tipova: </span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co">#  logički, realni, znakovni i cjelobrojni</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co"># ispišite na zaslon sadržaj vektora i njegovu klasu</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># stvorite novi vektor `x` sa četiri proizvoljna elementa sljedećih tipova: </span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co">#  logički, realni, znakovni i cjelobrojni</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(T, <span class="fl">1.25</span>, <span class="st">&quot;Ivo&quot;</span>, 10L)</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co"># ispišite na zaslon sadržaj vektora i njegovu klasu</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">x</a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="kw">class</span>(x)</a></code></pre></div>
+<pre><code>## [1] &quot;TRUE&quot; &quot;1.25&quot; &quot;Ivo&quot;  &quot;10&quot;  
+## [1] &quot;character&quot;</code></pre>
+<hr />
+<p>Vektor možemo eksplicitno pretvoriti u drugi tip uz pomoć već upoznatih funkcija <code>as.&lt;naziv_tipa&gt;</code>. Ukoliko je pretvorbu nemoguće provesti element će biti pretvoren u <code>NA</code> uz prikladno upozorenje.</p>
+<hr />
+<p><strong>Zadatak 3.2 - eksplicitna pretvorba tipa vektora</strong></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, T, 2L)</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L)</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.25</span>, <span class="ot">TRUE</span>, <span class="st">&quot;Ana&quot;</span> )</a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="co"># razmislite o mogućem rezultatu a potom pokušajte izvršiti sljedeće pretvorbe</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="co"># vektor `x` u numerički tip</span></a>
+<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="co"># vektor `y` u znakovni tip</span></a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="co"># vektor `z` u cjelobrojni tip</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># razmislite o mogućem rezultatu a potom pokušajte izvršiti sljedeće pretvorbe</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co"># vektor `x` u numerički tip</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="co"># vektor `y` u znakovni tip</span></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="co"># vektor `z` u cjelobrojni tip</span></a>
+<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="kw">as.numeric</span>(x)</a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="kw">as.character</span>(y)</a>
+<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="kw">as.integer</span>(z)</a></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] 1 1 2
+## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot;
+## [1]  1 NA NA</code></pre>
+<p>Možete li odgovoriti na pitanje - zašto u zadnjem primjeru vrijednost <code>TRUE</code> nije postala <code>1L</code> već <code>NA</code>? Pokušajte ispisati vektor <code>z</code> i uočite rezultate implicitne pretvorbe koju ste možda zanemarili (a koja je logičku vrijednost <code>TRUE</code> pretvorila u niz znakova <code>&quot;TRUE&quot;</code> kojeg više nije moguće “vratiti” u numeričku vrijednost <code>1L</code>).</p>
+<hr />
+<p>Funkcijom <code>c</code> možemo također i više vektora spojiti u jedan:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)   <span class="co"># varijablu smijemo nazvati &quot;c&quot; usprkos tome što postoji funkcija c()</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">d &lt;-<span class="st"> </span><span class="kw">c</span>(a, b, c)   <span class="co"># d je sada c(1, 2, 3, 4, 5, 6, 7, 8)</span></a></code></pre></div>
+<hr />
+<p>Pored funkcije <code>c</code>, R nudi i dodatne pogodne načine stvaranja novih vektora:</p>
+<ul>
+<li><code>:</code> - operator “raspona” (engl. <em>range</em>), pri čemu dajemo raspon od gornje do donje granice, obje uključive</li>
+<li><code>seq</code> - funkcija sekvence (engl. <em>sequence</em>), radi slično operatoru raspona, ali s dodatnim mogućnostima</li>
+<li><code>rep</code> - funkcija repliciranja (engl. <em>replicate</em>), ponavlja zadane elemente zadani broj puta</li>
+</ul>
+<hr />
+<p><strong>Zadatak 3.3 - pomoćne funkcije za stvaranje vektora</strong></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># ispišite rezultate sljedećih naredbi</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># 1:5</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="co"># rep(c(1, 2, 3), times = 3)</span></a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="co"># rep(c(1, 2, 3), each = 3)</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="co"># seq(1, 5, by = 0.5)</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># ispišite rezultate sljedećih naredbi</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">times =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">each =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb56-6" data-line-number="6"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5
+## [1] 1 2 3 1 2 3 1 2 3
+## [1] 1 1 1 2 2 2 3 3 3
+## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+<hr />
+<p>Vektore možemo stvoriti i uz pomoć funkcija koje odgovaraju imenima tipova vektora (<code>numeric</code>, <code>character</code> i sl.) pri čemu kao parametar navodimo željenu duljinu vektora. Ovo često radimo kao “pripremu” vektora za naknadno punjenje stvarnim vrijednostima, tj. svojevrsnu rezervaciju mjesta u radnoj memoriji. Ono što je interesantno jest činjenica da možemo stvoriti i “prazan” vektor određenog tipa koji je i dalje vektor, samo sa duljinom nula (a kojem npr. uz pomoć funkcije <code>c</code> možemo naknadno dodavati elemente).</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">2</span>)         <span class="co"># vektor se puni &quot;nultim&quot; elementima, u ovom slučaju (0, 0)</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">z &lt;-<span class="st"> </span><span class="kw">integer</span>(<span class="dv">0</span>)         <span class="co"># &quot;prazan&quot; vektor!</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="dv">1</span>)            <span class="co"># dodaj vektoru element 1 (zapravo &quot;spoji prazan vektor i element 1&quot;)</span></a></code></pre></div>
+<p>Konačno, provjeru da li neki vektor sadrži određeni element možemo napraviti uz pomoć operatora <code>%in%</code>:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="dv">4</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)     <span class="co"># vraća FALSE</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">&quot;d&quot;</span> <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)   <span class="co"># vraća TRUE</span></a></code></pre></div>
+<p>Pogledajmo sada kako pristupiti pojedinim elementima vektora</p>
+<hr />
+</div>
+<div id="operator" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Operator <code>[</code></h3>
+<p>Elementima vektora pristupamo preko indeksnog operatora <code>[</code>, uz pomoć kojeg možemo i mijenjati elemente vektora:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">a[<span class="dv">1</span>]             <span class="co"># ispisuje vrijednost 2</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">a[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">5</span>        <span class="co"># element na 2. mjestu postaje 5</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">a[<span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">7</span>        <span class="co"># na 5. mjesto dodaje se 7, a &quot;rupa&quot; se popunjava sa NA</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">a</a></code></pre></div>
+<pre><code>## [1] 2
+## [1]  2  5  6 NA  7</code></pre>
+<p>Uočite jednu pomalo neuobičajenu činjenicu - <em>prvi element vektora u R-u ima indeks 1, a ne 0!</em> Ovo je bitna razlika u odnosu na referenciranje elemenata u drugim programskim jezicima. Razlog ove specifičnosti je jednostavan - R se primarno smatra jezikom za analizu podataka, poglavito u tabličnom obliku, a u praksi je puno lakše brojati retke ili stupce redoslijedom kako se pojavljuju u podatkovnom skupu nego raditi “posmak za 1”.</p>
+<p>Primjer gore zapravo prikazuje vrlo pojednostavljeni slučaj pristupanja elementima vektora i način njihove izmjene. Naime, jedna od specifičnosti jezika R je tzv. <em>vektoriziranost</em>, tj. princip da se u R-u vrlo često radi “više stvari odjednom” - ne toliko u smislu paralelnog izvršavanja, već u smislu zadavanja naredbi što želimo da se izvede. Konkretno, u slučaju referenciranja elemenata vektora vrlo rijetko dohvaćamo ili mijenjamo elemente jedan po jedan, već obuhvaćamo veći broj elemenata odjednom korištenjem principa <em>vektorizacije</em> i <em>recikliranja</em>. Razumijevanje ovih pojmova presudno je za svladavanje jezika R, tako da ćemo ih detaljno objasniti u nastavku.</p>
+<hr />
+</div>
+<div id="principi-vektorizacije-i-recikliranja" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Principi vektorizacije i recikliranja</h3>
+<p>Pojam <em>vektorizacije</em> ili bolje rečeno <em>vektoriziranih operacija i funkcija</em> jednostavno znači da se operacije rade nad više elemenata odjednom. Ako zadamo R-u da radi neku operaciju ili funkciju nad nekim vektorom vrijednosti, R će funkciju ili operaciju izvesti nad svakim elementom posebno i vratiti rezultantni vektor kao rezultat. Isto tako, ako provodimo binarnu operaciju nad dva vektora, ona će se provesti nad “uparenim” ili “poravnatim” elementima obaju vektora (pretpostavimo za sada da su vektori jednake duljine).</p>
+<hr />
+<p><strong>Zadatak 3.4 - princip vektorizacije</strong></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="co"># pozovite funkciju `abs` za računanje apsolutne vrijednosti</span></a>
+<a class="sourceLine" id="cb62-7" data-line-number="7"><span class="co"># nad vektorom `x` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb62-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb62-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb62-10" data-line-number="10"><span class="co"># zbrojite vektore `a` i `b` uz pomoć operatora `+`</span></a>
+<a class="sourceLine" id="cb62-11" data-line-number="11"><span class="co"># i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb62-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb62-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb62-14" data-line-number="14"><span class="co"># pomnožite vektore `a` i `b` uz pomoć operatora `*`</span></a>
+<a class="sourceLine" id="cb62-15" data-line-number="15"><span class="co"># i ispišite rezultat</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># pozovite funkciju `abs` za računanje apsolutne vrijednosti</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="co"># nad vektorom `x` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="kw">abs</span>(x)</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb63-5" data-line-number="5"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb63-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb63-7" data-line-number="7"><span class="co"># zbrojite vektore `a` i `b` uz pomoć operatora `+`</span></a>
+<a class="sourceLine" id="cb63-8" data-line-number="8"><span class="co"># i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb63-9" data-line-number="9">a <span class="op">+</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb63-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb63-11" data-line-number="11"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb63-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb63-13" data-line-number="13"><span class="co"># pomnožite vektore `a` i `b` uz pomoć operatora `*`</span></a>
+<a class="sourceLine" id="cb63-14" data-line-number="14"><span class="co"># i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb63-15" data-line-number="15">a <span class="op">*</span><span class="st"> </span>b</a></code></pre></div>
+<pre><code>##  [1] 5 4 3 2 1 0 1 2 3 4 5
+## -----------
+## [1] 5 7 9
+## -----------
+## [1]  4 10 18</code></pre>
+<hr />
+<p>Pažljivo razmotrite rezultate prethodnog zadatka. Ukoliko je potrebno, skicirajte vektore <code>a</code> i <code>b</code> na papiru sa vertikalno poslaganim elementima i uočite kako radi paralelno “uparivanje” elemenata. Primijetite da ovdje ne pričamo o “vektorskim operacijama” u strogom matematičkom smislu, već o poravnavanju elemenata dvaju nizova i provođenja jednostavnih operacija nad svakim od tih parova. Ovo je pogotovo očito u zadnjem primjeru gdje nema nikakvog “množenja vektora” u nekoj od matematičkih interpretacija, već se provodi jednostavno množenje paralelnih elemenata dvaju vektora.</p>
+<p>Što ako vektori nisu jednake duljine? R u ovom slučaju koristi <em>princip recikliranja</em>.</p>
+<p><strong>Princip recikliranja</strong> navodi da se kod nejednake duljine vektora kraći vektor “reciklira” onoliko puta koliko je potrebno da se dostigne duljina duljeg vektora. Najčešći scenarij korištenja ovog principa su operacije u kojima je s jedne strane vektor s više elemenata a s druge strane jednoelementni vektor koji se onda reciklira za svaki element “velikog” vektora. Ono što bismo trebali izbjegavati jest scenarij recikliranja gdje duljina “velikog” vektora nije višekratnik duljine “malog” - R će i dalje reciklirati kraći vektor, samo će ga na kraju morati “odrezati” što će rezultirati odgovarajućim upozorenjem.</p>
+<hr />
+<p><strong>Zadatak 3.5 - princip recikliranja</strong></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">c &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="co"># udvostručite elemente vektora `a` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb65-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb65-7" data-line-number="7"><span class="co"># podijelite vektor `a` vektorom `b` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb65-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb65-9" data-line-number="9"><span class="co"># pomnožite vektore `a` i `c` i ispišite rezultat</span></a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">c &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="co"># udvostručite elemente vektora `a` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>a</a>
+<a class="sourceLine" id="cb66-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8"><span class="co"># podijelite vektor `a` vektorom `b` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb66-9" data-line-number="9">a <span class="op">/</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb66-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb66-11" data-line-number="11"><span class="co"># pomnožite vektore `a` i `c` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb66-12" data-line-number="12">a <span class="op">*</span><span class="st"> </span>c</a></code></pre></div>
+<pre><code>## Warning in a * c: longer object length is not a multiple of shorter object
+## length</code></pre>
+<pre><code>## [1] 2 4 6 8
+## [1] 1 1 3 2
+## [1]  5 10 15 20</code></pre>
+<hr />
+<p>Sada konačno možemo demistificirati razliku između “skalarnih” i “vektorskih” logičkih operatora (podsjetimo se, skalarni su <code>||</code> i <code>&amp;&amp;</code>, dok su vektorski <code>|</code> i <code>&amp;</code>).</p>
+<ul>
+<li><p><em>Skalarni</em> logički operatori namijenjeni su korištenju sa jednoelementnim vektorima, vraćaju jedinstvenu vrijednosti <code>TRUE</code> ili <code>FALSE</code> te su pogodni za korištenje raznim u uvjetnim izrazima.</p></li>
+<li><p><em>Vektorski</em> logički operatori koriste standardne R-ove principe vektorizacije i recikliranja, tj. namijenjeni su radu sa logičkim vektorima i kao rezultat daju logički vektor</p></li>
+</ul>
+<hr />
+<p><strong>Zadatak 3.6 - skalarni i vektorski logički operatori</strong></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(T, F, F)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(T, T, F)</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co"># primjenite skalarnu i vektorsku inačicu logičkog operatora &quot;ili&quot;</span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="co"># nad vektorima `a` i `b` i ispišite rezultat</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># primjenite skalarnu i vektorsku inačicu logičkog operatora &quot;ili&quot;</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="co"># nad vektorima `a` i `b` i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4">a <span class="op">||</span><span class="st"> </span>b</a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">a <span class="op">|</span><span class="st"> </span>b</a></code></pre></div>
+<pre><code>## [1] TRUE
+## [1]  TRUE  TRUE FALSE</code></pre>
+<p>Vidimo da će skalarna inačica “iskoristiti” samo prvi par elemenata logičkih vektora. Ovo znači da ju u teoriji možemo koristiti u uvjetnim izrazima, iako za to nema opravdanog smisla, a R će se u tom slučaju oglasiti upozorenjem kako bi nam obratio pažnju na činjenicu da vjerojatno koristimo “krivi” operator.</p>
+<hr />
+<p>Sljedeći primjer sa usporednim operatorima će možda inicijalno izgledati trivijalan, no potrebno je obratiti posebnu pažnju na rezultate koje ćemo dobiti budući da će oni imati vrlo važnu primjenu u nastavku lekcije. Dakle, pogledajmo što se događa kod vektorizacije usporednih operatora.</p>
+<hr />
+<p><strong>Zadatak 3.7 - vektorizacija usporednih operatora</strong></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="co">#ispišite x i y</span></a>
+<a class="sourceLine" id="cb72-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb72-6" data-line-number="6"><span class="co">#ispišite rezultat naredbe x &gt; y i objasnite rezultat</span></a>
+<a class="sourceLine" id="cb72-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb72-8" data-line-number="8"><span class="co">#ispišite rezultat naredbe x &lt; 3 i objasnite rezultat</span></a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co">#ispišite x i y</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2">x</a>
+<a class="sourceLine" id="cb73-3" data-line-number="3">y</a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb73-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb73-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb73-8" data-line-number="8"><span class="co">#ispišite rezultat naredbe x &gt; y i objasnite rezultat</span></a>
+<a class="sourceLine" id="cb73-9" data-line-number="9">x <span class="op">&gt;</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb73-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb73-11" data-line-number="11"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb73-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb73-13" data-line-number="13"><span class="co">#ispišite rezultat naredbe x &lt; 3 i objasnite rezultat</span></a>
+<a class="sourceLine" id="cb73-14" data-line-number="14">x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5
+## [1] -10  -5   0   5  10
+## -----------
+## [1]  TRUE  TRUE  TRUE FALSE FALSE
+## -----------
+## [1]  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<hr />
+<p>Dakle vektoriziranom primjenom usporednih operatora nad vektorima (ili kombinacijama vektora i “skalara”) kao rezultat dobivamo logičke vektore. Interpretacija ovih rezultata je ključna - ona zapravo odgovara na pitanje “na kojim indeksima je zadovoljen uvjet zadan ovim izrazom”? Drugim riječima, dobiveni rezultati zapravo predstavljaju predložak koji opisuje kako filtrirati elemente prema zadanom principu. Ovo je osnovni temelj tzv. <em>logičkog referenciranja</em>, što je jedna od metoda dohvaćanja elemenata vektora koje ćemo upoznati u nastavku.</p>
+<hr />
+</div>
+</div>
+<div id="indeksni-vektori" class="section level2">
+<h2><span class="header-section-number">3.2</span> Indeksni vektori</h2>
+<p>Već smo naučili da elementu polja možemo pristupiti preko numeričkog indeksa (a nismo zaboravili ni činjenicu da prvi element ima indeks 1). Ovaj koncept možemo proširiti tako da iz vektora uzimamo više elemenata odjednom. što se često naziva “rezanjem” vektora (engl. <em>slicing</em>).</p>
+<p>Osnovni princip odabira više elemenata odjednom je jednostavan - samo moramo na određeni način navesti indekse elemenata koje želimo. R nudi tri osnovna načina referenciranja:</p>
+<ul>
+<li>lokacijsko referenciranje (engl. <em>integer- or location-based referencing</em>)</li>
+<li>uvjetno referenciranje (engl. <em>conditional- or boolean-based referencing</em>)</li>
+<li>imensko referenciranje (engl. <em>label-based referencing</em>)</li>
+</ul>
+<p>Koje referenciranje ćemo odabrati ovisi o tome želimo li elementima pristupati ovisno o njihovoj lokaciji, imenu ili prema zadanom uvjetu, a svaki tip referenciranja u suštini se svodi na korištenje vektora određenog tipa kao parametra za operator referenciranja. Ovakav vektor se zbog svoje uloge naziva “indeksnim vektorom”.</p>
+<p>Upoznajmo detaljno svaki od tipova referenciranja.</p>
+<hr />
+<div id="lokacijsko-referenciranje" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Lokacijsko referenciranje</h3>
+<p><em>Lokacijsko referenciranje</em> je poopćenje već upoznatog principa referenciranja gdje navodimo redni broj elementa koji nas zanima. Ako želimo više elemenata, jednostavno navedemo njihove indekse “zapakirane” u numerički vektor.</p>
+<p>Pokušajte riješiti sljedeći zadatak korištenjem odgovarajućih numeričkih vektora kao parametara indeksnog operatora.</p>
+<hr />
+<p><strong>Zadatak 3.8 - lokacijsko referenciranje</strong></p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="co"># ispišite prvi element vektora x</span></a>
+<a class="sourceLine" id="cb75-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb75-5" data-line-number="5"><span class="co"># ispišite prva tri elementa vektora x</span></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb75-7" data-line-number="7"><span class="co"># ispišite prvi, peti i sedmi element vektora x</span></a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># ispišite prvi element vektora x</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">x[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb76-4" data-line-number="4"><span class="co"># ispišite prva tri elementa vektora x</span></a>
+<a class="sourceLine" id="cb76-5" data-line-number="5">x[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb76-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb76-7" data-line-number="7"><span class="co"># ispišite prvi, peti i sedmi element vektora x</span></a>
+<a class="sourceLine" id="cb76-8" data-line-number="8">x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>)]</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 1 2 3
+## [1] 1 5 7</code></pre>
+<hr />
+<p>Dakle, lokacijski indeksni vektor nije ništa drugo nego običan numerički vektor kojeg koristimo zajedno sa indeksnim operatorom da bi odredili koje elemente nekog drugog vektora želimo “zadržati”.</p>
+<p>Pogledajmo još neke značajke lokacijskih indeksnih vektora:</p>
+<hr />
+<p><strong>Zadatak 3.9 - lokacijsko referenciranje (2)</strong></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="co"># odgovorite na sljedeća pitanja uz pomoć prikladnog primjera</span></a>
+<a class="sourceLine" id="cb78-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb78-5" data-line-number="5"><span class="co"># što vraća indeks 0? </span></a>
+<a class="sourceLine" id="cb78-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb78-7" data-line-number="7"><span class="co"># što vraća negativni indeks? </span></a>
+<a class="sourceLine" id="cb78-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb78-9" data-line-number="9"><span class="co"># što vraća indeks izvan granica duljine vektora</span></a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="co"># odgovorite na sljedeća pitanja uz pomoć prikladnog primjera</span></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="co"># što vraća indeks 0? </span></a>
+<a class="sourceLine" id="cb79-6" data-line-number="6">x[<span class="dv">0</span>]</a>
+<a class="sourceLine" id="cb79-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb79-8" data-line-number="8"><span class="co"># što vraća negativni indeks? </span></a>
+<a class="sourceLine" id="cb79-9" data-line-number="9">x[<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb79-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb79-11" data-line-number="11"><span class="co"># što vraća indeks izvan granica duljine vektora</span></a>
+<a class="sourceLine" id="cb79-12" data-line-number="12">x[<span class="dv">20</span>]</a></code></pre></div>
+<pre><code>## integer(0)
+## [1]  2  3  4  5  6  7  8  9 10
+## [1] NA</code></pre>
+<hr />
+<p>Indeksni operator se ne koristi samo za dohvaćanje elemenata. Kombinacijom indeksnog operatora i operatora pridruživanja možemo mijenjati elemente vektora (i to također po principu “više elemenata odjednom”:</p>
+<hr />
+<p><strong>Zadatak 3.10 - lokacijsko referenciranje i pridruživanje</strong></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="co"># postavite sve elemente vektora `a` od drugog do osmog mjesta na nulu </span></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="co"># ispišite vektor `a`</span></a>
+<a class="sourceLine" id="cb81-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb81-6" data-line-number="6">b &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb81-7" data-line-number="7">b[<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb81-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb81-9" data-line-number="9"><span class="co"># razmislite kako izgleda vektor `b` nakon gornje naredbe</span></a>
+<a class="sourceLine" id="cb81-10" data-line-number="10"><span class="co"># ispišite vektor `b` i objasnite rezultat</span></a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co"># postavite sve elemente vektora `a` od drugog do osmog mjesta na nulu </span></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="co"># ispišite vektor `a`</span></a>
+<a class="sourceLine" id="cb82-5" data-line-number="5">a[<span class="dv">2</span><span class="op">:</span><span class="dv">8</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb82-6" data-line-number="6">a</a>
+<a class="sourceLine" id="cb82-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb82-8" data-line-number="8">b &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb82-9" data-line-number="9">b[<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb82-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb82-11" data-line-number="11"><span class="co"># razmislite kako izgleda vektor `b` nakon gornje naredbe</span></a>
+<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co"># ispišite vektor `b` i objasnite rezultat</span></a>
+<a class="sourceLine" id="cb82-13" data-line-number="13">b</a></code></pre></div>
+<pre><code>##  [1]  1  0  0  0  0  0  0  0  9 10
+##  [1]  1 NA  3 NA  5 NA  7 NA  9 NA 11 12 13 14 15 16 17 18 19 20</code></pre>
+<hr />
+</div>
+<div id="uvjetno-referenciranje" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Uvjetno referenciranje</h3>
+<p>Ako smo pažljivo razmotrili rezultate dobivene kod primjera sa vektoriziranim usporednim operatorima onda smo mogli vrlo dobro naslutiti kako radi <em>uvjetno referenciranje</em>. Princip je jednostavan - za indeksni vektor postavljamo logički vektor iste duljine kao i vektor čije elemente želimo dohvatiti. Elementi logičkog vektora određuju koje elemente zadržavamo (pozicije gdje se nalazi vrijednost <code>TRUE</code>) a koje odbacujemo (pozicije gdje se nalazi vrijednost <code>FALSE</code>).</p>
+<hr />
+<p><strong>Zadatak 3.11 - uvjetno referenciranje</strong></p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="co"># napravite logički vektor `y` duljine 10 sa proizvoljnom kombinacijom</span></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co"># vrijednosti TRUE i FALSE</span></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="co"># indeksirajte vektor `x` vektorom `y`, ispišite i objasnite rezultat</span></a>
+<a class="sourceLine" id="cb84-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb84-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb84-9" data-line-number="9"><span class="co"># ispišite sve elemente vektora `x` manje ili jednake 5</span></a>
+<a class="sourceLine" id="cb84-10" data-line-number="10"><span class="co"># kao logički indeksni vektor upotrijebite odgovarajući izraz</span></a>
+<a class="sourceLine" id="cb84-11" data-line-number="11"><span class="co"># koji koristi usporedni operator</span></a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="co"># napravite logički vektor `y` duljine 10 sa proizvoljnom kombinacijom</span></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="co"># vrijednosti TRUE i FALSE</span></a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">y &lt;-<span class="st"> </span><span class="kw">c</span>(T, T, F, T, F, F, F, T, F, T)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7"><span class="co"># indeksirajte vektor `x` vektorom `y`, ispišite i objasnite rezultat</span></a>
+<a class="sourceLine" id="cb85-8" data-line-number="8">x[y]</a>
+<a class="sourceLine" id="cb85-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb85-10" data-line-number="10"><span class="co"># ispišite sve elemente vektora `x` manje ili jednake 5</span></a>
+<a class="sourceLine" id="cb85-11" data-line-number="11"><span class="co"># kao logički indeksni vektor upotrijebite odgovarajući izraz</span></a>
+<a class="sourceLine" id="cb85-12" data-line-number="12"><span class="co"># koji koristi usporedni operator</span></a>
+<a class="sourceLine" id="cb85-13" data-line-number="13">x[x <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## [1]  1  2  4  8 10
+## [1] 1 2 3 4 5</code></pre>
+<hr />
+<p>Zadnja naredba, naoko jednostavna, predstavlja jedan od ključnih principa odabira elemenata u jeziku R. Kombinacija indeksnog operatora i uvjetnog izraza predstavlja sažet ali vrlo moćan mehanizam rezanja vektora prema odabranom kriteriju.</p>
+<p>Isprobajmo ovaj princip na još nekoliko primjera.</p>
+<hr />
+<p><strong>Zadatak 3.12 - uvjetno referenciranje</strong></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb87-2" data-line-number="2">studenti &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ivo&quot;</span>, <span class="st">&quot;Petra&quot;</span>, <span class="st">&quot;Marijana&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Tomislav&quot;</span>, <span class="st">&quot;Tin&quot;</span>)</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co"># ispišite vektor koji sadrži sve parne, a potom sve neparne elemente vektora `y`</span></a>
+<a class="sourceLine" id="cb87-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb87-6" data-line-number="6"><span class="co"># ispišite sve elemente vektora `studenti` koji predstavljaju imena od 3 slova</span></a>
+<a class="sourceLine" id="cb87-7" data-line-number="7"><span class="co"># (napomena: za prebrojavanje slova znakovnog niza u R-u koristimo funkciju `nchar`)</span></a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">studenti &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ivo&quot;</span>, <span class="st">&quot;Petra&quot;</span>, <span class="st">&quot;Marijana&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Tomislav&quot;</span>, <span class="st">&quot;Tin&quot;</span>)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co"># ispišite vektor koji sadrži sve parne, a potom sve neparne elemente vektora `y`</span></a>
+<a class="sourceLine" id="cb88-5" data-line-number="5"><span class="kw">c</span>(y[y <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>], y[y <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>])</a>
+<a class="sourceLine" id="cb88-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb88-7" data-line-number="7"><span class="co"># ispišite sve elemente vektora `studenti` koji predstavljaju imena od 3 slova</span></a>
+<a class="sourceLine" id="cb88-8" data-line-number="8"><span class="co"># (napomena: za prebrojavanje slova znakovnog niza u R-u koristimo funkciju `nchar`)</span></a>
+<a class="sourceLine" id="cb88-9" data-line-number="9">studenti[<span class="kw">nchar</span>(studenti) <span class="op">==</span><span class="st"> </span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>##  [1]  8 22 36 50 64 78 92  1 15 29 43 57 71 85 99
+## [1] &quot;Ivo&quot; &quot;Ana&quot; &quot;Tin&quot;</code></pre>
+<hr />
+<p>Ukoliko koncept uvjetnog referenciranja uz pomoć uvjetnih izraza i dalje nije jasan, jedna od stvari koje mogu pomoći jest skiciranje “međurezultata” - jednostavno na papir ispišite rezultat izraza unutar uglatih zagrada indeksnog operatora i potom razmislite kako taj rezultat utječe na konačno rješenje.</p>
+<p>Preostao nam je još samo zadnji tip referenciranja koji radi na principu dohvaćanja elemenata vektora ovisno o njihovom imenu.</p>
+<hr />
+</div>
+<div id="imensko-referenciranje" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Imensko referenciranje</h3>
+<p><em>Imensko referenciranje</em> radi na principu eksplicitnog imenovanja elemenata koje želimo “zadržati”. Da bi mogli koristiti ovakav tip referenciranja moramo zadovoljiti nužan preduvjet - elementi vektora moraju imati definirana “imena”.</p>
+<p>Vektori koje smo do sada koristili nisu imali imenovane elemente. Svaki element imao je svoju predefiniranu <em>poziciju</em> unutar vektora te svoju vrijednost, ali nije imao nikakav poseban dodatni identifikator. Programski jezik R dopušta pridavanje imena elementima vektora na vrlo jednostavan način - korištenjem funkcije <code>names</code>, operatora pridruživanja te znakovnog vektora sa odabranim imenima. Moramo voditi računa da vektor imena bude jednake duljine kao originalni vektor!</p>
+<hr />
+<p><strong>Zadatak 3.13 - imensko referenciranje</strong></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">visine &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">165</span>, <span class="dv">173</span>, <span class="dv">185</span>, <span class="dv">174</span>, <span class="dv">190</span>)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="kw">names</span>(visine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Marica&quot;</span>, <span class="st">&quot;Pero&quot;</span>, <span class="st">&quot;Josip&quot;</span>, <span class="st">&quot;Ivana&quot;</span>, <span class="st">&quot;Stipe&quot;</span>)</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co"># ispišite vektor `visine`</span></a>
+<a class="sourceLine" id="cb90-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb90-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb90-7" data-line-number="7"><span class="co"># ispišite koliko su visoki Pero i Ivana</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">visine &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">165</span>, <span class="dv">173</span>, <span class="dv">185</span>, <span class="dv">174</span>, <span class="dv">190</span>)</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="kw">names</span>(visine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Marica&quot;</span>, <span class="st">&quot;Pero&quot;</span>, <span class="st">&quot;Josip&quot;</span>, <span class="st">&quot;Ivana&quot;</span>, <span class="st">&quot;Stipe&quot;</span>)</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="co"># ispišite vektor `visine`</span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5">visine</a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="co"># ispišite koliko su visoki Pero i Ivana</span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8">visine[<span class="kw">c</span>(<span class="st">&quot;Pero&quot;</span>, <span class="st">&quot;Ivana&quot;</span>)]</a></code></pre></div>
+<pre><code>## Marica   Pero  Josip  Ivana  Stipe 
+##    165    173    185    174    190 
+##  Pero Ivana 
+##   173   174</code></pre>
+<hr />
+<p>Vidimo da se imensko referenciranje očekivano svodi na prosljeđivanje odgovarajućeg znakovnog vektora kao parametra referenciranja.</p>
+<p>(NAPOMENA: Pažljiviji čitatelj uočiti će jednu neobičnu činjenicu u gornjem programskom kodu - poziv funkcije se koristi kao <code>lvalue</code>! Odgovor na pitanje zašto je ovo moguće zahtijeva malo više znanja o internom funkcioniranju jezika R, a za sada je dovoljno reći da se ovdje zapravo radi o pozivu funkcije pravog imena <code>names&lt;-</code> koji se “skriva” iza puno intuitivnije i lako razumljive sintakse)</p>
+<p>Ukoliko iz nekog razloga poželimo obrisati imena elemenata vektora, jednostavno pozivu funkcije <code>names</code> proslijedimo <code>NULL</code>.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">names</span>(visine) &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<p>Ovime ćemo zaključiti priču o vektorima. Naučili smo različite načine stvaranja vektora te dohvaćanja i izmjene njegovih elemenata. Sada je vrijeme da pokušamo vektorima dodati dodatnu “dimenziju” - upoznajmo matrice i polja.</p>
+<hr />
+</div>
+</div>
+<div id="matrice-i-polja" class="section level2">
+<h2><span class="header-section-number">3.3</span> Matrice i polja</h2>
+<p>Matrice i polja su, jednostavno rečeno, višedimenzionalni vektori. <em>Matrica</em> (engl. <em>matrix</em>) je tako vektor sa dvije dimenzije, tj. vektor koji elemente smiješta u “retke” i “stupce”. <em>Polje</em> (engl. <em>array</em>) je vektor sa tri ili više dimenzija. Dok se matrice relativno često koriste u praksi, polja su ipak nešto više ograničena na posebne scenarije. Zbog ove činjenice u ovom poglavlju uglavnom ćemo se baviti matricama, iako se prikazani koncepti vrlo lako poopćuju na polja.</p>
+<p>Ono što je zajedničko matricama i poljima, a što je poznata činjenica čitateljima sa programerskim iskustvom, jest da je njihova višedimenzionalnost zapravo prividna. I matrice i polja su zapravo jednodimenzionalni vektori kojima je dodan atribut dimenzionalnosti, a uz pomoć tog atributa jezik R mapira naše višedimenzionalno referenciranje u “stvarni” indeks elementa jednodimenzionalnog vektora. Ova činjenica nas ne ograničava - mi i dalje možemo u većini slučajeva tretirati matricu kao da je zaista dvodimenzionalna, a znanje o jednodimenzionalnoj prirodi nam može samo dati dodatnu fleksibilnost u radu s matricama.</p>
+<p>Postoji nekoliko načina stvaranja nove matrice:</p>
+<ul>
+<li>uz pomoć funkcije <code>matrix</code> kojoj prosljeđujemo jednodimenzionalni vektor i željeni broj redaka i stupaca kroz parametre <code>nrow</code> i <code>ncol</code></li>
+<li>“ručnim” postavljanjem dimenzija jednodimenzionalnog vektora uz pomoć funkcije <code>dim</code> i pridruživanja dvoelementnog numeričkog vektora sa dimenzijama matrice</li>
+<li>“ljepljenjem” jednodimenzionalnih vektora koji predstavljaju retke ili stupce nove matrice uz pomoć funkcija <code>rbind</code> (engl. <em>row bind</em>) i <code>cbind</code> (engl. <em>column bind</em>)</li>
+</ul>
+<p>Demonstrirajmo ove načine u primjerima koji slijede.</p>
+<hr />
+<p><strong>Zadatak 3.14 - funkcija <code>matrix</code></strong></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb94-3" data-line-number="3"><span class="co"># uz pomoć funkcije `matrix` i stvorite matricu sa 3 retka i 4 stupca</span></a>
+<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="co"># koja sadrži elemente vektora `x`</span></a>
+<a class="sourceLine" id="cb94-5" data-line-number="5"><span class="co"># ispišite rezultat na zaslon</span></a>
+<a class="sourceLine" id="cb94-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb94-7" data-line-number="7"><span class="co"># ponovite postupak ali pozivu funkcije dodajte parametar `byrow = T`</span></a>
+<a class="sourceLine" id="cb94-8" data-line-number="8"><span class="co"># ispišite rezultat na zaslon i usporedite s prethodnim rezultatom</span></a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># uz pomoć funkcije `matrix` stvorite matricu sa 3 retka i 4 stupca</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="co"># koja sadrži elemente vektora `x`</span></a>
+<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="co"># ispišite rezultat na zaslon</span></a>
+<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="kw">matrix</span>(x, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb95-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="co"># ponovite postupak ali pozivu funkcije dodajte parametar `byrow = T`</span></a>
+<a class="sourceLine" id="cb95-7" data-line-number="7"><span class="co"># ispišite rezultat na zaslon i usporedite s prethodnim rezultatom</span></a>
+<a class="sourceLine" id="cb95-8" data-line-number="8"><span class="kw">matrix</span>(x, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> T)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12</code></pre>
+<hr />
+<p>Uočite da ga ukoliko eksplicitno ne zamolimo drugačije, R matricu popunjava po stupcima. Ovo je napravljeno zbog sličnosti matrice sa tabličnim prikazom podataka koje najčešće analiziramo gledajući pojedine stupce. No budući da nam je često punjenje po retcima “prirodnije”, ne smijemo zaboraviti na vrlo korisni parametar <code>byrow</code>.</p>
+<hr />
+<p><strong>Zadatak 3.15 - funkcija <code>dim</code></strong></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="co"># ispišite rezultat poziva funkcije `dim` nad vektorom `m`</span></a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb97-5" data-line-number="5"><span class="co"># pozivu funkcije `dim` nad vektorom `m` pridružite vektor c(2, 5)</span></a>
+<a class="sourceLine" id="cb97-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="co"># ispišite `m` i komentirajte rezultat</span></a>
+<a class="sourceLine" id="cb97-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb97-9" data-line-number="9"><span class="co"># ispišite rezultate poziva funkcija `nrow` i `ncol` nad matricom `m`</span></a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="co"># ispišite rezultat poziva funkcije `dim` nad vektorom `m`</span></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="kw">dim</span>(m)</a>
+<a class="sourceLine" id="cb98-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="co"># pozivu funkcije `dim` nad vektorom `m` pridružite vektor c(2, 5)</span></a>
+<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="kw">dim</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb98-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb98-9" data-line-number="9"><span class="co"># ispišite `m` i komentirajte rezultat</span></a>
+<a class="sourceLine" id="cb98-10" data-line-number="10">m</a>
+<a class="sourceLine" id="cb98-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb98-12" data-line-number="12"><span class="co"># ispišite rezultate poziva funkcija `nrow` i `ncol` nad matricom `m`</span></a>
+<a class="sourceLine" id="cb98-13" data-line-number="13"><span class="kw">nrow</span>(m)</a>
+<a class="sourceLine" id="cb98-14" data-line-number="14"><span class="kw">ncol</span>(m)</a></code></pre></div>
+<pre><code>## NULL
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10
+## [1] 2
+## [1] 5</code></pre>
+<hr />
+<p>Vidimo da “običan” vektor zapravo nema dimenziju, što se očituje preko <code>NULL</code> vrijednosti koju smo dobili kao rezultat. Pozivom funkcije <code>dim</code> mi vektoru zapravo dodajemo atribut naziva <code>dim</code> čime on formalno postaje matrica (tj. polje u općenitom slučaju). Upravo dimenzije su te koje definiraju kako su elementi složeni po retcima i stupcima a postavljanjem dimenzija moramo biti oprezni da one odgovaraju trenutnom broju elemenata. Jednom kad matrica ima dodane dimenzije, možemo ih dohvatiti “zajedno” uz pomoć funkcije <code>dim</code>, ili samo broj redaka ili stupaca uz pomoć funkcija <code>nrow</code> i <code>ncol</code>.</p>
+<p>Rezultantna matrica je poput one iz prethodnog primjera popunjena po stupcima. Budući da ovdje nemamo priliku koristiti parametar <code>byrow</code>, jedan od načina da dobijemo matricu popunjenu po retcima jest da transponiramo dobiveni rezultat uz pomoć funkcije <code>t</code>.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">t</span>(m)  <span class="co"># transponiramo matricu i pohranjujemo natrag u varijablu `m`</span></a></code></pre></div>
+<p>Konačno, matricu možemo stvoriti “ljepljenjem” redaka i stupaca uz pomoć funkcija <code>rbind</code> i <code>cbind</code>. Ovo je također zgodan način dodavanja novih redaka i stupaca postojećoj matrici.</p>
+<hr />
+<p><strong>Zadatak 3.16 - funkcije <code>rbind</code> i <code>cbind</code></strong></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="dv">5</span><span class="op">:</span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3">c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb101-5" data-line-number="5"><span class="co"># stvorite matricu `m` u kojoj će vektori `a` i `b` biti retci</span></a>
+<a class="sourceLine" id="cb101-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb101-7" data-line-number="7"><span class="co"># dodajte novi redak na vrh matrice `m` sa elementima vektora `c`</span></a>
+<a class="sourceLine" id="cb101-8" data-line-number="8"><span class="co"># ispišite matricu `m`</span></a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="dv">5</span><span class="op">:</span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3">c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="co"># stvorite matricu `m` u kojoj će vektori `a` i `b` biti stupci</span></a>
+<a class="sourceLine" id="cb102-6" data-line-number="6">m &lt;-<span class="st"> </span><span class="kw">cbind</span>(a,b)</a>
+<a class="sourceLine" id="cb102-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb102-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb102-9" data-line-number="9"><span class="co"># dodajte novi redak na vrh matrice `m` sa elementima vektora `c`</span></a>
+<a class="sourceLine" id="cb102-10" data-line-number="10"><span class="co"># ispišite matricu `m`</span></a>
+<a class="sourceLine" id="cb102-11" data-line-number="11">m &lt;-<span class="st"> </span><span class="kw">rbind</span>(c, m)</a>
+<a class="sourceLine" id="cb102-12" data-line-number="12">m</a></code></pre></div>
+<pre><code>##   a b
+## c 0 0
+##   1 5
+##   2 6
+##   3 7
+##   4 8</code></pre>
+<hr />
+<div id="rezanje-matrica" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Rezanje matrica</h3>
+<p>Sve naučene principe za “rezanje” vektora uz pomoć indeksnih vektora možemo direktno primijeniti nad matricama. Razlike su sljedeće:</p>
+<ul>
+<li>referenciramo svaku dimenziju zasebno</li>
+<li>prvo referenciramo retke, a potom stupce, a indeksne vektore odvajamo zarezom</li>
+<li>ako želimo “sve retke” ili “sve stupce” taj indeksni vektor jednostavno izostavimo (ali i dalje koristimo zarez)</li>
+</ul>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co"># pretpostavimo da je `m` matrica dimenzija 3 x 5, sa imenima stupaca od `a` do `e`</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3">m[<span class="dv">1</span>, <span class="dv">2</span><span class="op">:</span><span class="dv">5</span>]                       <span class="co"># prvi redak, svi stupci od drugog do petog</span></a>
+<a class="sourceLine" id="cb104-4" data-line-number="4">m[<span class="kw">c</span>(F, T, T), <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>)]      <span class="co"># drugi i treći redak, stupci `a` i `b`</span></a>
+<a class="sourceLine" id="cb104-5" data-line-number="5">m[,]                            <span class="co"># svi retci i svi stupci (može i samo `m`)</span></a></code></pre></div>
+<p>U praksi kod matrica najčešće koristimo lokacijsko i imensko referenciranje; uvjetno referenciranje nije previše praktično zbog dvodimenzionalne prirode matrice (iako je izvedivo, samo moramo voditi računa da logički indeksni vektori duljinom odgovaraju pripadajućoj dimenziji).</p>
+<p>Jedna od stvari na koju moramo voditi računa jest tendencija jezika R da nam “pomaže” pojednostavljujući rezultat. Tako će rezultat operacije rezanja matrice koja ostavlja samo jedan redak ili stupac automatski postati vektor, tj. izgubiti će atribut dimenzije. Ovo nam nekad ne odgovara, pogotovo ako radimo programske skripte koje u daljnjoj proceduri očekuju matricu, pa makar ona imala dimenziju redaka ili stupaca 1. U tom slučaju kod referenciranja moramo postaviti i dodatni parametar <code>drop = F</code>. Ovo često izgleda dosta nezgrapno, zbog čega danas postoje mnogi paketi proširenja jezika R koji ovo “popravljaju”, tj. koji se trude rezultat ostavljati u konzistentnom obliku. No parametar <code>drop</code> postavljen na <code>FALSE</code> treba imati u vidu, budući da će se pojavljivati i na drugim mjestima u sličnoj funkciji.</p>
+<hr />
+<p><strong>Zadatak 3.17 - rezanje matrica</strong></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">6</span>, <span class="dv">5</span>, T)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">colnames</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="co"># ispišite sve elemente matrice m od drugog do četvrtog retka</span></a>
+<a class="sourceLine" id="cb105-5" data-line-number="5"><span class="co"># te od trećeg do petog stupca</span></a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb105-7" data-line-number="7"><span class="co"># sve elemente u stupcu naziva &quot;c&quot; postavite na nulu</span></a>
+<a class="sourceLine" id="cb105-8" data-line-number="8"><span class="co"># a potom ispišite prva dva retka matrice `m`</span></a>
+<a class="sourceLine" id="cb105-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb105-10" data-line-number="10"><span class="co"># ispišite samo stupac &quot;d&quot;</span></a>
+<a class="sourceLine" id="cb105-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb105-12" data-line-number="12"><span class="co"># ispišite opet stupac &quot;d&quot;, ali kod referenciranja dodajte parametar `drop = FALSE`</span></a>
+<a class="sourceLine" id="cb105-13" data-line-number="13"><span class="co"># parametar odvojite zarezom (kao da se radi o &quot;trećoj&quot; dimenziji referenciranja)</span></a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">6</span>, <span class="dv">5</span>, T)</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">colnames</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="co"># ispišite sve elemente matrice `m` od drugog do četvrtog retka</span></a>
+<a class="sourceLine" id="cb106-5" data-line-number="5"><span class="co"># te od trećeg do petog stupca</span></a>
+<a class="sourceLine" id="cb106-6" data-line-number="6">m[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb106-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb106-8" data-line-number="8"><span class="co"># sve elemente u stupcu naziva &quot;c&quot; postavite na nulu</span></a>
+<a class="sourceLine" id="cb106-9" data-line-number="9"><span class="co"># a potom ispišite prva dva retka matrice `m`</span></a>
+<a class="sourceLine" id="cb106-10" data-line-number="10">m[, <span class="st">&quot;c&quot;</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb106-11" data-line-number="11">m[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]</a>
+<a class="sourceLine" id="cb106-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb106-13" data-line-number="13"><span class="co"># ispišite samo stupac &quot;d&quot;</span></a>
+<a class="sourceLine" id="cb106-14" data-line-number="14">m[, <span class="st">&quot;d&quot;</span>]</a>
+<a class="sourceLine" id="cb106-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb106-16" data-line-number="16"><span class="co"># ispišite opet stupac &quot;d&quot;, ali kod referenciranja dodajte parametar `drop = FALSE`</span></a>
+<a class="sourceLine" id="cb106-17" data-line-number="17"><span class="co"># parametar odvojite zarezom (kao da se radi o &quot;trećoj&quot; dimenziji referenciranja)</span></a>
+<a class="sourceLine" id="cb106-18" data-line-number="18">m[, <span class="st">&quot;d&quot;</span>, drop =<span class="st"> </span>F]</a></code></pre></div>
+<pre><code>##       c  d  e
+## [1,]  8  9 10
+## [2,] 13 14 15
+## [3,] 18 19 20
+##      a b c d  e
+## [1,] 1 2 0 4  5
+## [2,] 6 7 0 9 10
+## [1]  4  9 14 19 24 29
+##       d
+## [1,]  4
+## [2,]  9
+## [3,] 14
+## [4,] 19
+## [5,] 24
+## [6,] 29</code></pre>
+<hr />
+<p>Ovdje ćemo završiti priču o matricama. Ove strukture su vrlo korisne kod rješavanja matematičkih zadataka zasnovanih na matricama, pri čemu je često zgodno pogledati dokumentaciju jezika R kako bi vidjeli koje funkcije i operatori su nam dostupni za takav posao. Isto tako, neki prikazani principi upravljanja matricama biti će korisni kod upravljanja tzv. podatkovnim okvirima - vjerojatno najpopularnijem tipu objekta jezika R kojeg ćemo upoznati u jednom od nastupajućih poglavlja.</p>
+<p>Konačno, iako se nećemo detaljno baviti poljima, prikažimo radi potpunosti primjer programskog koda koji stvara trodimenzionalno polje te potom ispisuje jedan njegov dio standardnim principom rezanja kojeg smo upoznali kod vektora i matrica.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">polje &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># polje dimenzija 2 x 3 x 4</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb108-3" data-line-number="3">polje[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">3</span>, drop =<span class="st"> </span><span class="ot">FALSE</span>]           <span class="co"># ispis svih redaka, prvog i drugog stupca</span></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">                                        <span class="co"># trećeg &quot;sloja&quot;, uz zadržavanje tipa polja</span></a></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="liste" class="section level2">
+<h2><span class="header-section-number">3.4</span> Liste</h2>
+<p>Lista je element programskog jezika R koji se koristi kao “univerzalni spremnik” bilo kakvih podataka. Za razliku od vektora (tj. od pojma vektora kakvog smo ga inicijalno definirali), lista može sadržavati različite tipove podataka ili - češće - skupove različitih tipova podataka.</p>
+<p>Listu stvaramo uz pomoć funkcije <code>list</code> kojom dodajemo niz parova naziva elemenata i njihovih sadržaja. Ovi elementi mogu biti bilo što, pa čak i druge liste.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">mojaLista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">c =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">2</span>))</a></code></pre></div>
+<p>Probajmo stvoriti vlastitu listu u sljedećem primjeru.</p>
+<hr />
+<p><strong>Zadatak 3.18 - stvaranje liste</strong></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># stvorite novu listu naziva `svastara` koja će imati sljedeće elemente</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="co">#      element naziva `brojevi` sa cijelim brojevima od 1 do 3</span></a>
+<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="co">#      element naziva `slova` sa slovima &quot;A&quot; i &quot;B&quot;</span></a>
+<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="co">#      bezimeni element sa logičkim vektorom `c(T,F)`</span></a>
+<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="co">#      element naziva `imena` sa imenima &quot;Ivo&quot; i &quot;Ana&quot;</span></a>
+<a class="sourceLine" id="cb110-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb110-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb110-8" data-line-number="8"><span class="co"># ispišite listu `svastara`</span></a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">svastara &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brojevi =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), </a>
+<a class="sourceLine" id="cb111-2" data-line-number="2">                 <span class="dt">slova =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), </a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">                 <span class="kw">c</span>(T,F), </a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">                 <span class="dt">imena =</span> <span class="kw">c</span>(<span class="st">&quot;Ivo&quot;</span>, <span class="st">&quot;Ana&quot;</span>))</a>
+<a class="sourceLine" id="cb111-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb111-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="co"># ispišite listu `svastara`</span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8">svastara</a></code></pre></div>
+<pre><code>## $brojevi
+## [1] 1 2 3
+## 
+## $slova
+## [1] &quot;A&quot; &quot;B&quot;
+## 
+## [[3]]
+## [1]  TRUE FALSE
+## 
+## $imena
+## [1] &quot;Ivo&quot; &quot;Ana&quot;</code></pre>
+<hr />
+<p>Uočite da lista zadržava poredak elemenata - element bez imena prikazan je indeksom 3.</p>
+<p>Funkcija <code>str</code> (engl. <em>structure</em>) omogućuje nam uvid u svojstva i sadržaj liste bez ispisivanja cijele liste. Ovu funkciju analitičari često koriste, kako za pregled lista tako i za brzi uvid u već spomenute podatkovne okvire koje ćemo raditi u idućem poglavlju.</p>
+<hr />
+<p><strong>Zadatak 3.19 - struktura liste</strong></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="co"># ispišite strukturu liste `svastara`</span></a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="co"># ispišite strukturu liste `svastara`</span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="kw">str</span>(svastara)</a></code></pre></div>
+<pre><code>## List of 4
+##  $ brojevi: num [1:3] 1 2 3
+##  $ slova  : chr [1:2] &quot;A&quot; &quot;B&quot;
+##  $        : logi [1:2] TRUE FALSE
+##  $ imena  : chr [1:2] &quot;Ivo&quot; &quot;Ana&quot;</code></pre>
+<hr />
+<p>Na početku ove lekcije smo rekli da u R-u vrijedi princip “sve je vektor” te da su vektori zapravo uređeni skupovi elemenata istog tipa. Iz ovog bi se moglo zaključiti da ta činjenica ne vrijedi za liste - oni očito sadržavaju elemente različitih tipova. No pravi odgovor je - i liste su zapravo vektori, a definicija zapravo nije narušena. Naime, svi elementi liste su zapravo male jednoelementne liste, tako da su formalno svi elementi istog tipa.</p>
+<hr />
+<p><strong>Zadatak 3.20 - tip elemenata liste</strong></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="co"># ispišite prvi element liste svastara </span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co"># provjerite njegov tip</span></a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="co"># ispišite prvi element liste svastara </span></a>
+<a class="sourceLine" id="cb117-2" data-line-number="2">svastara[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb117-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb117-4" data-line-number="4"><span class="co"># provjerite njegov tip</span></a>
+<a class="sourceLine" id="cb117-5" data-line-number="5"><span class="kw">typeof</span>(svastara[<span class="dv">1</span>])</a></code></pre></div>
+<pre><code>## $brojevi
+## [1] 1 2 3
+## 
+## [1] &quot;list&quot;</code></pre>
+<hr />
+<p>Dakle, dokazali smo da su elementi liste zapravo male liste, što se vidi iz ispisa samog elementa, kao i provjere njezinog tipa. Možda nam se čini da bi elementi gore stvorene liste trebali biti vektori, budući da smo listu i stvorili “slaganjem” različitih vektora, no u postupku stvaranja objekta R je “umotao” elemente u jednoelementne liste prije nego ih je uklopio u “veliku” listu.</p>
+<p>Često ne želimo raditi s elementom liste kao “malom listom”, nego ga trebao u njegovom “originalnom” obliku. Za ovo koristimo operator <code>[[</code>, tj. operator “dvostruke uglate zagrade”.</p>
+<hr />
+<p><strong>Zadatak 3.21 - operator <code>[[</code></strong></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># ispišite prvi element liste svastara korištenjem  operatora `[[`</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb119-4" data-line-number="4"><span class="co"># provjerite njegov tip</span></a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># ispišite prvi element liste svastara </span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">svastara[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb120-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="co"># provjerite njegov tip</span></a>
+<a class="sourceLine" id="cb120-5" data-line-number="5"><span class="kw">typeof</span>(svastara[[<span class="dv">1</span>]])</a></code></pre></div>
+<pre><code>## [1] 1 2 3
+## [1] &quot;double&quot;</code></pre>
+<hr />
+<p>Navedeni operator najčešće koristimo kako bi dohvatili odabrani element liste kojeg definiramo brojem ili (ako ima ime) nazivom elementa. Kod ovakvog dohvata moramo koristiti kombinaciju simbola <code>lista[[&quot;ime_elementa&quot;]]</code> koja je ponešto nespretna za tipkanja. Zbog toga R nudi alternativni način pristupa elementima liste prema nazivu korištenjem operatora <code>$</code>, tj. <code>lista$ime_elementa</code>.</p>
+<hr />
+<p><strong>Zadatak 3.22 - operator <code>$</code></strong></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="co"># ispišite element naziva &quot;slova&quot; liste svastara</span></a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="co"># korištenjem operatora `[[`</span></a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb122-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="co"># ispišite isti element korištenjem operatora `$`</span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="co"># ispišite element naziva &quot;slova&quot; liste svastara</span></a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="co"># korištenjem operatora `[[`</span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3">svastara[[<span class="st">&quot;slova&quot;</span>]]</a>
+<a class="sourceLine" id="cb123-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="co"># ispišite isti element korištenjem operatora `$`</span></a>
+<a class="sourceLine" id="cb123-6" data-line-number="6">svastara<span class="op">$</span>slova</a></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot;
+## [1] &quot;A&quot; &quot;B&quot;</code></pre>
+<hr />
+<p>Liste su iznimno popularni tip objekta u R-u budući da predstavljaju univerzalni predložak za kompleksnije podatkovne strukture, između ostalog i kompleksnije objekte u užem smislu (kao što ćemo vidjeti kasnije). Lista je također “temelj” za daleko najpopularniji i najčešće korišteni element jezika R - podatkovni okvir - kojeg ćemo upoznati u idućoj lekciji.</p>
+<p>Za kraj naučimo dodati element u listu. Ovo je najjednostavnije učiniti korištenjem već spomenutog operatora <code>$</code> - kao npr. <code>lista$noviElement &lt;- noviElement</code>. Element brišemo tako da mu dodijelimo vrijednost <code>NULL</code>.</p>
+<hr />
+<p><strong>Zadatak 3.23 - dodavanje elementa u listu</strong></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="co"># listi `svastara` dodajte element `parniBrojevi` koji sadrži</span></a>
+<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="co"># sve parne brojeve od 1 do 100</span></a>
+<a class="sourceLine" id="cb125-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb125-4" data-line-number="4"><span class="co"># obrišite treći element liste</span></a>
+<a class="sourceLine" id="cb125-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb125-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb125-7" data-line-number="7"><span class="co"># ispišite listu `svastara`</span></a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="co"># listi `svastara` dodajte element `parniBrojevi` koji sadrži</span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="co"># sve parne brojeve od 1 do 100</span></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3">svastara<span class="op">$</span>parniBrojevi &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="co"># obrišite treći element liste</span></a>
+<a class="sourceLine" id="cb126-6" data-line-number="6">svastara[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb126-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb126-8" data-line-number="8"><span class="co"># ispišite listu `svastara`</span></a>
+<a class="sourceLine" id="cb126-9" data-line-number="9"><span class="kw">print</span>(svastara)</a></code></pre></div>
+<pre><code>## $brojevi
+## [1] 1 2 3
+## 
+## $slova
+## [1] &quot;A&quot; &quot;B&quot;
+## 
+## $imena
+## [1] &quot;Ivo&quot; &quot;Ana&quot;
+## 
+## $parniBrojevi
+##  [1]   2   4   6   8  10  12  14  16  18  20  22  24  26  28  30  32  34
+## [18]  36  38  40  42  44  46  48  50  52  54  56  58  60  62  64  66  68
+## [35]  70  72  74  76  78  80  82  84  86  88  90  92  94  96  98 100</code></pre>
+<hr />
+<p>U sljedećoj lekciji konačno ćemo upoznati već više puta spominjane podatkovne okvire kao daleko najpopularniji i najčešće korištenu podatkovnu strukturu jezika R.</p>
+<hr />
+</div>
+<div id="zadaci-za-vjezbu-1" class="section level2 unnumbered">
+<h2>Zadaci za vježbu</h2>
+<ol style="list-style-type: decimal">
+<li>Stvorite sljedeće vektore:</li>
+</ol>
+<ul>
+<li>(11, 12, 13,…, 99)</li>
+<li>(0, 0, 0, 0, … , 0) (100 nula)</li>
+<li>(0, 0.1, 0.2, …., 1.0)</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Kolika je suma svih brojeva od 101 do 1001, ako preskočimo sve brojeve djeljive sa 10? Koristite se funkcijom <code>sum</code>.</p></li>
+<li><p>Stvorite matricu 3 x 3 sa brojevima izvođenjem sljedećih naredbi (funkciju <code>sample</code> ćemo pobliže upoznati u jednoj od sljedećih lekcija):</p></li>
+</ol>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="co"># stvaramo matricu 3x3 nasumično odabranih elemenata iz skupa od 1 do 100</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb128-3" data-line-number="3">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">9</span>, T)), <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> T)</a></code></pre></div>
+<p>Izračunajte inverznu matricu uz pomoć funkcije <code>solve</code>. Provjerite da li umnožak originalne i inverzne matrice daje jediničnu matricu (za množenje matrica koristite se operatorom <code>%*%</code>).</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Inicijalizirajte ponovo listu <code>svastara</code> korištenu u lekciji. Napravite sljedeće:</li>
+</ol>
+<ul>
+<li>ispišite klasu drugog elementa liste</li>
+<li>ispišite element na trećem mjestu elementa liste naziva <code>slova</code></li>
+<li>provjerite duljinu elementa naziva <code>imena</code> te na zadnje mjesto dodajte ime <code>&quot;Pero&quot;</code></li>
+<li>provjerite da li se broj <code>4</code> nalazi u prvom elementu liste</li>
+<li>na zadnje mjesto liste dodajte novu listu sa tri vektora <code>a</code>, <code>b</code> i <code>c</code> koji svi sadrže elemente (1,2,3)</li>
+</ul>
+<hr />
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Programirajmo u R-u</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.fer.unizg.hr/en/damir.pintar" property="cc:attributionName" rel="cc:attributionURL">Damir Pintar</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://ratnip.github.io/FER_OPJR/" rel="dct:source">https://ratnip.github.io/FER_OPJR/</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tipovi.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed",
+"edit": null,
+"download": null,
+"search": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

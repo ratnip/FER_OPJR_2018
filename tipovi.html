@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Programirajmo u R-u</title>
   <meta name="description" content="Udžbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i računarstva, Sveučilište u Zagrebu.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Programirajmo u R-u" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2018-10-09">
+<meta name="date" content="2018-10-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="uvod.html">
-
+<link rel="next" href="vektori.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -116,41 +116,67 @@ pre.plot {
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -188,6 +214,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2" data-path="tipovi.html"><a href="tipovi.html#operatori"><i class="fa fa-check"></i><b>2.2</b> Operatori</a></li>
 <li class="chapter" data-level="2.3" data-path="tipovi.html"><a href="tipovi.html#nedostajuce-nepoznate-i-nemoguce-vrijednosti"><i class="fa fa-check"></i><b>2.3</b> Nedostajuće, nepoznate i nemoguće vrijednosti</a></li>
 <li class="chapter" data-level="" data-path="tipovi.html"><a href="tipovi.html#zadaci-za-vjezbu"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="vektori.html"><a href="vektori.html"><i class="fa fa-check"></i><b>3</b> Vektori, matrice i liste</a><ul>
+<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori-1"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="vektori.html"><a href="vektori.html#stvaranje-vektora"><i class="fa fa-check"></i><b>3.1.1</b> Stvaranje vektora</a></li>
+<li class="chapter" data-level="3.1.2" data-path="vektori.html"><a href="vektori.html#operator"><i class="fa fa-check"></i><b>3.1.2</b> Operator <code>[</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="vektori.html"><a href="vektori.html#principi-vektorizacije-i-recikliranja"><i class="fa fa-check"></i><b>3.1.3</b> Principi vektorizacije i recikliranja</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vektori.html"><a href="vektori.html#indeksni-vektori"><i class="fa fa-check"></i><b>3.2</b> Indeksni vektori</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="vektori.html"><a href="vektori.html#lokacijsko-referenciranje"><i class="fa fa-check"></i><b>3.2.1</b> Lokacijsko referenciranje</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vektori.html"><a href="vektori.html#uvjetno-referenciranje"><i class="fa fa-check"></i><b>3.2.2</b> Uvjetno referenciranje</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vektori.html"><a href="vektori.html#imensko-referenciranje"><i class="fa fa-check"></i><b>3.2.3</b> Imensko referenciranje</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="vektori.html"><a href="vektori.html#matrice-i-polja"><i class="fa fa-check"></i><b>3.3</b> Matrice i polja</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="vektori.html"><a href="vektori.html#rezanje-matrica"><i class="fa fa-check"></i><b>3.3.1</b> Rezanje matrica</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="vektori.html"><a href="vektori.html#liste"><i class="fa fa-check"></i><b>3.4</b> Liste</a></li>
+<li class="chapter" data-level="" data-path="vektori.html"><a href="vektori.html#zadaci-za-vjezbu-1"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
 </ul>
 
@@ -266,30 +309,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Provjeru da li je neka varijabla određenog tipa možemo raditi uz pomoć funkcije <code>is.&lt;naziv_tipa&gt;</code>. Ovo ćemo isprobati u sljedećem zadatku. Prije nego što počnemo s rješavanjem uvedimo jedan novitet: u zadacima gdje ispisujemo više stvari na zaslon korisno je vizualno odvojiti različite segmente ispisa kako bismo lakše shvatili na koji dio koda se referenciraju. U tu svrhu ćemo koristiti naredbu <code>cat(&quot;-----------\n&quot;)</code> koja jednostavno na zaslon ispisuje niz crtica i prelazi u novi red. Mogli smo koristiti i funkciju <code>print()</code>, no ona uvijek započinje ispis sa indeksom elementa dok naredba <code>cat</code> predstavlja “sirovi” ispis, što nam u ovom slučaju više odgovara.</p>
 <hr />
 <p><strong>Zadatak 2.1 - provjera tipova podataka</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#isprobajte sljedeće naredbe:</span>
-<span class="co">#is.logical(FALSE)</span>
-<span class="co">#is.integer(2L)</span>
-<span class="co">#is.double(1.11)</span>
-
-<span class="co"># izvedite sljedeće provjere:</span>
-
-<span class="co"># da li je 5L numerički tip?</span>
-<span class="co"># da li je 3.14 numerički tip?</span>
-<span class="co"># da li je &quot;ABC&quot; znakovni tip?</span>
-<span class="co"># da li je 4 + 2i kompleksni tip?</span>
-<span class="co"># da li je 5 cjelobrojni tip?</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.logical</span>(<span class="ot">FALSE</span>)
-<span class="kw">is.integer</span>(2L)
-<span class="kw">is.double</span>(<span class="fl">1.11</span>)
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="kw">is.numeric</span>(5L)
-<span class="kw">is.numeric</span>(<span class="fl">3.14</span>)
-<span class="kw">is.character</span>(<span class="st">&quot;ABC&quot;</span>)
-<span class="kw">is.complex</span>(<span class="dv">4</span> <span class="op">+</span><span class="st"> </span>2i)
-<span class="kw">is.integer</span>(<span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">#isprobajte sljedeće naredbe:</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#is.logical(FALSE)</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#is.integer(2L)</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#is.double(1.11)</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># izvedite sljedeće provjere:</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co"># da li je 5L numerički tip?</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co"># da li je 3.14 numerički tip?</span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co"># da li je &quot;ABC&quot; znakovni tip?</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co"># da li je 4 + 2i kompleksni tip?</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co"># da li je 5 cjelobrojni tip?</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">is.logical</span>(<span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">is.integer</span>(2L)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">is.double</span>(<span class="fl">1.11</span>)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw">is.numeric</span>(5L)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="kw">is.numeric</span>(<span class="fl">3.14</span>)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw">is.character</span>(<span class="st">&quot;ABC&quot;</span>)</a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="kw">is.complex</span>(<span class="dv">4</span> <span class="op">+</span><span class="st"> </span>2i)</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="kw">is.integer</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] TRUE
 ## [1] TRUE
 ## [1] TRUE
@@ -299,7 +341,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] TRUE
 ## [1] TRUE
 ## [1] FALSE</code></pre>
-</div>
 <hr />
 <p>Da li ste uočili nešto neobično u ovim provjerama? Pokušajte objasniti dobiveni rezultat.</p>
 <p>Tip neke varijable ili konstante možemo dohvatiti uz pomoć funkcija <code>typeof</code> ili <code>class</code>. Razlika između njih je sljedeća:</p>
@@ -309,23 +350,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <hr />
 <p><strong>Zadatak 2.2 - dohvat naziva tipa podatka</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite tipove sljedećih konstanti: TRUE, 2L, F, 3.14, &quot;ABC&quot;</span>
-
-<span class="co"># ispišite klase istih konstanti. Ima li razlike?</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(<span class="ot">TRUE</span>)
-<span class="kw">typeof</span>(2L)
-<span class="kw">typeof</span>(F)
-<span class="kw">typeof</span>(<span class="fl">3.14</span>)
-<span class="kw">typeof</span>(<span class="st">&quot;ABC&quot;</span>)
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="kw">class</span>(<span class="ot">TRUE</span>)
-<span class="kw">class</span>(2L)
-<span class="kw">class</span>(F)
-<span class="kw">class</span>(<span class="fl">3.14</span>)
-<span class="kw">class</span>(<span class="st">&quot;ABC&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># ispišite tipove sljedećih konstanti: TRUE, 2L, F, 3.14, &quot;ABC&quot;</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co"># ispišite klase istih konstanti. Ima li razlike?</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">typeof</span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">typeof</span>(2L)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">typeof</span>(F)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">typeof</span>(<span class="fl">3.14</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">typeof</span>(<span class="st">&quot;ABC&quot;</span>)</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="kw">class</span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">class</span>(2L)</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="kw">class</span>(F)</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="kw">class</span>(<span class="fl">3.14</span>)</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="kw">class</span>(<span class="st">&quot;ABC&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;
 ## [1] &quot;integer&quot;
 ## [1] &quot;logical&quot;
@@ -337,28 +377,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] &quot;logical&quot;
 ## [1] &quot;numeric&quot;
 ## [1] &quot;character&quot;</code></pre>
-</div>
 <hr />
 <p>Podatke možemo eksplicitno pretvarati iz jednog tipa u drugi uz pomoć funkcije <code>as.&lt;naziv_tipa&gt;</code>:</p>
 <hr />
 <p><strong>Zadatak 2.3 - pretvorba tipova podataka</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Izvedite sljedeće pretvorbe i ispišite rezultat</span>
-
-<span class="co">#  2.35 u integer</span>
-<span class="co">#  TRUE u numeric</span>
-<span class="co">#  100L u character</span>
-<span class="co">#  2.35 u character</span>
-<span class="co">#  2e2  u character</span>
-<span class="co">#  0 u logical</span>
-<span class="co">#  2.75  u logical</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.integer</span>(<span class="fl">2.35</span>)
-<span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)
-<span class="kw">as.character</span>(100L)
-<span class="kw">as.character</span>(<span class="fl">2.35</span>)
-<span class="kw">as.character</span>(<span class="fl">2e2</span>)
-<span class="kw">as.logical</span>(<span class="dv">0</span>)
-<span class="kw">as.logical</span>(<span class="fl">2.75</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Izvedite sljedeće pretvorbe i ispišite rezultat</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#  2.35 u integer</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#  TRUE u numeric</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#  100L u character</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#  2.35 u character</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#  2e2  u character</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#  0 u logical</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#  2.75  u logical</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">as.integer</span>(<span class="fl">2.35</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">as.character</span>(100L)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">as.character</span>(<span class="fl">2.35</span>)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">as.character</span>(<span class="fl">2e2</span>)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="kw">as.logical</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">as.logical</span>(<span class="fl">2.75</span>)</a></code></pre></div>
 <pre><code>## [1] 2
 ## [1] 1
 ## [1] &quot;100&quot;
@@ -366,29 +404,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] &quot;200&quot;
 ## [1] FALSE
 ## [1] TRUE</code></pre>
-</div>
 <hr />
 <p><em>R</em> će sam provoditi implicitnu pretvorbu ukoliko je moguća:</p>
 <hr />
 <p><strong>Zadatak 2.4 - implicitna pretvorba</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># napišite izraze koji odgovaraju sljedećem i ispišite rezultat:</span>
-
-<span class="co"># aritmetički operator između logičke i numeričke varijable</span>
-<span class="co"># aritmetički operator između cjelobrojne i numeričke varijable</span>
-<span class="co"># logički operator negacije primjenjen na numeričku varijablu</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># aritmetički operator između logičke i numeričke varijable</span>
-<span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span>
-
-<span class="co"># aritmetički operator između cjelobrojne i numeričke varijable</span>
-5L  <span class="op">+</span><span class="st"> </span><span class="fl">3.14</span>
-
-<span class="co"># logički operator negacije primjenjen na numeričku varijablu</span>
-<span class="op">!</span><span class="dv">25</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># napišite izraze koji odgovaraju sljedećem i ispišite rezultat:</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co"># aritmetički operator između logičke i numeričke varijable</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co"># aritmetički operator između cjelobrojne i numeričke varijable</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co"># logički operator negacije primjenjen na numeričku varijablu</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># aritmetički operator između logičke i numeričke varijable</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co"># aritmetički operator između cjelobrojne i numeričke varijable</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">5L  <span class="op">+</span><span class="st"> </span><span class="fl">3.14</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co"># logički operator negacije primjenjen na numeričku varijablu</span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="op">!</span><span class="dv">25</span></a></code></pre></div>
 <pre><code>## [1] 6
 ## [1] 8.14
 ## [1] FALSE</code></pre>
-</div>
 <hr />
 <p>Implicitna pretvorba će se izvesti samo ako je smislen - npr. aritmetički operator između znakovne i numeričke varijable rezultirati će greškom.</p>
 <hr />
@@ -404,29 +439,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <hr />
 <p><strong>Zadatak 2.5 - operatori</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># isprobajte izraze `5 / 2` i `5 %/% 2`</span>
-
-<span class="co"># provjerite koliko iznosi &quot;17 na kvadrat&quot; i &quot;ostatak dijeljenja 101 sa 12&quot;</span>
-
-<span class="co"># provjerite što je rezultat sljedećih izraza: `17 &gt; 13`, `!TRUE`,  `5 &amp;&amp; 0`, `0. || 2`</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># isprobajte izraze `5 / 2` i `5 %/% 2`</span>
-<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
-<span class="dv">5</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span>
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="co"># provjerite koliko iznosi &quot;17 na kvadrat&quot; i &quot;ostatak dijeljenja 101 sa 12&quot;</span>
-<span class="dv">17</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span>
-<span class="dv">101</span> <span class="op">%%</span><span class="st"> </span><span class="dv">12</span>
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="co"># provjerite što je rezultat sljedećih izraza: `17 &gt; 13`, `!TRUE`,  `5 &amp;&amp; 0`, `0. || 2`, </span>
-<span class="dv">17</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">13</span>
-<span class="op">!</span><span class="ot">TRUE</span>
-<span class="dv">5</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="dv">0</span>
-<span class="dv">0</span>. <span class="op">||</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># isprobajte izraze `5 / 2` i `5 %/% 2`</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="co"># provjerite koliko iznosi &quot;17 na kvadrat&quot; i &quot;ostatak dijeljenja 101 sa 12&quot;</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co"># provjerite što je rezultat sljedećih izraza: `17 &gt; 13`, `!TRUE`,  `5 &amp;&amp; 0`, `0. || 2`</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># isprobajte izraze `5 / 2` i `5 %/% 2`</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="dv">5</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co"># provjerite koliko iznosi &quot;17 na kvadrat&quot; i &quot;ostatak dijeljenja 101 sa 12&quot;</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="dv">17</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="dv">101</span> <span class="op">%%</span><span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb21-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="co"># provjerite što je rezultat sljedećih izraza: `17 &gt; 13`, `!TRUE`,  `5 &amp;&amp; 0`, `0. || 2`, </span></a>
+<a class="sourceLine" id="cb21-14" data-line-number="14"><span class="dv">17</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">13</span></a>
+<a class="sourceLine" id="cb21-15" data-line-number="15"><span class="op">!</span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb21-16" data-line-number="16"><span class="dv">5</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb21-17" data-line-number="17"><span class="fl">0.</span> <span class="op">||</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 2.5
 ## [1] 2
 ## -----------
@@ -437,91 +471,82 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [1] FALSE
 ## [1] FALSE
 ## [1] TRUE</code></pre>
-</div>
 <hr />
 <p>Logičke vrijednosti i usporedne operatore najčešće ćemo koristiti kod tzv. “uvjetnog izvođenja naredbi”, poznatog iz drugih programskih jezika kao “<em>IF ELSE</em>” naredba. U R-u njezina sintaksa izgleda ovako:</p>
 <p><code>if (izraz) {blok} else {blok}</code></p>
 <p>Isprobajmo ovu naredbu na sljedećem zadatku:</p>
 <hr />
 <p><strong>Zadatak 2.6 - uvjetno izvođenje naredbi</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># napišite naredbu koja izvodi sljedeće:</span>
-<span class="co"># &quot;ako je 100 paran broj ispiši &#39;Uspjeh!&#39;&quot;</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="dv">100</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># napišite naredbu koja izvodi sljedeće:</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="co"># &quot;ako je 100 paran broj ispiši &#39;Uspjeh!&#39;&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="cf">if</span> (<span class="dv">100</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Uspjeh!&quot;</code></pre>
-</div>
 <hr />
 <p>Uočili smo gore da imamo dvije vrste logičkih operatora za “i” i “ili”. Razliku ćemo objasniti kasnije, za sada je dovoljno reći da se kod uvjetnog izvođenja naredbi ili programskih petlji gotovo isključivo koristimo operatorima <code>&amp;&amp;</code> i <code>||</code> (“C++ - ovski” operatori!).</p>
 <p>Isto tako, već smo spomenuli da R nudi dva operatora pridruživanja, <code>&lt;-</code> i <code>=</code>. Pogledajmo ima li očitih razlika između njih.</p>
 <hr />
 <p><strong>Zadatak 2.7 - operatori pridruživanja </strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># stvorite varijable x i y i objema dodijelite broj 5, jednoj sa operatorom &lt;-, </span>
-<span class="co"># drugoj sa operatorom =</span>
-<span class="co"># ispišite varijable na zaslon</span>
-<span class="co"># uočavate li razliku između ova dva operatora?</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
-y =<span class="st"> </span><span class="dv">5</span>
-x
-y</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># stvorite varijable x i y i objema dodijelite broj 5, jednoj sa operatorom &lt;-, </span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="co"># drugoj sa operatorom =</span></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="co"># ispišite varijable na zaslon</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co"># uočavate li razliku između ova dva operatora?</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">y =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">x</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">y</a></code></pre></div>
 <pre><code>## [1] 5
 ## [1] 5</code></pre>
-</div>
 <hr />
 <p>Kao što smo se mogli posvjedočiti, nema uočljivih razlika između operatora <code>&lt;-</code> i <code>=</code>. Neke sitnije razlike zapravo postoje, no one nemaju gotovo utjecaj na uobičajeno korištenje ovog operatora u praksi. U literaturi se za pridruživanje vrijednosti novim varijablama može vidjeti i jedna i druga inačica, no mi ćemo u nastavku primarno i konzistentno koristiti <code>&lt;-</code>, ponajviše zato kako bi programski kod bio vizualno distinktivniji od drugih programskih jezika.</p>
 <p>Kod pridruživanja pazimo da je s lijeve strane tzv. “lijeva vrijednost” (engl. <em>lvalue</em>). Ovo u programerskom smislu interpretiramo kao “nešto u što se može pohraniti izračunata vrijednost”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">+</span><span class="st"> </span><span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">2</span>          <span class="co"># greška!!!]</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="dv">1</span> &lt;-<span class="st"> </span><span class="dv">2</span>          <span class="co"># greška!!!]</span></a></code></pre></div>
 <p>U pravilu se u R-u kao <em>lvalue</em> koristi varijabla, iako se tu ponekad može pojaviti i poziv funkcije. Ovu možda inicijalno zbunjujuću pojavu razjasniti ćemo kasnije.</p>
 <hr />
 <p>Imenovanje varijabli uglavnom slijedi pravila iz drugih programskih jezika - dozvoljena su slova, brojke, podcrta ali i točka . Prvi simbol mora biti slovo ili točka.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">.mojaVarijabla &lt;-<span class="st"> </span><span class="dv">5</span>   <span class="co">#OK</span>
-moja.Varijabla &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co">#OK</span>
-_mojaVarijabla &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># nije OK</span>
-123Varijabla &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># nije OK</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">.mojaVarijabla &lt;-<span class="st"> </span><span class="dv">5</span>   <span class="co">#OK</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">moja.Varijabla &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co">#OK</span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">_mojaVarijabla &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># nije OK</span></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">123Varijabla &lt;-<span class="st"> </span><span class="dv">5</span>  <span class="co"># nije OK</span></a></code></pre></div>
 <p>U praksi za varijable složenih imena trebamo odabrati jednu od sljedećih konvencija:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mojaVarijabla &lt;-<span class="st"> </span><span class="dv">1</span>    <span class="co"># tzv. camelcase</span>
-moja_varijabla &lt;-<span class="st"> </span><span class="dv">2</span>   <span class="co">#  podcrta ili</span>
-moja.varijabla &lt;-<span class="st"> </span><span class="dv">3</span>   <span class="co"># točka</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">mojaVarijabla &lt;-<span class="st"> </span><span class="dv">1</span>    <span class="co"># tzv. camelcase</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">moja_varijabla &lt;-<span class="st"> </span><span class="dv">2</span>   <span class="co">#  podcrta ili</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">moja.varijabla &lt;-<span class="st"> </span><span class="dv">3</span>   <span class="co"># točka</span></a></code></pre></div>
 <p>Bitno je da u programskom kodu ne miješamo konvencije tj. da nakon odabira budemo konzistentni.</p>
 <p>Ukoliko baš inzistiramo na čudnim imenima koja koriste specijalne znakove, onda ih moramo staviti pod tzv. “lijeve jednostruke apostrofe” (engl. <em>backticks</em>):</p>
 <hr />
 <p><strong>Zadatak 2.8 - ime varijable sa specijalnim znakovima</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># upišite proizvoljno ime sa specijalnim znakovima unutar lijevih apostrofa </span>
-<span class="co"># i ispišite vrijednost varijable</span>
-<span class="co">#`` &lt;- 2               </span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">`</span><span class="dt">!%^$*@__=</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="dv">2</span> 
-<span class="st">`</span><span class="dt">!%^$*@__=</span><span class="st">`</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># upišite proizvoljno ime sa specijalnim znakovima unutar lijevih apostrofa </span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co"># i ispišite vrijednost varijable</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co">#`` &lt;- 2               </span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="st">`</span><span class="dt">!%^$*@__=</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="st">`</span><span class="dt">!%^$*@__=</span><span class="st">`</span></a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-</div>
 <p>Ovakav način imenovanja varijabli nije previše koristan u praksi, ali ima i svoju svrhu - budući da su operatori u R-u zapravo funkcije (čija su imena doslovno <code>+</code>, <code>**</code> i sl.) upotrebom lijevih apostrofa možemo ih direktno referencirati u njihovom originalnom obliku, što se može pokazati vrlo praktičnim kod tzv. funkcijskog programiranja (o čemu ćemo govoriti u jednoj od budućih lekcija).</p>
 <hr />
 <p>Pridjeljivanje vrijednosti novim nazivima varijabli mi zapravo stvaramo nove varijable u radnoj okolini (koja se u R-u naziva “globalna okolina”). Sve varijable koje smo do sada stvorili možemo vidjeti uz pomoć funkcije <code>ls()</code>. Ukoliko želimo obrisati neke varijable, samo navedemo njihova imena u pozivu funkcije <code>rm()</code> (npr. <code>rm(x, y, z)</code>). Za brisanje <em>svih</em> varijabli iz radne okoline koristimo poziv <code>rm(list=ls())</code>, s time što tu moramo biti oprezni (nema “<em>undo</em>”!).</p>
 <hr />
 <p><strong>Zadatak 2.9 - ispis i brisanje varijabli globalne okoline</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite sve do sada stvorene varijable globalne okoline</span>
-
-<span class="co"># obrišite neke od gore ispisanih varijabli - npr. rm(x, y, z)</span>
-<span class="co"># ponovo ispišite dostupne varijable</span>
-
-<span class="co"># obrišite SVE varijable globalne okoline</span>
-<span class="co"># (oprezno s ovim pozivom u praksi!)</span>
-<span class="co"># uvjerite se da je globalna okolina prazna</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite sve do sada stvorene varijable globalne okoline</span>
-<span class="kw">ls</span>()
-
-<span class="co"># obrišite neke od upravo ispisanih varijabli - npr. rm(x, y, z)</span>
-<span class="co"># ponovo ispišite dostupne varijable</span>
-<span class="kw">rm</span>(x, y)
-<span class="kw">ls</span>()
-
-<span class="co"># obrišite SVE varijable globalne okoline</span>
-<span class="co"># (oprezno s ovim pozivom u praksi!)</span>
-<span class="co"># uvjerite se da je globalna okolina prazna</span>
-<span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
-<span class="kw">ls</span>()</code></pre></div>
-</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># ispišite sve do sada stvorene varijable globalne okoline</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co"># obrišite neke od gore ispisanih varijabli - npr. rm(x, y, z)</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co"># ponovo ispišite dostupne varijable</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co"># obrišite SVE varijable globalne okoline</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co"># (oprezno s ovim pozivom u praksi!)</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co"># uvjerite se da je globalna okolina prazna</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># ispišite sve do sada stvorene varijable globalne okoline</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co"># obrišite neke od upravo ispisanih varijabli - npr. rm(x, y, z)</span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="co"># ponovo ispišite dostupne varijable</span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="kw">rm</span>(x, y)</a>
+<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="kw">ls</span>()</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="co"># obrišite SVE varijable globalne okoline</span></a>
+<a class="sourceLine" id="cb36-10" data-line-number="10"><span class="co"># (oprezno s ovim pozivom u praksi!)</span></a>
+<a class="sourceLine" id="cb36-11" data-line-number="11"><span class="co"># uvjerite se da je globalna okolina prazna</span></a>
+<a class="sourceLine" id="cb36-12" data-line-number="12"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</a>
+<a class="sourceLine" id="cb36-13" data-line-number="13"><span class="kw">ls</span>()</a></code></pre></div>
 <hr />
 <p>Konačno, kad god nam treba pomoć oko neke funkcije, imamo sljedeće opcije na raspolaganju:</p>
 <ul>
@@ -530,14 +555,14 @@ moja.varijabla &lt;-<span class="st"> </span><span class="dv">3</span>   <span c
 <li>napišemo <code>example(&lt;ime_funkcije&gt;)</code> pri čemu dobijemo popis primjera korištenja funkcije i dobivenih rezultata</li>
 </ul>
 <p>Sljedeći isječak koda prikazuje način korištenja gornjih metoda (zbog štednje prostora ne prikazujemo njihov rezultat).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#programski kod funkcije `ls`</span>
-ls
-
-<span class="co"># pomoć za funkciju `ls`</span>
-?ls    <span class="co"># ili help(ls)</span>
-
-<span class="co"># primjeri korištenja funkcije `ls`</span>
-<span class="kw">example</span>(ls)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co">#programski kod funkcije `ls`</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">ls</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co"># pomoć za funkciju `ls`</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">?ls    <span class="co"># ili help(ls)</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co"># primjeri korištenja funkcije `ls`</span></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">example</span>(ls)</a></code></pre></div>
 <hr />
 </div>
 <div id="nedostajuce-nepoznate-i-nemoguce-vrijednosti" class="section level2">
@@ -550,35 +575,34 @@ ls
 </ul>
 <hr />
 <p><strong>Zadatak 2.10 - rad sa NA, NaN i NULL</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Koliko je &quot;5 + nepoznati broj&quot;?</span>
-
-
-<span class="co"># Koliko je &quot;5 + nepostojeći broj&quot;?   </span>
-
-
-<span class="co"># provjerite klase sljedećih konstanti i izraza:</span>
-   <span class="co">#  NA</span>
-   <span class="co">#  aritmetička operacija između numeric i NA</span>
-   <span class="co">#  NaN</span>
-   <span class="co">#  NULL</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Koliko je &quot;5 + nepoznati broj&quot;?</span>
-<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NaN</span>
-
-<span class="co"># Koliko je &quot;5 + nepostojeći broj&quot;?   </span>
-<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NA</span>
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="co"># provjerite klase sljedećih konstanti i izraza i objasnite rezultat:</span>
-   <span class="co">#  NA</span>
-   <span class="co">#  aritmetička operacija između numeric i NA</span>
-   <span class="co">#  NaN</span>
-   <span class="co">#  NULL</span>
-<span class="kw">class</span>(<span class="ot">NA</span>)        <span class="co"># logički tip je &quot;najslabiji&quot;!</span>
-<span class="kw">class</span>(<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NA</span>)
-<span class="kw">class</span>(<span class="ot">NaN</span>)
-<span class="kw">class</span>(<span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># Koliko je &quot;5 + nepoznati broj&quot;?</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co"># Koliko je &quot;5 + nepostojeći broj&quot;?   </span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co"># provjerite klase sljedećih konstanti i izraza:</span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8">   <span class="co">#  NA</span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9">   <span class="co">#  aritmetička operacija između numeric i NA</span></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">   <span class="co">#  NaN</span></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11">   <span class="co">#  NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># Koliko je &quot;5 + nepoznati broj&quot;?</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NaN</span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="co"># Koliko je &quot;5 + nepostojeći broj&quot;?   </span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="co"># provjerite klase sljedećih konstanti i izraza i objasnite rezultat:</span></a>
+<a class="sourceLine" id="cb39-10" data-line-number="10">   <span class="co">#  NA</span></a>
+<a class="sourceLine" id="cb39-11" data-line-number="11">   <span class="co">#  aritmetička operacija između numeric i NA</span></a>
+<a class="sourceLine" id="cb39-12" data-line-number="12">   <span class="co">#  NaN</span></a>
+<a class="sourceLine" id="cb39-13" data-line-number="13">   <span class="co">#  NULL</span></a>
+<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="kw">class</span>(<span class="ot">NA</span>)        <span class="co"># logički tip je &quot;najslabiji&quot;!</span></a>
+<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="kw">class</span>(<span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb39-16" data-line-number="16"><span class="kw">class</span>(<span class="ot">NaN</span>)</a>
+<a class="sourceLine" id="cb39-17" data-line-number="17"><span class="kw">class</span>(<span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## [1] NaN
 ## [1] NA
 ## -----------
@@ -586,37 +610,35 @@ ls
 ## [1] &quot;numeric&quot;
 ## [1] &quot;numeric&quot;
 ## [1] &quot;NULL&quot;</code></pre>
-</div>
 <hr />
 <p>Provjeru nedostajućih vrijednosti radimo slično provjeri tipova podataka - koristimo funkcije <code>is.na</code>, <code>is.nan</code> i <code>is.null</code>. Moramo voditi računa da je <code>NaN</code> zapravo podvrsta od <code>NA</code> te da je <code>NULL</code> zapravo potpuno zasebna klasa sa specifičnim ponašanjem - pokušaj aritmetičkih ili logičkih operacija nad <code>NULL</code> vrijednosti neće rezultirati “novom” nepostojećom vrijednosti već upozorenjima i “praznim” rezultatima. Ovo je posebno bitno napomenuti poznavateljima jezika <em>SQL</em> - ono što je <code>NULL</code> u SQL-u je <code>NA</code> u R-u i to je ono što u pravilu koristimo u praksi, dok <code>NULL</code> ima vrlo specifične primjene te ga puno rjeđe koristimo u programskom kodu.</p>
 <hr />
 <p><strong>Zadatak 2.11 - provjera vrijednosti NA, NaN i NULL</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Što je od idućeg NA?      NA, NaN, NULL, &quot;&quot;, 0</span>
-
-<span class="co"># Što je od idućeg NaN?     NA, NaN, NULL</span>
-
-<span class="co"># Što je od idućeg NULL?    NA, NaN, NULL</span></code></pre></div>
-<div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Što je od idućeg NA?      NA, NaN, NULL, &quot;&quot;, 0</span>
-<span class="kw">is.na</span>(<span class="ot">NA</span>)
-<span class="kw">is.na</span>(<span class="ot">NaN</span>)
-<span class="kw">is.na</span>(<span class="ot">NULL</span>)
-<span class="kw">is.na</span>(<span class="st">&quot;&quot;</span>)
-<span class="kw">is.na</span>(<span class="dv">0</span>)
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="co"># Što je od idućeg NaN?     NA, NaN, NULL</span>
-<span class="kw">is.nan</span>(<span class="ot">NA</span>)
-<span class="kw">is.nan</span>(<span class="ot">NaN</span>)
-<span class="kw">is.nan</span>(<span class="ot">NULL</span>)
-
-<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
-
-<span class="co"># Što je od idućeg NULL?    NA, NaN, NULL</span>
-<span class="kw">is.null</span>(<span class="ot">NA</span>)
-<span class="kw">is.null</span>(<span class="ot">NaN</span>)
-<span class="kw">is.null</span>(<span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># Što je od idućeg NA?      NA, NaN, NULL, &quot;&quot;, 0</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co"># Što je od idućeg NaN?     NA, NaN, NULL</span></a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="co"># Što je od idućeg NULL?    NA, NaN, NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># Što je od idućeg NA?      NA, NaN, NULL, &quot;&quot;, 0</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">is.na</span>(<span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="kw">is.na</span>(<span class="ot">NaN</span>)</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="kw">is.na</span>(<span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="kw">is.na</span>(<span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="kw">is.na</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb42-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb42-10" data-line-number="10"><span class="co"># Što je od idućeg NaN?     NA, NaN, NULL</span></a>
+<a class="sourceLine" id="cb42-11" data-line-number="11"><span class="kw">is.nan</span>(<span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="kw">is.nan</span>(<span class="ot">NaN</span>)</a>
+<a class="sourceLine" id="cb42-13" data-line-number="13"><span class="kw">is.nan</span>(<span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb42-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb42-15" data-line-number="15"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb42-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb42-17" data-line-number="17"><span class="co"># Što je od idućeg NULL?    NA, NaN, NULL</span></a>
+<a class="sourceLine" id="cb42-18" data-line-number="18"><span class="kw">is.null</span>(<span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb42-19" data-line-number="19"><span class="kw">is.null</span>(<span class="ot">NaN</span>)</a>
+<a class="sourceLine" id="cb42-20" data-line-number="20"><span class="kw">is.null</span>(<span class="ot">NULL</span>)</a></code></pre></div>
 <pre><code>## [1] TRUE
 ## [1] TRUE
 ## logical(0)
@@ -630,7 +652,6 @@ ls
 ## [1] FALSE
 ## [1] FALSE
 ## [1] TRUE</code></pre>
-</div>
 <hr />
 <p>Za kraj posvetimo se malo <code>NA</code> vrijednosti, budući da ćemo ju vrlo često susretati u praksi. Pojednostavljeno rečeno, ukoliko se pojavljuju <code>NA</code> vrijednosti, možemo očekivati sljedeće nuspojave:</p>
 <ul>
@@ -639,7 +660,7 @@ ls
 <li>rezultati logičkih izraza mogu ali ne moraju rezultirati sa <code>NA</code> vrijednosti ovisno o tom da li izraz ovisi o <code>NA</code> ili ne (npr. <code>TRUE || NA</code> ima rezultat <code>TRUE</code>, ali <code>FALSE || NA</code> ima rezultat <code>NA</code>)</li>
 </ul>
 <p>S ovim zadnjim moramo biti posebno oprezni, budući da <code>NA</code> u uvjetnom izrazu rezultira greškom:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="ot">NA</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)  <span class="co"># greška!!</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="cf">if</span> (<span class="ot">NA</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)  <span class="co"># greška!!</span></a></code></pre></div>
 <p>U ovoj lekciji upoznali smo se sa osnovnim elementima jezika R. U radu s R-om u pravilu radimo sa složenim tipovima podataka koje ćemo upoznati u nastavku - a to su vektori, matrice, podatkovni okviri i liste.</p>
 <hr />
 </div>
@@ -648,12 +669,12 @@ ls
 <ol style="list-style-type: decimal">
 <li>Što je rezultat sljedećih naredbi? Razmislite o mogućem rezultatu prije izvršavanja.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.complex</span>(<span class="dv">2</span>)
-<span class="kw">as.integer</span>(<span class="op">-</span><span class="fl">3.25</span>)
-<span class="kw">as.logical</span>(<span class="st">&quot;0&quot;</span>)
-<span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)
-<span class="kw">as.character</span>(<span class="fl">11.5</span><span class="op">+</span>2i)
-<span class="kw">as.numeric</span>(<span class="st">&quot;ABC&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">as.complex</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">as.integer</span>(<span class="op">-</span><span class="fl">3.25</span>)</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw">as.logical</span>(<span class="st">&quot;0&quot;</span>)</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="kw">as.numeric</span>(<span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="kw">as.character</span>(<span class="fl">11.5</span><span class="op">+</span>2i)</a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="kw">as.numeric</span>(<span class="st">&quot;ABC&quot;</span>)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Kako u R-u izgledaju sljedeći opisni izrazi:</li>
 </ol>
@@ -678,8 +699,8 @@ ls
           </div>
         </div>
       </div>
-<a href="uvod.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="uvod.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vektori.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -697,6 +718,7 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
