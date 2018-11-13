@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Programirajmo u R-u</title>
   <meta name="description" content="Udzbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i racunarstva, Sveuciliste u Zagrebu.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="Programirajmo u R-u" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2018-11-06">
+<meta name="date" content="2018-11-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -116,67 +116,41 @@ pre.plot {
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -216,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tipovi.html"><a href="tipovi.html#zadaci-za-vjezbu"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="vektori.html"><a href="vektori.html"><i class="fa fa-check"></i><b>3</b> Vektori, matrice i liste</a><ul>
-<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori-1"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
+<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="vektori.html"><a href="vektori.html#stvaranje-vektora"><i class="fa fa-check"></i><b>3.1.1</b> Stvaranje vektora</a></li>
 <li class="chapter" data-level="3.1.2" data-path="vektori.html"><a href="vektori.html#operator"><i class="fa fa-check"></i><b>3.1.2</b> Operator <code>[</code></a></li>
 <li class="chapter" data-level="3.1.3" data-path="vektori.html"><a href="vektori.html#principi-vektorizacije-i-recikliranja"><i class="fa fa-check"></i><b>3.1.3</b> Principi vektorizacije i recikliranja</a></li>
@@ -274,6 +248,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="apply.html"><a href="apply.html#funkcije-lapply-sapply-i-vapply"><i class="fa fa-check"></i><b>8.3</b> Funkcije <code>lapply</code>, <code>sapply</code> i <code>vapply</code></a></li>
 <li class="chapter" data-level="8.4" data-path="apply.html"><a href="apply.html#ostale-funkcije-iz-porodice-apply-i-dostupne-alternative"><i class="fa fa-check"></i><b>8.4</b> Ostale funkcije iz porodice <code>apply</code> i dostupne alternative</a></li>
 <li class="chapter" data-level="" data-path="apply.html"><a href="apply.html#zadaci-za-vjezbu-6"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="part"><span><b>II Upravljanje podacima i vizualizacije</b></span></li>
+<li class="chapter" data-level="9" data-path="cijev.html"><a href="cijev.html"><i class="fa fa-check"></i><b>9</b> Operator cjevovoda i uredni podaci</a><ul>
+<li class="chapter" data-level="9.1" data-path="cijev.html"><a href="cijev.html#operator-cjevovoda"><i class="fa fa-check"></i><b>9.1</b> Operator cjevovoda</a></li>
+<li class="chapter" data-level="9.2" data-path="cijev.html"><a href="cijev.html#uredni-podaci"><i class="fa fa-check"></i><b>9.2</b> Uredni podaci</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cijev.html"><a href="cijev.html#funkcije-gather-i-spread"><i class="fa fa-check"></i><b>9.2.1</b> Funkcije <code>gather</code> i <code>spread</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="cijev.html"><a href="cijev.html#funkcije-separate-i-unite"><i class="fa fa-check"></i><b>9.2.2</b> Funkcije <code>separate</code> i <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cijev.html"><a href="cijev.html#zadaci-za-vjezbu-7"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
 </ul>
 
@@ -360,37 +343,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Prikažimo oba slučaja. Prvo ćemo stvoriti podatkovni okvir programski.</p>
 <hr />
 <p><strong>Zadatak 4.1 - programsko stvaranje podatkovnog okvira</strong></p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">pbr =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">51000</span>, <span class="dv">21000</span>, <span class="dv">31000</span>, <span class="dv">2000</span>)</a>
-<a class="sourceLine" id="cb129-2" data-line-number="2">nazivMjesta =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zagreb&quot;</span>, <span class="st">&quot;Rijeka&quot;</span>, <span class="st">&quot;Split&quot;</span>, <span class="st">&quot;Osijek&quot;</span>, <span class="st">&quot;Dubrovnik&quot;</span>)</a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">prosjPlacaKn =<span class="st"> </span><span class="kw">c</span>(<span class="fl">6359.</span>, <span class="fl">5418.</span>, <span class="fl">5170.</span>, <span class="fl">4892.</span>, <span class="fl">5348.</span>)</a>
-<a class="sourceLine" id="cb129-4" data-line-number="4">brojStanovnika =<span class="st"> </span><span class="kw">c</span>(<span class="dv">790017</span>, <span class="dv">128384</span>, <span class="dv">167121</span>, <span class="dv">84104</span>, <span class="dv">28434</span>)</a>
-<a class="sourceLine" id="cb129-5" data-line-number="5">prirez =<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb129-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb129-7" data-line-number="7"><span class="co"># uz pomoć funkcije `data.frame` i gornjih vektora stvorite podatkovni okvir `mjesto`</span></a>
-<a class="sourceLine" id="cb129-8" data-line-number="8"><span class="co"># koristite istu sintaksu kao kod stvaranja liste</span></a>
-<a class="sourceLine" id="cb129-9" data-line-number="9"><span class="co"># elemente liste nazovite imenima varijabli</span></a>
-<a class="sourceLine" id="cb129-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb129-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb129-12" data-line-number="12"><span class="co"># ispišite podatkovni okvir `mjesto`</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pbr =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">51000</span>, <span class="dv">21000</span>, <span class="dv">31000</span>, <span class="dv">2000</span>)
+nazivMjesta =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zagreb&quot;</span>, <span class="st">&quot;Rijeka&quot;</span>, <span class="st">&quot;Split&quot;</span>, <span class="st">&quot;Osijek&quot;</span>, <span class="st">&quot;Dubrovnik&quot;</span>)
+prosjPlacaKn =<span class="st"> </span><span class="kw">c</span>(<span class="dv">6359</span>., <span class="dv">5418</span>., <span class="dv">5170</span>., <span class="dv">4892</span>., <span class="dv">5348</span>.)
+brojStanovnika =<span class="st"> </span><span class="kw">c</span>(<span class="dv">790017</span>, <span class="dv">128384</span>, <span class="dv">167121</span>, <span class="dv">84104</span>, <span class="dv">28434</span>)
+prirez =<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">10</span>)
+
+<span class="co"># uz pomoć funkcije `data.frame` i gornjih vektora stvorite podatkovni okvir `mjesto`</span>
+<span class="co"># koristite istu sintaksu kao kod stvaranja liste</span>
+<span class="co"># elemente liste nazovite imenima varijabli</span>
+
+
+<span class="co"># ispišite podatkovni okvir `mjesto`</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">pbr =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">51000</span>, <span class="dv">21000</span>, <span class="dv">31000</span>, <span class="dv">2000</span>)</a>
-<a class="sourceLine" id="cb130-2" data-line-number="2">nazivMjesta =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zagreb&quot;</span>, <span class="st">&quot;Rijeka&quot;</span>, <span class="st">&quot;Split&quot;</span>, <span class="st">&quot;Osijek&quot;</span>, <span class="st">&quot;Dubrovnik&quot;</span>)</a>
-<a class="sourceLine" id="cb130-3" data-line-number="3">prosjPlacaKn =<span class="st"> </span><span class="kw">c</span>(<span class="fl">6359.</span>, <span class="fl">5418.</span>, <span class="fl">5170.</span>, <span class="fl">4892.</span>, <span class="fl">5348.</span>)</a>
-<a class="sourceLine" id="cb130-4" data-line-number="4">brojStanovnika =<span class="st"> </span><span class="kw">c</span>(<span class="dv">790017</span>, <span class="dv">128384</span>, <span class="dv">167121</span>, <span class="dv">84104</span>, <span class="dv">28434</span>)</a>
-<a class="sourceLine" id="cb130-5" data-line-number="5">prirez =<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb130-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb130-7" data-line-number="7"><span class="co"># uz pomoć funkcije `data.frame` i gornjih vektora stvorite podatkovni okvir `mjesto`</span></a>
-<a class="sourceLine" id="cb130-8" data-line-number="8"><span class="co"># koristite istu sintaksu kao kod stvaranja liste</span></a>
-<a class="sourceLine" id="cb130-9" data-line-number="9"><span class="co"># elemente liste nazovite imenima varijabli</span></a>
-<a class="sourceLine" id="cb130-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb130-11" data-line-number="11">mjesto &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">pbr =</span> pbr,</a>
-<a class="sourceLine" id="cb130-12" data-line-number="12">                      <span class="dt">nazivMjesta =</span> nazivMjesta,</a>
-<a class="sourceLine" id="cb130-13" data-line-number="13">                      <span class="dt">prosjPlacaKn =</span> prosjPlacaKn,</a>
-<a class="sourceLine" id="cb130-14" data-line-number="14">                      <span class="dt">brojStanovnika =</span> brojStanovnika,</a>
-<a class="sourceLine" id="cb130-15" data-line-number="15">                      <span class="dt">prirez =</span> prirez)</a>
-<a class="sourceLine" id="cb130-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb130-17" data-line-number="17"><span class="co"># ispišite podatkovni okvir `mjesto`</span></a>
-<a class="sourceLine" id="cb130-18" data-line-number="18">mjesto</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pbr =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">51000</span>, <span class="dv">21000</span>, <span class="dv">31000</span>, <span class="dv">2000</span>)
+nazivMjesta =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zagreb&quot;</span>, <span class="st">&quot;Rijeka&quot;</span>, <span class="st">&quot;Split&quot;</span>, <span class="st">&quot;Osijek&quot;</span>, <span class="st">&quot;Dubrovnik&quot;</span>)
+prosjPlacaKn =<span class="st"> </span><span class="kw">c</span>(<span class="dv">6359</span>., <span class="dv">5418</span>., <span class="dv">5170</span>., <span class="dv">4892</span>., <span class="dv">5348</span>.)
+brojStanovnika =<span class="st"> </span><span class="kw">c</span>(<span class="dv">790017</span>, <span class="dv">128384</span>, <span class="dv">167121</span>, <span class="dv">84104</span>, <span class="dv">28434</span>)
+prirez =<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">10</span>)
+
+<span class="co"># uz pomoć funkcije `data.frame` i gornjih vektora stvorite podatkovni okvir `mjesto`</span>
+<span class="co"># koristite istu sintaksu kao kod stvaranja liste</span>
+<span class="co"># elemente liste nazovite imenima varijabli</span>
+
+mjesto &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">pbr =</span> pbr,
+                      <span class="dt">nazivMjesta =</span> nazivMjesta,
+                      <span class="dt">prosjPlacaKn =</span> prosjPlacaKn,
+                      <span class="dt">brojStanovnika =</span> brojStanovnika,
+                      <span class="dt">prirez =</span> prirez)
+
+<span class="co"># ispišite podatkovni okvir `mjesto`</span>
+mjesto</code></pre></div>
 <pre><code>##     pbr nazivMjesta prosjPlacaKn brojStanovnika prirez
 ## 1 10000      Zagreb         6359         790017     18
 ## 2 51000      Rijeka         5418         128384     15
@@ -405,21 +388,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pokušajmo sada učitati tablicu iz vanjskog izvora. Iako R dopušta različite oblike “vanjskih” podataka, mi ćemo pretpostaviti da podatke dobivamo u tzv. “CSV obliku” (engl. CSV - <em>comma-separated values</em>). Ovaj oblik jedan je od najpopularnijih načina pohrane podataka u čistom tekstualnom obliku koji ima prednosti da se lako izrađuje ručno, a većina alata za upravljanje podacima implementira i logiku za izvoz podataka u obliku CSV datoteke.</p>
 <p>U nastavku možemo vidjeti primjer CSV datoteke koja odgovara podatkovnom okviru izrađenom u prethodnom primjeru. Pretpostavimo da se datoteka zove <code>mjesto.csv</code>. Podaci su odvojeni zarezom (bez razmaknice!), svaka obzervacija u svojem retku, a opcionalni prvi redak predstavlja nazive stupaca.</p>
 <hr />
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">pbr,nazivMjesta,prosjPlacaKn,brojStanovnika,prirez</a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="dv">10000</span>,Zagreb,<span class="fl">6359.00</span>,<span class="dv">790017</span>,<span class="dv">18</span> </a>
-<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="dv">51000</span>,Rijeka,<span class="fl">5418.00</span>,<span class="dv">128384</span>,<span class="dv">15</span></a>
-<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="dv">21000</span>,Split,<span class="fl">5170.00</span>,<span class="dv">167121</span>,<span class="dv">10</span></a>
-<a class="sourceLine" id="cb132-5" data-line-number="5"><span class="dv">31000</span>,Osijek,<span class="fl">4892.00</span>,<span class="dv">84104</span>,<span class="dv">13</span> </a>
-<a class="sourceLine" id="cb132-6" data-line-number="6"><span class="dv">20000</span>,Dubrovnik,<span class="fl">5348.00</span>,<span class="dv">28434</span>,<span class="dv">10</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pbr,nazivMjesta,prosjPlacaKn,brojStanovnika,prirez
+<span class="dv">10000</span>,Zagreb,<span class="fl">6359.00</span>,<span class="dv">790017</span>,<span class="dv">18</span> 
+<span class="dv">51000</span>,Rijeka,<span class="fl">5418.00</span>,<span class="dv">128384</span>,<span class="dv">15</span>
+<span class="dv">21000</span>,Split,<span class="fl">5170.00</span>,<span class="dv">167121</span>,<span class="dv">10</span>
+<span class="dv">31000</span>,Osijek,<span class="fl">4892.00</span>,<span class="dv">84104</span>,<span class="dv">13</span> 
+<span class="dv">20000</span>,Dubrovnik,<span class="fl">5348.00</span>,<span class="dv">28434</span>,<span class="dv">10</span></code></pre></div>
 <hr />
 <p>Jedan od potencijalnih problema sa CSV datotekama jest taj što one koriste zarez kao razdvojnik (<em>delimiter</em>) elemenata zapisa, a na određenim govornim područjima kao standard se umjesto decimalne točke koristi upravo “decimalni zarez”. Zbog ove činjenice postoji i “alternativni” CSV standard koji kao razdvojnik koristi “točku-zarez”, tako da bi naša CSV datoteka u tom slučaju izgledala ovako (nazovimo ju <code>mjestoAlt.csv</code>):</p>
 <hr />
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">pbr;nazivMjesta;prosjPlacaKn;brojStanovnika;prirez</a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="dv">10000</span>;Zagreb;<span class="dv">6359</span>,<span class="dv">00</span>;<span class="dv">790017</span>;<span class="dv">18</span> </a>
-<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="dv">51000</span>;Rijeka;<span class="dv">5418</span>,<span class="dv">00</span>;<span class="dv">128384</span>;<span class="dv">15</span></a>
-<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="dv">21000</span>;Split;<span class="dv">5170</span>,<span class="dv">00</span>;<span class="dv">167121</span>;<span class="dv">10</span></a>
-<a class="sourceLine" id="cb133-5" data-line-number="5"><span class="dv">31000</span>;Osijek;<span class="dv">4892</span>,<span class="dv">00</span>;<span class="dv">84104</span>;<span class="dv">13</span> </a>
-<a class="sourceLine" id="cb133-6" data-line-number="6"><span class="dv">20000</span>;Dubrovnik;<span class="dv">5348</span>,<span class="dv">00</span>;<span class="dv">28434</span>;<span class="dv">10</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pbr;nazivMjesta;prosjPlacaKn;brojStanovnika;prirez
+<span class="dv">10000</span>;Zagreb;<span class="dv">6359</span>,<span class="dv">00</span>;<span class="dv">790017</span>;<span class="dv">18</span> 
+<span class="dv">51000</span>;Rijeka;<span class="dv">5418</span>,<span class="dv">00</span>;<span class="dv">128384</span>;<span class="dv">15</span>
+<span class="dv">21000</span>;Split;<span class="dv">5170</span>,<span class="dv">00</span>;<span class="dv">167121</span>;<span class="dv">10</span>
+<span class="dv">31000</span>;Osijek;<span class="dv">4892</span>,<span class="dv">00</span>;<span class="dv">84104</span>;<span class="dv">13</span> 
+<span class="dv">20000</span>;Dubrovnik;<span class="dv">5348</span>,<span class="dv">00</span>;<span class="dv">28434</span>;<span class="dv">10</span></code></pre></div>
 <hr />
 <p>Obzirom da je “decimalni zarez” propisani standard i na području Republike Hrvatske, u radu sa CSV datotekama moramo biti oprezni koji od dva standarda zapisa se koristi. Na sreću, jezik R nudi funkcije za podršku oba standarda, tako da ne moramo posebno prilagođavati ulazne datoteke, tek biti oprezni koju funkciju ćemo odabrati.</p>
 <p>Pretpostavimo da u radnoj mapi imamo ove dvije datoteke:</p>
@@ -429,9 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Ukoliko nemamo dostupne ove datoteke lako ih možemo samostalno napraviti uz pomoć običnog uređivača teksta (npr. <em>Notepad</em> ili <em>gedit</em>) i kopiranja gore navedenih redaka.</p>
 <hr />
-<p>Za stvaranje podatkovnih okvira iz CSV datoteka koristimo funkcije:
-- <code>read.csv</code> - za “normalne” CSV datoteke sa zarezom kao razdvojnikom
-- <code>read.csv2</code> - za alternativni CSV standard koji koristi točku-zarez</p>
+<p>Za stvaranje podatkovnih okvira iz CSV datoteka koristimo funkcije: - <code>read.csv</code> - za “normalne” CSV datoteke sa zarezom kao razdvojnikom - <code>read.csv2</code> - za alternativni CSV standard koji koristi točku-zarez</p>
 <p>Osnovni parametar ovih funkcija je staza do CSV datoteke koju učitavamo. Funkcije imaju i bogati niz dodatnih parametara koje omogućuju prilagodbu raznim scenarijima, a ukoliko smo dobili neki od “egzotičnijih” oblika CSV datoteke, isplati se pogledati i funkciju <code>read.table</code> koja je vrlo fleksibilna glede broja različitih parametara i postavki kod učitavanja podataka (<code>read.csv</code> i <code>read.csv2</code> su zapravo izvedene iz funkcije <code>read.table</code> fiksiranjem određenih parametara na standardne CSV značajke).</p>
 <hr />
 <p>Neke od parametara i pripadajućih vrijednosti funkcija <code>read.csv</code> (ili <code>read.table</code>) koje je korisno znati su:</p>
@@ -446,20 +427,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pokušajmo sada učitati podatke iz dostupnih CSV datoteka. Ovi podaci neće zahtijevati posebne parametre te će se moći učitati samo pružanjem staze do pripadnih datoteka (jedne koja koristi zarez i druge koja koristi točku-zarez kao razdvojnik).</p>
 <hr />
 <p><strong>Zadatak 4.2 - čitanje podataka iz CSV datoteke</strong></p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="co"># učitajte podatke iz datoteka `mjesto.csv` i `mjestoAlt.csv`</span></a>
-<a class="sourceLine" id="cb134-2" data-line-number="2"><span class="co"># podatke spremite u okvire `mjesto2` i `mjesto3`</span></a>
-<a class="sourceLine" id="cb134-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co"># ispišite okvire `mjesto2` i `mjesto3`</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># učitajte podatke iz datoteka `mjesto.csv` i `mjestoAlt.csv`</span>
+<span class="co"># podatke spremite u okvire `mjesto2` i `mjesto3`</span>
+
+<span class="co"># ispišite okvire `mjesto2` i `mjesto3`</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="co"># učitajte podatke iz datoteka `mjesto.csv` i `mjestoAlt.csv`</span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="co"># podatke spremite u okvire `mjesto2` i `mjesto3`</span></a>
-<a class="sourceLine" id="cb135-3" data-line-number="3">mjesto2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mjesto.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb135-4" data-line-number="4">mjesto3 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;mjestoAlt.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb135-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb135-6" data-line-number="6"><span class="co"># ispišite okvire `mjesto2` i `mjesto3`</span></a>
-<a class="sourceLine" id="cb135-7" data-line-number="7">mjesto2</a>
-<a class="sourceLine" id="cb135-8" data-line-number="8"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb135-9" data-line-number="9">mjesto3</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># učitajte podatke iz datoteka `mjesto.csv` i `mjestoAlt.csv`</span>
+<span class="co"># podatke spremite u okvire `mjesto2` i `mjesto3`</span>
+mjesto2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mjesto.csv&quot;</span>)
+mjesto3 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;mjestoAlt.csv&quot;</span>)
+
+<span class="co"># ispišite okvire `mjesto2` i `mjesto3`</span>
+mjesto2
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+mjesto3</code></pre></div>
 <pre><code>##     pbr nazivMjesta prosjPlacaKn brojStanovnika prirez
 ## 1 10000      Zagreb         6359         790017     18
 ## 2 51000      Rijeka         5418         128384     15
@@ -489,34 +470,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Isprobajmo neke od ovih funkcija:</p>
 <hr />
 <p><strong>Zadatak 4.3 - funkcije za rad sa podatkovnim okvirima</strong></p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># ispišite dimenzije tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb137-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="co"># ispišite strukturu tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb137-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb137-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb137-7" data-line-number="7"><span class="co"># ispišite prvih nekoliko redaka tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb137-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb137-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb137-10" data-line-number="10"><span class="co"># ispišite sažete statističke informacije o stupcima tablice `mjesto`</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite dimenzije tablice `mjesto`</span>
+
+
+<span class="co"># ispišite strukturu tablice `mjesto`</span>
+
+
+<span class="co"># ispišite prvih nekoliko redaka tablice `mjesto`</span>
+
+
+<span class="co"># ispišite sažete statističke informacije o stupcima tablice `mjesto`</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="co"># ispišite dimenzije tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">dim</span>(mjesto)</a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb138-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="co"># ispišite strukturu tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="kw">str</span>(mjesto)</a>
-<a class="sourceLine" id="cb138-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb138-9" data-line-number="9"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb138-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb138-11" data-line-number="11"><span class="co"># ispišite prvih nekoliko redaka tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb138-12" data-line-number="12"><span class="kw">head</span>(mjesto)</a>
-<a class="sourceLine" id="cb138-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb138-14" data-line-number="14"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb138-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb138-16" data-line-number="16"><span class="co"># ispišite sažete statističke informacije o stupcima tablice `mjesto`</span></a>
-<a class="sourceLine" id="cb138-17" data-line-number="17"><span class="kw">summary</span>(mjesto)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite dimenzije tablice `mjesto`</span>
+<span class="kw">dim</span>(mjesto)
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># ispišite strukturu tablice `mjesto`</span>
+<span class="kw">str</span>(mjesto)
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># ispišite prvih nekoliko redaka tablice `mjesto`</span>
+<span class="kw">head</span>(mjesto)
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># ispišite sažete statističke informacije o stupcima tablice `mjesto`</span>
+<span class="kw">summary</span>(mjesto)</code></pre></div>
 <pre><code>## [1] 5 5
 ## -----------
 ## &#39;data.frame&#39;:    5 obs. of  5 variables:
@@ -561,34 +542,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pokušajmo primijeniti naše znanje o indeksnim vektorima, matricama i listama na rezanje podatkovnih okvira.</p>
 <hr />
 <p><strong>Zadatak 4.4 - rezanje podatkovnih okvira</strong></p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="co"># ispišite tablicu `mjesto` (za referencu)</span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="co"># ispišite prva tri retka, treći i peti stupac</span></a>
-<a class="sourceLine" id="cb140-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co"># ispišite stupac &quot;prirez&quot;</span></a>
-<a class="sourceLine" id="cb140-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="co"># ispišite poštanske brojeve i nazive svih mjesta koja </span></a>
-<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="co"># imaju prirez veći od 12% i broj stanovnika veći od 100,000</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite tablicu `mjesto` (za referencu)</span>
+
+<span class="co"># ispišite prva tri retka, treći i peti stupac</span>
+
+<span class="co"># ispišite stupac &quot;prirez&quot;</span>
+
+<span class="co"># ispišite poštanske brojeve i nazive svih mjesta koja </span>
+<span class="co"># imaju prirez veći od 12% i broj stanovnika veći od 100,000</span></code></pre></div>
 <div class="fold s o">
 
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="co">#ispišite tablicu `mjesto` (za referencu)</span></a>
-<a class="sourceLine" id="cb141-2" data-line-number="2">mjesto</a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb141-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="co">#ispišite prva tri retka, treći i peti stupac</span></a>
-<a class="sourceLine" id="cb141-7" data-line-number="7">mjesto[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)]</a>
-<a class="sourceLine" id="cb141-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb141-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb141-11" data-line-number="11"><span class="co">#ispišite stupac &quot;prirez&quot;</span></a>
-<a class="sourceLine" id="cb141-12" data-line-number="12">mjesto<span class="op">$</span>prirez</a>
-<a class="sourceLine" id="cb141-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb141-14" data-line-number="14"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb141-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb141-16" data-line-number="16"><span class="co">#ispišite poštanske brojeve i nazive svih mjesta koji imaju </span></a>
-<a class="sourceLine" id="cb141-17" data-line-number="17"><span class="co"># prirez veći od 12% i broj stanovnika veći od 100,000</span></a>
-<a class="sourceLine" id="cb141-18" data-line-number="18">mjesto[mjesto<span class="op">$</span>prirez <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span> <span class="op">&amp;</span><span class="st"> </span>mjesto<span class="op">$</span>brojStanovnika <span class="op">&gt;</span><span class="st"> </span><span class="dv">100000</span>, <span class="kw">c</span>(<span class="st">&quot;pbr&quot;</span>, <span class="st">&quot;nazivMjesta&quot;</span>)]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ispišite tablicu `mjesto` (za referencu)</span>
+mjesto
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co">#ispišite prva tri retka, treći i peti stupac</span>
+mjesto[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)]
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co">#ispišite stupac &quot;prirez&quot;</span>
+mjesto<span class="op">$</span>prirez
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co">#ispišite poštanske brojeve i nazive svih mjesta koji imaju </span>
+<span class="co"># prirez veći od 12% i broj stanovnika veći od 100,000</span>
+mjesto[mjesto<span class="op">$</span>prirez <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span> <span class="op">&amp;</span><span class="st"> </span>mjesto<span class="op">$</span>brojStanovnika <span class="op">&gt;</span><span class="st"> </span><span class="dv">100000</span>, <span class="kw">c</span>(<span class="st">&quot;pbr&quot;</span>, <span class="st">&quot;nazivMjesta&quot;</span>)]</code></pre></div>
 <pre><code>##     pbr nazivMjesta prosjPlacaKn brojStanovnika prirez
 ## 1 10000      Zagreb         6359         790017     18
 ## 2 51000      Rijeka         5418         128384     15
@@ -608,9 +589,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 51000      Rijeka</code></pre>
 <hr />
 <p>Uočite sličnost između zadnjeg izraza i SQL upita: `</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">SELECT pbr, nazivMjesta</a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">FROM mjesto</a>
-<a class="sourceLine" id="cb143-3" data-line-number="3">WHERE mjesto.prirez <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span> AND mjesto.brojStanovnika <span class="op">&gt;</span><span class="st"> </span><span class="dv">100000</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SELECT pbr, nazivMjesta
+FROM mjesto
+WHERE mjesto.prirez <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span> AND mjesto.brojStanovnika <span class="op">&gt;</span><span class="st"> </span><span class="dv">100000</span></code></pre></div>
 <p>Odabir stupaca i redaka nije težak ako dobro baratamo znanjem o indeksnim vektorima, no kao što se vidi u zadnjem primjeru sintaksa često nije previše čitljiva (u usporedbi sa npr. SQL-ovom sintaksom koja obavlja isti posao). Zbog toga postoje različita proširenja R-a koji ovaj posao uvelike olakšavaju, a koja ćemo detaljno obraditi u jednoj od budućih lekcija koja će se baviti upravljanjem podatkovnim skupovima.</p>
 <hr />
 </div>
@@ -620,42 +601,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Kao što je rečeno, stupce u podatkovni okvir dodajemo na isti način kao što dodajemo elemente liste - uz pažnju da dodani stupac ima isti broj elemenata kao i ostali stupci. Novi stupci često su izvedenice postojećih stupaca koje predstavljaju binarne indikatore, rezultate aritmetičkih izraza podataka u drugim stupcima i sl.</p>
 <hr />
 <p><strong>Zadatak 4.5 - dodavanje novih stupaca u tablicu</strong></p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="co"># tablici `mjesto` dodajte logički stupac `visokPrirez` </span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="co"># koji će pokazivati da li je prirez veći od 12%</span></a>
-<a class="sourceLine" id="cb144-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="co"># pretpostavimo sljedeći (fiktivni!) način izračuna prireza</span></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="co"># - mjesta imaju oko 60% radne populacije</span></a>
-<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co"># - svaki radnik plaća porez koji je otprilike jednak 10% neto plaće </span></a>
-<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="co"># - prirez kojeg radnik plaća računamo kao (stopa prireza)*(iznos poreza)</span></a>
-<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="co">#</span></a>
-<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="co"># dodajte stupac `mjesecniPrihod` koji će uz pomoć prosječne plaće, prireza </span></a>
-<a class="sourceLine" id="cb144-11" data-line-number="11"><span class="co"># i broja stanovnika procijeniti koliki prihod pojedino mjesto dobija od prireza </span></a>
-<a class="sourceLine" id="cb144-12" data-line-number="12"><span class="co"># (izraženo u milijunima Kn)</span></a>
-<a class="sourceLine" id="cb144-13" data-line-number="13"><span class="co"># iznos zaokružite uz pomoć funkcije round ( primjer: round(100.12345, 2) ==&gt;  100.12  )</span></a>
-<a class="sourceLine" id="cb144-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb144-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb144-16" data-line-number="16"><span class="co"># ispišite tablicu mjesto</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tablici `mjesto` dodajte logički stupac `visokPrirez` </span>
+<span class="co"># koji će pokazivati da li je prirez veći od 12%</span>
+
+
+<span class="co"># pretpostavimo sljedeći (fiktivni!) način izračuna prireza</span>
+<span class="co"># - mjesta imaju oko 60% radne populacije</span>
+<span class="co"># - svaki radnik plaća porez koji je otprilike jednak 10% neto plaće </span>
+<span class="co"># - prirez kojeg radnik plaća računamo kao (stopa prireza)*(iznos poreza)</span>
+<span class="co">#</span>
+<span class="co"># dodajte stupac `mjesecniPrihod` koji će uz pomoć prosječne plaće, prireza </span>
+<span class="co"># i broja stanovnika procijeniti koliki prihod pojedino mjesto dobija od prireza </span>
+<span class="co"># (izraženo u milijunima Kn)</span>
+<span class="co"># iznos zaokružite uz pomoć funkcije round ( primjer: round(100.12345, 2) ==&gt;  100.12  )</span>
+
+
+<span class="co"># ispišite tablicu mjesto</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="co"># tablici `mjesto` dodajte logički stupac `visokPrirez` </span></a>
-<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="co"># koji će pokazivati da li je prirez veći od 12%</span></a>
-<a class="sourceLine" id="cb145-3" data-line-number="3">mjesto<span class="op">$</span>visokPrirez &lt;-<span class="st"> </span>mjesto<span class="op">$</span>prirez <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb145-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="co"># pretpostavimo sljedeći (fiktivni!) način izračuna prireza</span></a>
-<a class="sourceLine" id="cb145-6" data-line-number="6"><span class="co"># - mjesta imaju oko 60% radne populacije</span></a>
-<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="co"># - svaki radnik plaća porez koji je otprilike jednak 10% neto plaće </span></a>
-<a class="sourceLine" id="cb145-8" data-line-number="8"><span class="co"># - prirez kojeg radnik plaća računati ćemo (stopa prireza)*(iznos poreza)</span></a>
-<a class="sourceLine" id="cb145-9" data-line-number="9"><span class="co">#</span></a>
-<a class="sourceLine" id="cb145-10" data-line-number="10"><span class="co"># dodajte stupac `mjesecniPrihod` koji će uz pomoć prosječne plaće, prireza </span></a>
-<a class="sourceLine" id="cb145-11" data-line-number="11"><span class="co"># i broja stanovnika procijeniti koliki prihod pojedino mjesto dobija od prireza </span></a>
-<a class="sourceLine" id="cb145-12" data-line-number="12"><span class="co"># (izraženo u milijunima Kn)</span></a>
-<a class="sourceLine" id="cb145-13" data-line-number="13"><span class="co"># iznos zaokružite uz pomoć funkcije round ( primjer: round(100.12345, 2) ==&gt;  100.12  )</span></a>
-<a class="sourceLine" id="cb145-14" data-line-number="14">mjesto<span class="op">$</span>mjesecniPrihod &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.6</span> <span class="op">*</span><span class="st"> </span>mjesto<span class="op">$</span>brojStanovnika <span class="op">*</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb145-15" data-line-number="15"><span class="st">                          </span>mjesto<span class="op">$</span>prosjPlacaKn  <span class="op">*</span><span class="st"> </span><span class="fl">0.01</span> <span class="op">*</span><span class="st"> </span>mjesto<span class="op">$</span>prirez <span class="op">/</span><span class="st"> </span><span class="fl">1e6</span> , <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb145-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb145-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb145-18" data-line-number="18"><span class="co"># ispišite tablicu mjesto</span></a>
-<a class="sourceLine" id="cb145-19" data-line-number="19">mjesto</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># tablici `mjesto` dodajte logički stupac `visokPrirez` </span>
+<span class="co"># koji će pokazivati da li je prirez veći od 12%</span>
+mjesto<span class="op">$</span>visokPrirez &lt;-<span class="st"> </span>mjesto<span class="op">$</span>prirez <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>
+
+<span class="co"># pretpostavimo sljedeći (fiktivni!) način izračuna prireza</span>
+<span class="co"># - mjesta imaju oko 60% radne populacije</span>
+<span class="co"># - svaki radnik plaća porez koji je otprilike jednak 10% neto plaće </span>
+<span class="co"># - prirez kojeg radnik plaća računati ćemo (stopa prireza)*(iznos poreza)</span>
+<span class="co">#</span>
+<span class="co"># dodajte stupac `mjesecniPrihod` koji će uz pomoć prosječne plaće, prireza </span>
+<span class="co"># i broja stanovnika procijeniti koliki prihod pojedino mjesto dobija od prireza </span>
+<span class="co"># (izraženo u milijunima Kn)</span>
+<span class="co"># iznos zaokružite uz pomoć funkcije round ( primjer: round(100.12345, 2) ==&gt;  100.12  )</span>
+mjesto<span class="op">$</span>mjesecniPrihod &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="fl">0.6</span> <span class="op">*</span><span class="st"> </span>mjesto<span class="op">$</span>brojStanovnika <span class="op">*</span><span class="st"> </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span>
+<span class="st">                          </span>mjesto<span class="op">$</span>prosjPlacaKn  <span class="op">*</span><span class="st"> </span><span class="fl">0.01</span> <span class="op">*</span><span class="st"> </span>mjesto<span class="op">$</span>prirez <span class="op">/</span><span class="st"> </span><span class="fl">1e6</span> , <span class="dv">2</span>)
+
+
+<span class="co"># ispišite tablicu mjesto</span>
+mjesto</code></pre></div>
 <pre><code>##     pbr nazivMjesta prosjPlacaKn brojStanovnika prirez visokPrirez
 ## 1 10000      Zagreb         6359         790017     18        TRUE
 ## 2 51000      Rijeka         5418         128384     15        TRUE
@@ -674,29 +655,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Isprobajmo ove funkcije na malim “umjetnim” podatkovnim okvirima kako bi lakše predočili njihovu funkcionalnost.</p>
 <hr />
 <p><strong>Zadatak 4.6 - funkcije <code>rbind</code>/<code>cbind</code> i podatkovni okviri</strong></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">c =</span> <span class="kw">c</span>(T, F, T))</a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">c =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="co">#spojite df1 i df2 u podatkovni okvir df12 uz pomoć funkcije `rbind`</span></a>
-<a class="sourceLine" id="cb147-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb147-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co"># okviru df12 dodajte stupac `imena` sa imenima Ivo, Ana, Pero i Stipe</span></a>
-<a class="sourceLine" id="cb147-8" data-line-number="8"><span class="co"># koristite funkciju `cbind`</span></a>
-<a class="sourceLine" id="cb147-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="co"># ispišite okvir df12</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">c =</span> <span class="kw">c</span>(T, F, T))
+df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">c =</span> <span class="dv">3</span>)
+
+<span class="co">#spojite df1 i df2 u podatkovni okvir df12 uz pomoć funkcije `rbind`</span>
+
+
+<span class="co"># okviru df12 dodajte stupac `imena` sa imenima Ivo, Ana, Pero i Stipe</span>
+<span class="co"># koristite funkciju `cbind`</span>
+
+<span class="co"># ispišite okvir df12</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">c =</span> <span class="kw">c</span>(T, F, T))</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">c =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb148-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="co">#spojite df1 i df2 u podatkovni okvir df12 uz pomoć funkcije `rbind`</span></a>
-<a class="sourceLine" id="cb148-5" data-line-number="5">df12 &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
-<a class="sourceLine" id="cb148-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb148-7" data-line-number="7"><span class="co"># okviru df12 dodajte stupac `imena` sa imenima Ivo, Ana, Pero i Stipe</span></a>
-<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="co"># koristite funkciju `cbind`</span></a>
-<a class="sourceLine" id="cb148-9" data-line-number="9">df12 &lt;-<span class="st"> </span><span class="kw">cbind</span>(df12, <span class="dt">imena =</span> <span class="kw">c</span>(<span class="st">&quot;Ivo&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Pero&quot;</span>, <span class="st">&quot;Stipe&quot;</span>))</a>
-<a class="sourceLine" id="cb148-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb148-11" data-line-number="11"><span class="co"># ispišite okvir df12</span></a>
-<a class="sourceLine" id="cb148-12" data-line-number="12">df12</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="dt">c =</span> <span class="kw">c</span>(T, F, T))
+df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">c =</span> <span class="dv">3</span>)
+
+<span class="co">#spojite df1 i df2 u podatkovni okvir df12 uz pomoć funkcije `rbind`</span>
+df12 &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)
+
+<span class="co"># okviru df12 dodajte stupac `imena` sa imenima Ivo, Ana, Pero i Stipe</span>
+<span class="co"># koristite funkciju `cbind`</span>
+df12 &lt;-<span class="st"> </span><span class="kw">cbind</span>(df12, <span class="dt">imena =</span> <span class="kw">c</span>(<span class="st">&quot;Ivo&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Pero&quot;</span>, <span class="st">&quot;Stipe&quot;</span>))
+
+<span class="co"># ispišite okvir df12</span>
+df12</code></pre></div>
 <pre><code>##   a b c imena
 ## 1 1 A 1   Ivo
 ## 2 2 B 0   Ana
@@ -712,22 +693,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Isprobajmo ovo na primjeru.</p>
 <hr />
 <p><strong>Zadatak 4.7 - brisanje redaka i stupaca</strong></p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="co"># obrišite prvi redak i drugi stupac iz df12 metodom 2d referenciranja</span></a>
-<a class="sourceLine" id="cb150-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb150-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="co"># obrišite stupac `imena` uz pomoć pridjeljivanja `NULL` vrijednosti</span></a>
-<a class="sourceLine" id="cb150-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb150-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb150-7" data-line-number="7"><span class="co"># ispišite df12</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># obrišite prvi redak i drugi stupac iz df12 metodom 2d referenciranja</span>
+
+
+<span class="co"># obrišite stupac `imena` uz pomoć pridjeljivanja `NULL` vrijednosti</span>
+
+
+<span class="co"># ispišite df12</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="co"># obrišite prvi redak i drugi stupac iz df12 metodom 2d referenciranja</span></a>
-<a class="sourceLine" id="cb151-2" data-line-number="2">df12 &lt;-<span class="st"> </span>df12[<span class="op">-</span><span class="dv">1</span>, <span class="dv">-2</span>]    </a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co"># obrišite stupac `imena` uz pomoć pridjeljivanja `NULL` vrijednosti</span></a>
-<a class="sourceLine" id="cb151-5" data-line-number="5">df12<span class="op">$</span>imena &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb151-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb151-7" data-line-number="7"><span class="co"># ispišite df12</span></a>
-<a class="sourceLine" id="cb151-8" data-line-number="8">df12</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># obrišite prvi redak i drugi stupac iz df12 metodom 2d referenciranja</span>
+df12 &lt;-<span class="st"> </span>df12[<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]    
+
+<span class="co"># obrišite stupac `imena` uz pomoć pridjeljivanja `NULL` vrijednosti</span>
+df12<span class="op">$</span>imena &lt;-<span class="st"> </span><span class="ot">NULL</span>
+
+<span class="co"># ispišite df12</span>
+df12</code></pre></div>
 <pre><code>##   a c
 ## 2 2 0
 ## 3 3 1
@@ -743,45 +724,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Faktori u R-u su često i predmet rasprava budući da se radi o konstruktu koji može olakšati rad nad podacima, ali i uzrokovati brojne probleme, pogotovo ako nismo svjesni da u nekom trenutku radimo sa faktorom (ovaj scenarij se zapravo vrlo lako izbjegava, što ćemo objasniti na kraju ovog poglavlja).</p>
 <hr />
 <p>Za početak ćemo predočiti što su zapravo faktori uz pomoć jednostavnog primjera. Zamislimo da sljedeći znakovni vektor opisuje razinu krvnog tlaka kod deset pacijenata:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">tlak &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>, </a>
-<a class="sourceLine" id="cb153-2" data-line-number="2">          <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tlak &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>, 
+          <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>)</code></pre></div>
 <p>Ovo je očito “kategorijska” varijabla budući da može poprimiti jednu od tri diskretne vrijednosti - <code>&quot;nizak&quot;</code>, <code>&quot;normalan&quot;</code> i <code>&quot;visok&quot;</code>. Prema tome, ovaj vektor je tipičan kandidat za “faktoriziranje”, tj. za pretvorbu u objekt klase <code>factor</code>. Faktorizaciju znakovnog vektora provodimo uz pomoć funkcije <code>factor</code> kojoj prosljeđujemo (u pravilu) znakovni vektor kao parametar.</p>
 <hr />
 <p><strong>Zadatak 4.8 - faktoriziranje znakovnog vektora</strong></p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">tlak &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>, </a>
-<a class="sourceLine" id="cb154-2" data-line-number="2">          <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>)</a>
-<a class="sourceLine" id="cb154-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="co"># ispišite varijablu `tlak`</span></a>
-<a class="sourceLine" id="cb154-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb154-6" data-line-number="6"><span class="co"># ispišite klasu varijable `tlak`</span></a>
-<a class="sourceLine" id="cb154-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb154-8" data-line-number="8"><span class="co"># stvorite varijablu `tlak.f` koja će biti faktorizirana</span></a>
-<a class="sourceLine" id="cb154-9" data-line-number="9"><span class="co"># inačica varijable `tlak`</span></a>
-<a class="sourceLine" id="cb154-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb154-11" data-line-number="11"><span class="co"># ispišite varijablu `tlak.f`</span></a>
-<a class="sourceLine" id="cb154-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb154-13" data-line-number="13"><span class="co"># ispišite klasu varijable tlak.f</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tlak &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>, 
+          <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>)
+
+<span class="co"># ispišite varijablu `tlak`</span>
+
+<span class="co"># ispišite klasu varijable `tlak`</span>
+
+<span class="co"># stvorite varijablu `tlak.f` koja će biti faktorizirana</span>
+<span class="co"># inačica varijable `tlak`</span>
+
+<span class="co"># ispišite varijablu `tlak.f`</span>
+
+<span class="co"># ispišite klasu varijable tlak.f</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">tlak &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>, </a>
-<a class="sourceLine" id="cb155-2" data-line-number="2">          <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>)</a>
-<a class="sourceLine" id="cb155-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="co"># ispišite varijablu `tlak`</span></a>
-<a class="sourceLine" id="cb155-5" data-line-number="5">tlak</a>
-<a class="sourceLine" id="cb155-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb155-7" data-line-number="7"><span class="co"># ispišite klasu varijable `tlak`</span></a>
-<a class="sourceLine" id="cb155-8" data-line-number="8"><span class="kw">class</span>(tlak)</a>
-<a class="sourceLine" id="cb155-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb155-10" data-line-number="10"><span class="co"># stvorite varijablu `tlak.f` koja će biti faktorizirana</span></a>
-<a class="sourceLine" id="cb155-11" data-line-number="11"><span class="co"># inačica varijable `tlak`</span></a>
-<a class="sourceLine" id="cb155-12" data-line-number="12">tlak.f &lt;-<span class="st"> </span><span class="kw">factor</span>(tlak)</a>
-<a class="sourceLine" id="cb155-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb155-14" data-line-number="14"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb155-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb155-16" data-line-number="16"><span class="co"># ispišite varijablu `tlak.f`</span></a>
-<a class="sourceLine" id="cb155-17" data-line-number="17">tlak.f</a>
-<a class="sourceLine" id="cb155-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb155-19" data-line-number="19"><span class="co"># ispišite klasu varijable tlak.f</span></a>
-<a class="sourceLine" id="cb155-20" data-line-number="20"><span class="kw">class</span>(tlak.f)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tlak &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>, 
+          <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;normalan&quot;</span>)
+
+<span class="co"># ispišite varijablu `tlak`</span>
+tlak
+
+<span class="co"># ispišite klasu varijable `tlak`</span>
+<span class="kw">class</span>(tlak)
+
+<span class="co"># stvorite varijablu `tlak.f` koja će biti faktorizirana</span>
+<span class="co"># inačica varijable `tlak`</span>
+tlak.f &lt;-<span class="st"> </span><span class="kw">factor</span>(tlak)
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># ispišite varijablu `tlak.f`</span>
+tlak.f
+
+<span class="co"># ispišite klasu varijable tlak.f</span>
+<span class="kw">class</span>(tlak.f)</code></pre></div>
 <pre><code>##  [1] &quot;nizak&quot;    &quot;visok&quot;    &quot;visok&quot;    &quot;normalan&quot; &quot;normalan&quot; &quot;nizak&quot;   
 ##  [7] &quot;visok&quot;    &quot;nizak&quot;    &quot;normalan&quot; &quot;normalan&quot;
 ## [1] &quot;character&quot;
@@ -796,38 +777,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Ovo ponekad nije scenarij kojeg priželjkujemo. Ukoliko unaprijed znamo da znakovni vektor kojeg kategoriziramo ne sadrži sve moguće kategorije koje se općenito mogu pojaviti, imamo opciju dodavanja parametra <code>levels</code> u kojem ćemo uz pomoć znakovnog vektora eksplicitno navesti niz “mogućih” kategorija.</p>
 <hr />
 <p><strong>Zadatak 4.9 - nezastupljene kategorije i parametar <code>levels</code></strong></p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="co"># dodajte 11. element u vektor `tlak.f` sa sadržajem &quot;prenizak&quot;</span></a>
-<a class="sourceLine" id="cb157-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="co"># ispišite `tlak.f`</span></a>
-<a class="sourceLine" id="cb157-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="co"># napravite varijablu `tlak.f2` uz pomoć varijable `tlak`</span></a>
-<a class="sourceLine" id="cb157-6" data-line-number="6"><span class="co"># kategorijske razine navedite eksplicitno tako da sadrže</span></a>
-<a class="sourceLine" id="cb157-7" data-line-number="7"><span class="co"># i kategorije &quot;prenizak&quot; i &quot;previsok&quot;</span></a>
-<a class="sourceLine" id="cb157-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb157-9" data-line-number="9"><span class="co"># dodajte 11. element u vektor `tlak.f2` sa sadržajem &quot;prenizak&quot;</span></a>
-<a class="sourceLine" id="cb157-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb157-11" data-line-number="11"><span class="co"># ispišite `tlak.f2`</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dodajte 11. element u vektor `tlak.f` sa sadržajem &quot;prenizak&quot;</span>
+
+<span class="co"># ispišite `tlak.f`</span>
+
+<span class="co"># napravite varijablu `tlak.f2` uz pomoć varijable `tlak`</span>
+<span class="co"># kategorijske razine navedite eksplicitno tako da sadrže</span>
+<span class="co"># i kategorije &quot;prenizak&quot; i &quot;previsok&quot;</span>
+
+<span class="co"># dodajte 11. element u vektor `tlak.f2` sa sadržajem &quot;prenizak&quot;</span>
+
+<span class="co"># ispišite `tlak.f2`</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="co"># dodajte 11. element u vektor `tlak.f` sa sadržajem &quot;prenizak&quot;</span></a>
-<a class="sourceLine" id="cb158-2" data-line-number="2">tlak.f[<span class="dv">11</span>] &lt;-<span class="st"> &quot;prenizak&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dodajte 11. element u vektor `tlak.f` sa sadržajem &quot;prenizak&quot;</span>
+tlak.f[<span class="dv">11</span>] &lt;-<span class="st"> &quot;prenizak&quot;</span></code></pre></div>
 <pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 11, value = &quot;prenizak&quot;): invalid factor
 ## level, NA generated</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="co"># ispišite `tlak.f`</span></a>
-<a class="sourceLine" id="cb160-2" data-line-number="2">tlak.f</a>
-<a class="sourceLine" id="cb160-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb160-4" data-line-number="4"><span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb160-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb160-6" data-line-number="6"><span class="co"># napravite varijablu `tlak.f2` uz pomoć varijable `tlak`</span></a>
-<a class="sourceLine" id="cb160-7" data-line-number="7"><span class="co"># kategorijske razine navedite eksplicitno tako da sadrže</span></a>
-<a class="sourceLine" id="cb160-8" data-line-number="8"><span class="co"># i kategorije &quot;prenizak&quot; i &quot;previsok&quot;</span></a>
-<a class="sourceLine" id="cb160-9" data-line-number="9">tlak.f2 &lt;-<span class="st"> </span><span class="kw">factor</span>(tlak, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;prenizak&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>,</a>
-<a class="sourceLine" id="cb160-10" data-line-number="10">                    <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;previsok&quot;</span>))</a>
-<a class="sourceLine" id="cb160-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb160-12" data-line-number="12"><span class="co"># dodajte 11. element u vektor `tlak.f2` sa sadržajem &quot;prenizak&quot;</span></a>
-<a class="sourceLine" id="cb160-13" data-line-number="13">tlak.f2[<span class="dv">11</span>] &lt;-<span class="st"> &quot;prenizak&quot;</span></a>
-<a class="sourceLine" id="cb160-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb160-15" data-line-number="15"><span class="co"># ispišite `tlak.f2`</span></a>
-<a class="sourceLine" id="cb160-16" data-line-number="16">tlak.f2</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite `tlak.f`</span>
+tlak.f
+
+<span class="kw">cat</span>(<span class="st">&quot;-----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># napravite varijablu `tlak.f2` uz pomoć varijable `tlak`</span>
+<span class="co"># kategorijske razine navedite eksplicitno tako da sadrže</span>
+<span class="co"># i kategorije &quot;prenizak&quot; i &quot;previsok&quot;</span>
+tlak.f2 &lt;-<span class="st"> </span><span class="kw">factor</span>(tlak, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;prenizak&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>,
+                    <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;previsok&quot;</span>))
+
+<span class="co"># dodajte 11. element u vektor `tlak.f2` sa sadržajem &quot;prenizak&quot;</span>
+tlak.f2[<span class="dv">11</span>] &lt;-<span class="st"> &quot;prenizak&quot;</span>
+
+<span class="co"># ispišite `tlak.f2`</span>
+tlak.f2</code></pre></div>
 <pre><code>##  [1] nizak    visok    visok    normalan normalan nizak    visok   
 ##  [8] nizak    normalan normalan &lt;NA&gt;    
 ## Levels: nizak normalan visok
@@ -841,10 +822,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Jedno od pitanja koje se često pitamo vezano uz kategorijske varijable jest - kolika je zastupljenost pojedinih kategorija? Odgovor na ovo pitanje daje nam funkcija <code>table</code> kojoj prosljeđujemo odabrani faktor.</p>
 <hr />
 <p><strong>Zadatak 4.10 - funkcija <code>table</code></strong></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="co"># ispišite zastupljenost pojedinih kategorija u faktoru `tlak.f2`</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite zastupljenost pojedinih kategorija u faktoru `tlak.f2`</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># ispišite zastupljenost pojedinih kategorija u faktoru `tlak.f2`</span></a>
-<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="kw">table</span>(tlak.f2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite zastupljenost pojedinih kategorija u faktoru `tlak.f2`</span>
+<span class="kw">table</span>(tlak.f2)</code></pre></div>
 <pre><code>## tlak.f2
 ## prenizak    nizak normalan    visok previsok 
 ##        1        3        4        3        0</code></pre>
@@ -854,37 +835,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Kategorijska varijabla iz naših primjera zapravo ima prirodu tzv. ordinalne kategorijske varijable, što znači da kategorije imaju prirodni poredak (nizak tlak je “manji” od normalnog koji je “manji” od visokog). Ukoliko želimo, ovu činjenicu možemo “ugraditi” u faktor kod njegove inicijalizacije, jednostavnim dodavanjem parametra <code>ordered</code> postavljenog na <code>TRUE</code>. Prednost ordinalnog faktora jest ta što nam omogućuje usporedbu vrijednosti faktora uz pomoć usporednih operatora.</p>
 <hr />
 <p><strong>Zadatak 4.11 - ordinalni faktor</strong></p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co"># napravite varijablu `tlak.f3` na isti način kao i `tlak.f2`</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="co"># ali uz dodatni parametar `ordered = TRUE`</span></a>
-<a class="sourceLine" id="cb165-3" data-line-number="3"><span class="co"># pripazite da poredak kategorija odgovara ordinalnom rasporedu</span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb165-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb165-6" data-line-number="6"><span class="co"># ispišite `tlak.f3`</span></a>
-<a class="sourceLine" id="cb165-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb165-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb165-9" data-line-number="9"><span class="co"># provjerite radi li se uistinu o ordinalnom faktoru </span></a>
-<a class="sourceLine" id="cb165-10" data-line-number="10"><span class="co"># uz pomoć funkcije `is.ordered`</span></a>
-<a class="sourceLine" id="cb165-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb165-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb165-13" data-line-number="13"><span class="co"># provjerite da li je tlak prvog pacijenta</span></a>
-<a class="sourceLine" id="cb165-14" data-line-number="14"><span class="co"># (okvirno) niži od tlaka trećeg pacijenta</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># napravite varijablu `tlak.f3` na isti način kao i `tlak.f2`</span>
+<span class="co"># ali uz dodatni parametar `ordered = TRUE`</span>
+<span class="co"># pripazite da poredak kategorija odgovara ordinalnom rasporedu</span>
+
+
+<span class="co"># ispišite `tlak.f3`</span>
+
+
+<span class="co"># provjerite radi li se uistinu o ordinalnom faktoru </span>
+<span class="co"># uz pomoć funkcije `is.ordered`</span>
+
+
+<span class="co"># provjerite da li je tlak prvog pacijenta</span>
+<span class="co"># (okvirno) niži od tlaka trećeg pacijenta</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="co"># napravite varijablu `tlak.f3` na isti način kao i `tlak.f2`</span></a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="co"># ali uz dodatni parametar `ordered = TRUE`</span></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="co"># pripazite da poredak kategorija odgovara ordinalnom rasporedu</span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4">tlak.f3 &lt;-<span class="st"> </span><span class="kw">factor</span>(tlak, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;prenizak&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;previsok&quot;</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb166-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb166-6" data-line-number="6"><span class="co"># ispišite `tlak.f3`</span></a>
-<a class="sourceLine" id="cb166-7" data-line-number="7">tlak.f3</a>
-<a class="sourceLine" id="cb166-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb166-9" data-line-number="9"><span class="co"># provjerite radi li se uistinu o ordinalnom faktoru </span></a>
-<a class="sourceLine" id="cb166-10" data-line-number="10"><span class="co"># uz pomoć funkcije `is.ordered`</span></a>
-<a class="sourceLine" id="cb166-11" data-line-number="11"><span class="kw">is.ordered</span>(tlak.f3)</a>
-<a class="sourceLine" id="cb166-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb166-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb166-14" data-line-number="14"><span class="co"># provjerite da li je tlak prvog pacijenta</span></a>
-<a class="sourceLine" id="cb166-15" data-line-number="15"><span class="co"># (okvirno) niži od tlaka trećeg pacijenta</span></a>
-<a class="sourceLine" id="cb166-16" data-line-number="16">tlak.f3[<span class="dv">1</span>] <span class="op">&lt;</span><span class="st"> </span>tlak.f3[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># napravite varijablu `tlak.f3` na isti način kao i `tlak.f2`</span>
+<span class="co"># ali uz dodatni parametar `ordered = TRUE`</span>
+<span class="co"># pripazite da poredak kategorija odgovara ordinalnom rasporedu</span>
+tlak.f3 &lt;-<span class="st"> </span><span class="kw">factor</span>(tlak, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;prenizak&quot;</span>, <span class="st">&quot;nizak&quot;</span>, <span class="st">&quot;normalan&quot;</span>, <span class="st">&quot;visok&quot;</span>, <span class="st">&quot;previsok&quot;</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># ispišite `tlak.f3`</span>
+tlak.f3
+
+<span class="co"># provjerite radi li se uistinu o ordinalnom faktoru </span>
+<span class="co"># uz pomoć funkcije `is.ordered`</span>
+<span class="kw">is.ordered</span>(tlak.f3)
+
+
+<span class="co"># provjerite da li je tlak prvog pacijenta</span>
+<span class="co"># (okvirno) niži od tlaka trećeg pacijenta</span>
+tlak.f3[<span class="dv">1</span>] <span class="op">&lt;</span><span class="st"> </span>tlak.f3[<span class="dv">3</span>]</code></pre></div>
 <pre><code>##  [1] nizak    visok    visok    normalan normalan nizak    visok   
 ##  [8] nizak    normalan normalan
 ## Levels: prenizak &lt; nizak &lt; normalan &lt; visok &lt; previsok
@@ -902,15 +883,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Iako ove korake R radi automatski, u internu strukturu faktora možemo se uvjeriti ako faktor probamo pretvoriti u čisti numerički, odnosno čisti znakovni tip.</p>
 <hr />
 <p><strong>Zadatak 4.12 - interna struktura faktora</strong></p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u znakovni tip</span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u numerički tip</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u znakovni tip</span>
+
+<span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u numerički tip</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u znakovni tip</span></a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="kw">as.character</span>(tlak.f3)</a>
-<a class="sourceLine" id="cb169-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb169-4" data-line-number="4"><span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u numerički tip</span></a>
-<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="kw">as.numeric</span>(tlak.f3)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u znakovni tip</span>
+<span class="kw">as.character</span>(tlak.f3)
+
+<span class="co"># ispišite vrijednost varijable tlak.f3 pretvorene u numerički tip</span>
+<span class="kw">as.numeric</span>(tlak.f3)</code></pre></div>
 <pre><code>##  [1] &quot;nizak&quot;    &quot;visok&quot;    &quot;visok&quot;    &quot;normalan&quot; &quot;normalan&quot; &quot;nizak&quot;   
 ##  [7] &quot;visok&quot;    &quot;nizak&quot;    &quot;normalan&quot; &quot;normalan&quot;
 ##  [1] 2 4 4 3 3 2 4 2 3 3</code></pre>
@@ -928,25 +909,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <hr />
 <p><strong>Zadatak 4.13 - važnost parametra <code>stringsAsFactors = F</code></strong></p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="co"># uz pomoć funkcije `read.csv` učitajte podatke iz datoteke `mjestoNULL.csv`</span></a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="co"># u varijablu  `mjesto4`</span></a>
-<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="co"># nemojte koristiti parametar `stringsAsFactors` niti `na.strings`</span></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="co"># ispišite sadržaj okvira `mjesto4` na zaslon</span></a>
-<a class="sourceLine" id="cb171-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb171-7" data-line-number="7"><span class="co"># ispisite stupac `prosjPlaca`</span></a>
-<a class="sourceLine" id="cb171-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb171-9" data-line-number="9"><span class="co"># primjenite funkciju `as.numeric` na stupac `prosjPlaca` i komentirajte rezultat</span></a>
-<a class="sourceLine" id="cb171-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb171-11" data-line-number="11"><span class="co"># primjenite kombinaciju funkcija `as.character` i `as.numeric` na stupac `prosjPlaca` </span></a>
-<a class="sourceLine" id="cb171-12" data-line-number="12"><span class="co"># i komentirajte rezultat</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># uz pomoć funkcije `read.csv` učitajte podatke iz datoteke `mjestoNULL.csv`</span>
+<span class="co"># u varijablu  `mjesto4`</span>
+<span class="co"># nemojte koristiti parametar `stringsAsFactors` niti `na.strings`</span>
+
+<span class="co"># ispišite sadržaj okvira `mjesto4` na zaslon</span>
+
+<span class="co"># ispisite stupac `prosjPlaca`</span>
+
+<span class="co"># primjenite funkciju `as.numeric` na stupac `prosjPlaca` i komentirajte rezultat</span>
+
+<span class="co"># primjenite kombinaciju funkcija `as.character` i `as.numeric` na stupac `prosjPlaca` </span>
+<span class="co"># i komentirajte rezultat</span></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="co"># učitajte podatke iz datoteka `mjesto.csv` i `mjestoAlt.csv`</span></a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="co"># podatke spremite u okvire `mjesto2` i `mjesto3`</span></a>
-<a class="sourceLine" id="cb172-3" data-line-number="3">mjesto4 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mjestoNULL.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb172-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb172-5" data-line-number="5"><span class="co"># ispišite sadržaj okvira `mjesto4` na zaslon</span></a>
-<a class="sourceLine" id="cb172-6" data-line-number="6">mjesto4</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># učitajte podatke iz datoteka `mjesto.csv` i `mjestoAlt.csv`</span>
+<span class="co"># podatke spremite u okvire `mjesto2` i `mjesto3`</span>
+mjesto4 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mjestoNULL.csv&quot;</span>)
+
+<span class="co"># ispišite sadržaj okvira `mjesto4` na zaslon</span>
+mjesto4</code></pre></div>
 <pre><code>##     pbr nazivMjesta prosjPlacaKn brojStanovnika prirez
 ## 1 10000      Zagreb      6359.00         790017     18
 ## 2 51000      Rijeka         NULL         128384     15
@@ -955,18 +936,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 20000   Dubrovnik      5348.00          28434     10</code></pre>
 </div>
 <div class="fold s o">
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="co"># ispisite stupac `prosjPlacaKn`</span></a>
-<a class="sourceLine" id="cb174-2" data-line-number="2">mjesto4<span class="op">$</span>prosjPlacaKn</a>
-<a class="sourceLine" id="cb174-3" data-line-number="3"><span class="kw">cat</span>(<span class="st">&quot;----------------------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb174-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb174-5" data-line-number="5"><span class="co"># primjenite funkciju `as.numeric` na stupac `prosjPlacaKn` i komentirajte rezultat</span></a>
-<a class="sourceLine" id="cb174-6" data-line-number="6"><span class="kw">as.numeric</span>(mjesto4<span class="op">$</span>prosjPlacaKn)</a>
-<a class="sourceLine" id="cb174-7" data-line-number="7"><span class="kw">cat</span>(<span class="st">&quot;----------------------</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb174-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb174-9" data-line-number="9"><span class="co"># primjenite kombinaciju funkcija `as.character` i `as.numeric` na stupac `prosjPlacaKn` </span></a>
-<a class="sourceLine" id="cb174-10" data-line-number="10"><span class="co"># i komentirajte rezultat</span></a>
-<a class="sourceLine" id="cb174-11" data-line-number="11"><span class="co"># pazite na redoslijed poziva funkcija!</span></a>
-<a class="sourceLine" id="cb174-12" data-line-number="12"><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(mjesto4<span class="op">$</span>prosjPlacaKn))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispisite stupac `prosjPlacaKn`</span>
+mjesto4<span class="op">$</span>prosjPlacaKn
+<span class="kw">cat</span>(<span class="st">&quot;----------------------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># primjenite funkciju `as.numeric` na stupac `prosjPlacaKn` i komentirajte rezultat</span>
+<span class="kw">as.numeric</span>(mjesto4<span class="op">$</span>prosjPlacaKn)
+<span class="kw">cat</span>(<span class="st">&quot;----------------------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+
+<span class="co"># primjenite kombinaciju funkcija `as.character` i `as.numeric` na stupac `prosjPlacaKn` </span>
+<span class="co"># i komentirajte rezultat</span>
+<span class="co"># pazite na redoslijed poziva funkcija!</span>
+<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(mjesto4<span class="op">$</span>prosjPlacaKn))</code></pre></div>
 <pre><code>## [1] 6359.00 NULL    5170.00 4892.00 5348.00
 ## Levels: 4892.00 5170.00 5348.00 6359.00 NULL
 ## ----------------------
@@ -1042,7 +1023,6 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
-"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
@@ -1077,11 +1057,9 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
