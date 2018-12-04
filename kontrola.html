@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Programirajmo u R-u</title>
   <meta name="description" content="Udzbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i racunarstva, Sveuciliste u Zagrebu.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Programirajmo u R-u" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2018-11-12">
+<meta name="date" content="2018-12-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -116,41 +116,67 @@ pre.plot {
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -190,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="tipovi.html"><a href="tipovi.html#zadaci-za-vjezbu"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="vektori.html"><a href="vektori.html"><i class="fa fa-check"></i><b>3</b> Vektori, matrice i liste</a><ul>
-<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
+<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori-1"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="vektori.html"><a href="vektori.html#stvaranje-vektora"><i class="fa fa-check"></i><b>3.1.1</b> Stvaranje vektora</a></li>
 <li class="chapter" data-level="3.1.2" data-path="vektori.html"><a href="vektori.html#operator"><i class="fa fa-check"></i><b>3.1.2</b> Operator <code>[</code></a></li>
 <li class="chapter" data-level="3.1.3" data-path="vektori.html"><a href="vektori.html#principi-vektorizacije-i-recikliranja"><i class="fa fa-check"></i><b>3.1.3</b> Principi vektorizacije i recikliranja</a></li>
@@ -258,6 +284,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="cijev.html"><a href="cijev.html#zadaci-za-vjezbu-7"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="datumi.html"><a href="datumi.html"><i class="fa fa-check"></i><b>10</b> Rad sa datumima i znakovnim nizovima</a><ul>
+<li class="chapter" data-level="10.1" data-path="datumi.html"><a href="datumi.html#rad-sa-datumima"><i class="fa fa-check"></i><b>10.1</b> Rad sa datumima</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="datumi.html"><a href="datumi.html#klasa-date"><i class="fa fa-check"></i><b>10.1.1</b> Klasa <code>Date</code></a></li>
+<li class="chapter" data-level="10.1.2" data-path="datumi.html"><a href="datumi.html#klase-posixct-i-posixlt"><i class="fa fa-check"></i><b>10.1.2</b> Klase <code>POSIXct</code> i <code>POSIXlt</code></a></li>
+<li class="chapter" data-level="10.1.3" data-path="datumi.html"><a href="datumi.html#paket-lubridate"><i class="fa fa-check"></i><b>10.1.3</b> Paket <code>lubridate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="datumi.html"><a href="datumi.html#rad-sa-znakovnim-nizovima"><i class="fa fa-check"></i><b>10.2</b> Rad sa znakovnim nizovima</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datumi.html"><a href="datumi.html#analiza-teksta-i-regularni-izrazi"><i class="fa fa-check"></i><b>10.2.1</b> Analiza teksta i regularni izrazi</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datumi.html"><a href="datumi.html#paket-stringr"><i class="fa fa-check"></i><b>10.2.2</b> Paket <code>stringr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datumi.html"><a href="datumi.html#zadaci-za-vjezbu-8"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -286,41 +324,41 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Uvjetno izvođenje naredbi već smo upoznali. Radi se o konstruktu <code>if (uvjet) { blok } else { blok }</code> pri čemu se vitičaste zagrade mogu izbaciti ako imamo samo jednu uvjetnu naredbu. Ovdje je možda zgodno napomenuti kako izbjeći jednu relativno čestu početničku grešku kod pisanja <code>if</code> naredbe. Pokušajte ju samostalno uočiti i ispraviti u sljedećem primjeru.</p>
 <hr />
 <p><strong>Zadatak 5.1 - naredba <code>if</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># izvršite sljedeću naredbu uvjetnog izvođenja</span>
-<span class="cf">if</span> (<span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)
-
-
-<span class="co"># pronađite grešku u sljedećoj `if-else` naredbi i ispravite ju</span>
-<span class="cf">if</span> (<span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)
-<span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;Neuspjeh!&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="co"># izvršite sljedeću naredbu uvjetnog izvođenja</span></a>
+<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="cf">if</span> (<span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)</a>
+<a class="sourceLine" id="cb176-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb176-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb176-5" data-line-number="5"><span class="co"># pronađite grešku u sljedećoj `if-else` naredbi i ispravite ju</span></a>
+<a class="sourceLine" id="cb176-6" data-line-number="6"><span class="cf">if</span> (<span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)</a>
+<a class="sourceLine" id="cb176-7" data-line-number="7"><span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;Neuspjeh!&quot;</span>)</a></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># izvršite sljedeću naredbu uvjetnog izvođenja</span>
-<span class="cf">if</span> (<span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)
-
-
-<span class="co"># pronađite grešku u sljedećoj `if-else` naredbi i ispravite ju</span>
-<span class="cf">if</span> (<span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) { <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>) 
-  } <span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;Neuspjeh!&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="co"># izvršite sljedeću naredbu uvjetnog izvođenja</span></a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="cf">if</span> (<span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>)</a>
+<a class="sourceLine" id="cb177-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb177-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb177-5" data-line-number="5"><span class="co"># pronađite grešku u sljedećoj `if-else` naredbi i ispravite ju</span></a>
+<a class="sourceLine" id="cb177-6" data-line-number="6"><span class="cf">if</span> (<span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>) { <span class="kw">print</span>(<span class="st">&quot;Uspjeh!&quot;</span>) </a>
+<a class="sourceLine" id="cb177-7" data-line-number="7">  } <span class="cf">else</span> <span class="kw">print</span>(<span class="st">&quot;Neuspjeh!&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Uspjeh!&quot;
 ## [1] &quot;Neuspjeh!&quot;</code></pre>
 </div>
 <hr />
 <p>Greška se javlja zbog toga što je R interpreterski jezik koji se u pravilu izvršava redak po redak, osim u slučajevima kada smo R-u proslijedili “nedovršenu” naredbu pri čemu će on čekati na “ostatak” prije no što krene sa izvršavanjem. U prethodnom primjeru druga naredba <code>if</code> je zapravo završena u prvom retku, tako da se R “iznenadi” kada idući redak počinje sa <code>else</code>. Kako bi spriječili ovaj scenarij, dovoljno je na nekim način objasniti R-u da naredba još nije dovršena, što je najlakše izvesti otvaranjem bloka u prvom retku i zatvaranjem u retku sa <code>else</code>.</p>
 <p>Čitateljima koji programiraju u jezicima C ili Java biti će poznat pojam tzv. “ternarnog operatora” koji zapravo predstavlja kompaktnu verziju <em>if-else</em> bloka:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span>(a <span class="op">&lt;</span><span class="st"> </span>b) ? c <span class="op">:</span><span class="st"> </span>d       <span class="co"># nije primjer iz jezika R!</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">x =<span class="st"> </span>(a <span class="op">&lt;</span><span class="st"> </span>b) ? c <span class="op">:</span><span class="st"> </span>d       <span class="co"># nije primjer iz jezika R!</span></a></code></pre></div>
 <p>Ulogu ovog operatora u R-u obavlja funkcija <code>ifelse</code>.</p>
 <hr />
 <p><strong>Zadatak 5.2 - funkcija <code>ifelse</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
-b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>)
-
-<span class="co"># kako izgleda vektor `x` nakon izvršavanja sljedeće naredbe?</span>
-<span class="co"># razmislite o odgovoru a potom provjerite ispravnost rješenja</span>
-
-x &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&lt;</span><span class="st"> </span>b, <span class="dv">2</span>, <span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb180-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb180-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb180-4" data-line-number="4"><span class="co"># kako izgleda vektor `x` nakon izvršavanja sljedeće naredbe?</span></a>
+<a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co"># razmislite o odgovoru a potom provjerite ispravnost rješenja</span></a>
+<a class="sourceLine" id="cb180-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb180-7" data-line-number="7">x &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&lt;</span><span class="st"> </span>b, <span class="dv">2</span>, <span class="dv">5</span>)</a></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&lt;</span><span class="st"> </span>b, <span class="dv">2</span>, <span class="dv">5</span>)
-x</code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&lt;</span><span class="st"> </span>b, <span class="dv">2</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb181-2" data-line-number="2">x</a></code></pre></div>
 <pre><code>## [1] 2 2 2 2</code></pre>
 </div>
 <p>Uočite da je funkcija <code>ifelse</code> (očekivano) vektorizirana, zbog čega je posebno pogodna za stvaranje novih stupaca podatkovnih okvira koji su izvedeni iz određenih uvjeta vezanih uz postojeće stupce.</p>
@@ -342,17 +380,17 @@ x</code></pre></div>
 <p>Ovdje se radi o “beskonačnoj” petlji gdje se nakon završetka bloka on ponovo izvršava i tako unedogled. Jedini način izlaska iz ovakve petlje jest korištenje naredbe <code>break</code>. Pored ove naredbe imamo i naredbu <code>next</code> koja će preskočiti ostatak bloka, ali neće izaći iz petlje već će nastaviti izvršavati blok.</p>
 <p>Pogledajmo kako radi ova petlja u sljedećoj vježbi.</p>
 <p><strong>Zadatak 5.3 - Petlja <code>repeat</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prije izvršavanja sljedećeg bloka odgovorite na pitanja:</span>
-<span class="co"># - hoće li se petlja izvršavati beskonačno?</span>
-<span class="co"># - što će se ispisati na zaslonu?</span>
-
-i &lt;-<span class="st"> </span><span class="dv">1</span>
-<span class="cf">repeat</span> {
-    i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-    <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="cf">next</span>
-    <span class="kw">print</span>(i)
-    <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="cf">break</span>
-}</code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="co"># prije izvršavanja sljedećeg bloka odgovorite na pitanja:</span></a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="co"># - hoće li se petlja izvršavati beskonačno?</span></a>
+<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="co"># - što će se ispisati na zaslonu?</span></a>
+<a class="sourceLine" id="cb183-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb183-5" data-line-number="5">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb183-6" data-line-number="6"><span class="cf">repeat</span> {</a>
+<a class="sourceLine" id="cb183-7" data-line-number="7">    i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb183-8" data-line-number="8">    <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="cf">next</span></a>
+<a class="sourceLine" id="cb183-9" data-line-number="9">    <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb183-10" data-line-number="10">    <span class="cf">if</span> (i <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="cf">break</span></a>
+<a class="sourceLine" id="cb183-11" data-line-number="11">}</a></code></pre></div>
 <div class="fold s o">
 <pre><code>## [1] 3
 ## [1] 5
@@ -367,25 +405,25 @@ i &lt;-<span class="st"> </span><span class="dv">1</span>
 <p>Petlja <code>while</code> predstavlja “najčišći” oblik programske petlje čija sintaksa doslovno glasi “dok je uvjet ispunjen, ponavljaj navedeni kod”:</p>
 <p><code>while (uvjet) {blok}</code></p>
 <p><strong>Zadatak 5.4 - Petlja <code>while</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dodajte uvjet petlje tako da se ona izvrši</span>
-<span class="co"># točno 7 puta</span>
-
-i &lt;-<span class="st"> </span><span class="dv">1</span>
-
-<span class="cf">while</span>() {
-  <span class="kw">print</span>(i)
-  i &lt;-<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span>
-}</code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="co"># dodajte uvjet petlje tako da se ona izvrši</span></a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="co"># točno 7 puta</span></a>
+<a class="sourceLine" id="cb185-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb185-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb185-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb185-6" data-line-number="6"><span class="cf">while</span>() {</a>
+<a class="sourceLine" id="cb185-7" data-line-number="7">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb185-8" data-line-number="8">  i &lt;-<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb185-9" data-line-number="9">}</a></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dodajte uvjet petlje tako da se ona izvrši</span>
-<span class="co"># točno 7 puta</span>
-
-i &lt;-<span class="st"> </span><span class="dv">1</span>
-
-<span class="cf">while</span>(i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">7</span>) {
-  <span class="kw">print</span>(i)
-  i &lt;-<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span>
-}</code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="co"># dodajte uvjet petlje tako da se ona izvrši</span></a>
+<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="co"># točno 7 puta</span></a>
+<a class="sourceLine" id="cb186-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb186-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb186-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="cf">while</span>(i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">7</span>) {</a>
+<a class="sourceLine" id="cb186-7" data-line-number="7">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb186-8" data-line-number="8">  i &lt;-<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb186-9" data-line-number="9">}</a></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -402,24 +440,24 @@ i &lt;-<span class="st"> </span><span class="dv">1</span>
 <p><code>for (i in v) {radi nešto sa i}</code></p>
 <p>Uočimo da ovdje varijabla <code>i</code> nije “brojač” - u svakoj iteraciji petlje ona postaje vrijednost elementa do kojeg smo došli. Ukoliko baš želimo iterirati po indeksima, a ne po samim elementima, onda možemo koristiti konstrukt <code>for (i in 1:length(a))</code>. Treća varijanta jest iteriranje po imenima (ako smo definirali imena elemenata vektora) - <code>for (i in names(a)</code>.</p>
 <p><strong>Zadatak 5.5 - Petlja <code>for</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">4</span>)
-
-<span class="co"># ispišite elemente vektora `a` jedan po jedan </span>
-<span class="co"># uz pomoć petlje `for`</span>
-<span class="co"># pristupajte elementima direktno</span>
-
-
-<span class="co"># ponovite isto ali iterirajte po indeksima</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="co"># ispišite elemente vektora `a` jedan po jedan </span></a>
+<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="co"># uz pomoć petlje `for`</span></a>
+<a class="sourceLine" id="cb188-5" data-line-number="5"><span class="co"># pristupajte elementima direktno</span></a>
+<a class="sourceLine" id="cb188-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb188-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb188-8" data-line-number="8"><span class="co"># ponovite isto ali iterirajte po indeksima</span></a></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">4</span>)
-
-<span class="co"># ispišite elemente vektora `a` jedan po jedan </span>
-<span class="co"># uz pomoć petlje `for`</span>
-<span class="co"># pristupajte elementima direktno</span>
-<span class="cf">for</span> (i <span class="cf">in</span> a)  <span class="kw">print</span>(i)
-
-<span class="co"># ponovite isto ali iterirajte po indeksima</span>
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(a)) <span class="kw">print</span>(a[i])</code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb189-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="co"># ispišite elemente vektora `a` jedan po jedan </span></a>
+<a class="sourceLine" id="cb189-4" data-line-number="4"><span class="co"># uz pomoć petlje `for`</span></a>
+<a class="sourceLine" id="cb189-5" data-line-number="5"><span class="co"># pristupajte elementima direktno</span></a>
+<a class="sourceLine" id="cb189-6" data-line-number="6"><span class="cf">for</span> (i <span class="cf">in</span> a)  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb189-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb189-8" data-line-number="8"><span class="co"># ponovite isto ali iterirajte po indeksima</span></a>
+<a class="sourceLine" id="cb189-9" data-line-number="9"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(a)) <span class="kw">print</span>(a[i])</a></code></pre></div>
 <pre><code>## [1] -10
 ## [1] -6
 ## [1] -2
@@ -433,21 +471,22 @@ i &lt;-<span class="st"> </span><span class="dv">1</span>
 ## [1] 6
 ## [1] 10</code></pre>
 </div>
-<p>Uočite da je drugi način bolji ako želite mijenjati elemente vektora ili imati informaciju na kojem mjestu unutar originalnog vektora se trenutno nalazite. ***</p>
+<p>Uočite da je drugi način bolji ako želite mijenjati elemente vektora ili imati informaciju na kojem mjestu unutar originalnog vektora se trenutno nalazite.
+***</p>
 <p>Sad kad smo naučili sintaksu petlji važno je naglasiti jednu činjenicu - <strong>u programskom jeziku R u pravilu se ne preporučuje korištenje programskih petlji</strong> . Iako ovo inicijalno možda djeluje neočekivano i pomalo šokantno, razlog je jednostavan - R je jezik dizajniran upravo da radi po principu “sve odjednom”. Već smo vidjeli da principu vektoriziranosti i recikliranja učinkovito obavljaju poslove koji bi u drugim programskim jezicima zahtijevali petlju, a u poglavljima koje slijede vidjet ćemo da R nudi i mnoge druge konstrukte koji izbjegavaju eksplicitno ponavljanje koda uz uvjet nauštrb deklarativne sintakse koja to obavlja automatski.</p>
 <p>Na primjer, sljedeći primjer je sintaksno potpuno ispravan:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># primjer nepotrebnog korištenja petlje</span>
-a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
-b &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span>
-c &lt;-<span class="st"> </span><span class="kw">numeric</span>()
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(a)) c[i] &lt;-<span class="st"> </span>a[i] <span class="op">+</span><span class="st"> </span>b[i]</code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="co"># primjer nepotrebnog korištenja petlje</span></a>
+<a class="sourceLine" id="cb191-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb191-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb191-4" data-line-number="4">c &lt;-<span class="st"> </span><span class="kw">numeric</span>()</a>
+<a class="sourceLine" id="cb191-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb191-6" data-line-number="6"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(a)) c[i] &lt;-<span class="st"> </span>a[i] <span class="op">+</span><span class="st"> </span>b[i]</a></code></pre></div>
 <p>ali vjerojatno radi sporije i puno je nečitljiviji od:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># R-ovska sintaksa</span>
-a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
-b &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span>
-
-c &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="co"># R-ovska sintaksa</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb192-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb192-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb192-5" data-line-number="5">c &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</a></code></pre></div>
 <p>Sve navedeno naravno ne znači da petlje u R-u ne smijemo koristiti, samo da bi njihovo korištenje trebalo biti popraćeno dodatnim razmatranjem da li je na tom mjestu petlja zaista potrebna te da li postoji alternativna sintaksa koji isti posao obavlja deklarativno (i potencijalno brže, budući da su mnoge rutine R-a implementirane u jeziku C). Rano prihvaćanje “R-ovskog” načina razmišljanja rezultirati će dugoročnim benefitom koji će se očitovati kompaktnijim, čišćim i često učinkovitijim programskim kodom.</p>
 <hr />
 </div>
@@ -468,15 +507,15 @@ c &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </s
 <div id="pregled-objektnog-modela-s3" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Pregled objektnog modela S3</h3>
 <p>Kao što je već rečeno, S3 objekti zapravo su preneseni iz programskog jezika S i predstavljaju relativno primitivno poimanje koncepta “objekta”, barem što se tiče očekivanja glede standardnih metoda stvaranja objekata i pripadajućih metoda. <strong>S3 objekt je zapravo obična lista kojoj smo definirali <code>class</code> atribut</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># stvaramo novi objekt klase `osoba`</span>
-pero &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">oib =</span> <span class="st">&quot;12345678&quot;</span>, <span class="dt">prezime =</span> <span class="st">&quot;Peric&quot;</span>, <span class="dt">tezina =</span> <span class="dv">78</span>)
-<span class="kw">class</span>(pero) &lt;-<span class="st"> &quot;Osoba&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="co"># stvaramo novi objekt klase `osoba`</span></a>
+<a class="sourceLine" id="cb193-2" data-line-number="2">pero &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">oib =</span> <span class="st">&quot;12345678&quot;</span>, <span class="dt">prezime =</span> <span class="st">&quot;Peric&quot;</span>, <span class="dt">tezina =</span> <span class="dv">78</span>)</a>
+<a class="sourceLine" id="cb193-3" data-line-number="3"><span class="kw">class</span>(pero) &lt;-<span class="st"> &quot;Osoba&quot;</span></a></code></pre></div>
 <p>I to je to! Uočite da nemamo formalno definiranog “predloška” klase kojeg onda instanciramo u objekt kao što je ustaljena praksa u drugim programskim jezicima. Kod S3 objekata jednostavno stvaramo listu i onda deklariramo da je ta lista objekt određene klase, iako je struktura te klase zapravo samo implicirana izgledom objekta (i ne mora uopće odgovarati strukturi nekog drugog objekta koji se deklarirao da pripada istoj klasi).</p>
 <p>Naravno, ovako ležeran način konstrukcije objekata ipak nije preporučljiv te se zbog toga preporučuje da klase ne deklariramo “ručno” već da to radimo uz pomoć posebne konstruktorske funkcije čiji će parametri zapravo definirati izgled objekta (ovo ćemo naučiti u lekciji o stvaranju vlastitih funkcija)</p>
 <p>Što je s nasljeđivanjem, gdje klasa-dijete nasljeđuje tj. proširuje svojstva klase-roditelja?</p>
 <p>R omogućuje nasljeđivanje, ali također na vrlo neformalan i relativno trivijalan način. Umjesto da navedemo samo jedan “naziv” klase uz pomoć atributa <code>class</code>, mi stvorimo znakovni vektor gdje će prvi element biti naziv klase, a ostali elementi će biti klase roditelji, poredani prema “važnosti”. Na primjer, ako smo stvorili novi objekt <code>mate</code> klase <code>Zaposlenik</code> nad kojim bi htjeli koristiti iste implementacije određenih generičkih metoda razvijenih za potrebe objekata klase <code>Osoba</code>, onda je dovoljno izvesti sljedeće:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">oib =</span> <span class="st">&quot;12345678&quot;</span>, <span class="dt">prezime =</span> <span class="st">&quot;Peric&quot;</span>, <span class="dt">tezina =</span> <span class="dv">78</span>, <span class="dt">godZaposlenja =</span> <span class="dv">2001</span>)
-<span class="kw">class</span>(mate) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zaposlenik&quot;</span>, <span class="st">&quot;Osoba&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1">mate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">oib =</span> <span class="st">&quot;12345678&quot;</span>, <span class="dt">prezime =</span> <span class="st">&quot;Peric&quot;</span>, <span class="dt">tezina =</span> <span class="dv">78</span>, <span class="dt">godZaposlenja =</span> <span class="dv">2001</span>)</a>
+<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="kw">class</span>(mate) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Zaposlenik&quot;</span>, <span class="st">&quot;Osoba&quot;</span>)</a></code></pre></div>
 <p>Primijetimo da sav posao oko nasljeđivanja atributa moramo obaviti “ručno”, tj. moramo se sami pobrinuti da mate ima atribute klase Osoba koje će generička funkcija koju pozivamo koristiti.</p>
 </div>
 <div id="genericke-funkcije" class="section level3">
@@ -484,32 +523,32 @@ pero &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt"
 <p>Gledajući gore definirani način dizajna objekta opravdano je postaviti i dodatno pitanje - a gdje su metode? Kao što znamo, standardni objektno-orijentirani principi pretpostavljaju enkapsulaciju atributa ali i metoda u okvir objekta. Upravo tu leži osnovna razlika između S3 objekta i “standardnih” objekata iz drugih programskih jezika - <strong>kod S3 objekata metode se definiraju izvan objekta u obliku tzv. generičkih funkcija</strong>.</p>
 <p>Zašto je tome tako? Ideja jest sljedeća - u radu sa objektima korisnik (programer, analitičar) često poziva iste funkcije (npr. “ispis”, “crtanje”, “sažeti opis”) nad objektima različitog tipa. Funkcija istog imena ali različite implementacije ovisno o objektu nad kojim radi zove se <strong>generička funkcija</strong>. Tako recimo funkcija <code>print</code> uvijek rezultira nekakvim ispisom, ali kako će ispis izgledati zapravo ovisi o objektu kojeg ispisujemo.</p>
 <p>Ovaj način dizajna objekata može djelovati iznimno nekonvencionalno, no činjenica jest da on pozive funkcija čini puno intuitivnijim, pogotovo korisnicima koji nemaju veliko iskustvo sa programiranjem. Konkretno, usporedimo naredbu:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pokreni</span>(auto, <span class="dt">brzina =</span> <span class="dv">20</span>)</code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1"><span class="kw">pokreni</span>(auto, <span class="dt">brzina =</span> <span class="dv">20</span>)</a></code></pre></div>
 <p>s naredbom:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">auto.pokreni</span>(<span class="dt">brzina =</span> <span class="dv">20</span>)</code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"><span class="kw">auto.pokreni</span>(<span class="dt">brzina =</span> <span class="dv">20</span>)</a></code></pre></div>
 <p>Čitajući prvu naredbu auto doživljavamo kao “objekt” (u smislu službe riječi u rečenicu), tj. nešto radimo “nad” tim objektom. Druga naredba auto postavlja kao subjekt, što je uobičajena praksa u objektno-orijentiranim jezicima ali nije u skladu sa općenitim poimanjem obavljanja radnji nad nekim objektima.</p>
 <p>U radu s programskim jezikom R često radimo “slične” poslove nad različitim objektima - ispisujemo njihov sadržaj, crtamo ih na grafu, tražimo neke sažete detalje o njima i sl. Upravo zbog toga, a i činjenice da u R-u često radimo interaktivno, R je dizajniran na način da razmišljamo <strong>što</strong> želimo učiniti umjesto da se pitamo <strong>gdje</strong> se nalazi funkcija koju želimo pozvati. Ako želimo ispisati neki objekt, logično je da ga samo proslijedimo funkciji <code>print</code>, ako ga želimo nacrtati funkciji <code>plot</code>, a ako želimo sažetak funkciji <code>summary</code>.</p>
 <p>Kako pojedina funkcija “zna” što učinit sa objektom? Odgovor je jednostavan - generička funkcija je samo “sučelje” prema “pravoj” funkciji koju pozivamo, a logika kako pronaći pravu funkciju je vrlo trivijalna - ako je ime generičke funkcije <code>genFun</code> a naziv klase objekta koju joj prosljeđujemo <code>nazKlase</code>, funkcija koja se zapravo poziva jest <code>genFun.nazKlase</code>. Ako takve funkcije nema, poziva se funkcija <code>genFun.default</code>.</p>
 <p>U ovo se lako možemo uvjeriti samostalno u sklopu sljedeće vježbe.</p>
 <p><strong>Zadatak 5.6 - Generičke funkcije</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite funkciju `summary` (samo naziv funkcije!)</span>
-
-<span class="co"># ispišite funkciju koja se zapravo poziva kad pozovete</span>
-<span class="co"># funkciju `summary` nad objektom klase `factor`</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="co"># ispišite funkciju `summary` (samo naziv funkcije!)</span></a>
+<a class="sourceLine" id="cb197-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb197-3" data-line-number="3"><span class="co"># ispišite funkciju koja se zapravo poziva kad pozovete</span></a>
+<a class="sourceLine" id="cb197-4" data-line-number="4"><span class="co"># funkciju `summary` nad objektom klase `factor`</span></a></code></pre></div>
 <div class="fold s o">
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ispišite funkciju `summary` </span>
-summary
-
-
-<span class="co"># ispišite funkciju koja se zapravo poziva kad pozovete</span>
-<span class="co"># funkciju `summary` nad objektom klase `factor`</span>
-summary.factor</code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="co"># ispišite funkciju `summary` </span></a>
+<a class="sourceLine" id="cb198-2" data-line-number="2">summary</a>
+<a class="sourceLine" id="cb198-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb198-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb198-5" data-line-number="5"><span class="co"># ispišite funkciju koja se zapravo poziva kad pozovete</span></a>
+<a class="sourceLine" id="cb198-6" data-line-number="6"><span class="co"># funkciju `summary` nad objektom klase `factor`</span></a>
+<a class="sourceLine" id="cb198-7" data-line-number="7">summary.factor</a></code></pre></div>
 <pre><code>## standardGeneric for &quot;summary&quot; defined from package &quot;base&quot;
 ## 
 ## function (object, ...) 
 ## standardGeneric(&quot;summary&quot;)
-## &lt;environment: 0x00000000199a0880&gt;
+## &lt;environment: 0x0000000016639078&gt;
 ## Methods may be defined for arguments: object
 ## Use  showMethods(&quot;summary&quot;)  for currently available ones.
 ## function (object, maxsum = 100L, ...) 
@@ -530,7 +569,7 @@ summary.factor</code></pre></div>
 ##         c(tt, `NA&#39;s` = sum(nas))
 ##     else tt
 ## }
-## &lt;bytecode: 0x0000000023d26330&gt;
+## &lt;bytecode: 0x0000000021f6b6d0&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>Razumijevanjem principa rada generičkih funkcija upotpunili smo sliku o S3 objektima. Najvažnija stvar koju moramo usvojiti jest da kod ovog modela funkcije nisu dio samog objekta, već se definiraju zasebno, a poveznica između objekta i “njegove” metode jest samo u nazivu funkcije pomoću kojeg će R “povezati” generičku funkciju i taj objekt. Iako je ovaj princip primitivan i podložan greškama u rukama nepažljivog programera, on je neumitno jednostavan za uporabu i vrlo učinkovit. Konačno, uočimo da ovaj pristup nije u potpunosti svojstven isključivo jeziku R - slične principe nalazimo i u drugim programskim jezicima (npr. <em>Python</em> povezuje <em>print</em> funkciju i objekt preko posebne metode objekta <code>__str__</code>). R je samo specifičan po tome što taj princip koristi otvoreno i gotovo isključivo.</p>
 <p>Objekte i generičke funkcije ćemo ponovo posjetiti kada naučimo stvarati vlastite funkcije, što će nam omogućiti da stvorimo kako konstruktore naših objekata, tako i njihove generičke funkcije.</p>
@@ -551,28 +590,28 @@ summary.factor</code></pre></div>
 <ol style="list-style-type: decimal">
 <li>Stvorite podatkovni okvir mjesto uz pomoć sljedeće naredbe:</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mjesto &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">pbr =</span> <span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">51000</span>, <span class="dv">21000</span>, <span class="dv">31000</span>, <span class="dv">2000</span>),
-         <span class="dt">nazivMjesta =</span> <span class="kw">c</span>(<span class="st">&quot;Zagreb&quot;</span>, <span class="st">&quot;Rijeka&quot;</span>, <span class="st">&quot;Split&quot;</span>, <span class="st">&quot;Osijek&quot;</span>, <span class="st">&quot;Dubrovnik&quot;</span>),
-         <span class="dt">prirez =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">10</span>))</code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1">mjesto &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">pbr =</span> <span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">51000</span>, <span class="dv">21000</span>, <span class="dv">31000</span>, <span class="dv">2000</span>),</a>
+<a class="sourceLine" id="cb200-2" data-line-number="2">         <span class="dt">nazivMjesta =</span> <span class="kw">c</span>(<span class="st">&quot;Zagreb&quot;</span>, <span class="st">&quot;Rijeka&quot;</span>, <span class="st">&quot;Split&quot;</span>, <span class="st">&quot;Osijek&quot;</span>, <span class="st">&quot;Dubrovnik&quot;</span>),</a>
+<a class="sourceLine" id="cb200-3" data-line-number="3">         <span class="dt">prirez =</span> <span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">10</span>))</a></code></pre></div>
 <p>Dodajte ovom okviru stupac <code>prirezOpis</code> koji će biti ordinalna faktorska varijabla sa razinama <code>&quot;mali&quot;</code>, <code>&quot;srednji&quot;</code> i <code>&quot;visok&quot;</code> ovisno o tome da li je postotak prireza strogo manji od 12, između 12 i 15 ili strogo veći od 15. Koristite se naredbom <code>ifelse</code>.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Zamijenite petlje u sljedećem bloku ekvivalentnim vektoriziranim operacijama (za drugu petlju proučite dokumentaciju funkcije <code>sum</code>).</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">numeric</span>()
-i &lt;-<span class="st"> </span><span class="dv">1</span>
-
-<span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span>)  {
-  a &lt;-<span class="st"> </span><span class="kw">c</span>(a, i)
-  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-}
-
-suma &lt;-<span class="st"> </span><span class="dv">0</span>
-
-<span class="cf">for</span> (i <span class="cf">in</span> a) {
-  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) suma &lt;-<span class="st"> </span>suma <span class="op">+</span><span class="st"> </span>i<span class="op">*</span>i
-}
-
-<span class="kw">print</span>(suma)</code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">numeric</span>()</a>
+<a class="sourceLine" id="cb201-2" data-line-number="2">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb201-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">100</span>)  {</a>
+<a class="sourceLine" id="cb201-5" data-line-number="5">  a &lt;-<span class="st"> </span><span class="kw">c</span>(a, i)</a>
+<a class="sourceLine" id="cb201-6" data-line-number="6">  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb201-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb201-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb201-9" data-line-number="9">suma &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb201-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb201-11" data-line-number="11"><span class="cf">for</span> (i <span class="cf">in</span> a) {</a>
+<a class="sourceLine" id="cb201-12" data-line-number="12">  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) suma &lt;-<span class="st"> </span>suma <span class="op">+</span><span class="st"> </span>i<span class="op">*</span>i</a>
+<a class="sourceLine" id="cb201-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb201-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb201-15" data-line-number="15"><span class="kw">print</span>(suma)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Stvorite objekt klase <code>Kvadar</code> sa atributima <code>visina</code>, <code>sirina</code> i <code>dubina</code> jednakim <code>10</code>, <code>20</code> i <code>30</code>.</li>
 </ol>
@@ -605,6 +644,7 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
@@ -639,9 +679,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

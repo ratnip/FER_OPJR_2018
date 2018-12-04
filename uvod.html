@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Programirajmo u R-u</title>
   <meta name="description" content="Udzbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i racunarstva, Sveuciliste u Zagrebu.">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Programirajmo u R-u" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2018-11-12">
+<meta name="date" content="2018-12-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -116,41 +116,67 @@ pre.plot {
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -190,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="tipovi.html"><a href="tipovi.html#zadaci-za-vjezbu"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="vektori.html"><a href="vektori.html"><i class="fa fa-check"></i><b>3</b> Vektori, matrice i liste</a><ul>
-<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
+<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori-1"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="vektori.html"><a href="vektori.html#stvaranje-vektora"><i class="fa fa-check"></i><b>3.1.1</b> Stvaranje vektora</a></li>
 <li class="chapter" data-level="3.1.2" data-path="vektori.html"><a href="vektori.html#operator"><i class="fa fa-check"></i><b>3.1.2</b> Operator <code>[</code></a></li>
 <li class="chapter" data-level="3.1.3" data-path="vektori.html"><a href="vektori.html#principi-vektorizacije-i-recikliranja"><i class="fa fa-check"></i><b>3.1.3</b> Principi vektorizacije i recikliranja</a></li>
@@ -257,6 +283,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2.2" data-path="cijev.html"><a href="cijev.html#funkcije-separate-i-unite"><i class="fa fa-check"></i><b>9.2.2</b> Funkcije <code>separate</code> i <code>unite</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="cijev.html"><a href="cijev.html#zadaci-za-vjezbu-7"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datumi.html"><a href="datumi.html"><i class="fa fa-check"></i><b>10</b> Rad sa datumima i znakovnim nizovima</a><ul>
+<li class="chapter" data-level="10.1" data-path="datumi.html"><a href="datumi.html#rad-sa-datumima"><i class="fa fa-check"></i><b>10.1</b> Rad sa datumima</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="datumi.html"><a href="datumi.html#klasa-date"><i class="fa fa-check"></i><b>10.1.1</b> Klasa <code>Date</code></a></li>
+<li class="chapter" data-level="10.1.2" data-path="datumi.html"><a href="datumi.html#klase-posixct-i-posixlt"><i class="fa fa-check"></i><b>10.1.2</b> Klase <code>POSIXct</code> i <code>POSIXlt</code></a></li>
+<li class="chapter" data-level="10.1.3" data-path="datumi.html"><a href="datumi.html#paket-lubridate"><i class="fa fa-check"></i><b>10.1.3</b> Paket <code>lubridate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="datumi.html"><a href="datumi.html#rad-sa-znakovnim-nizovima"><i class="fa fa-check"></i><b>10.2</b> Rad sa znakovnim nizovima</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datumi.html"><a href="datumi.html#analiza-teksta-i-regularni-izrazi"><i class="fa fa-check"></i><b>10.2.1</b> Analiza teksta i regularni izrazi</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datumi.html"><a href="datumi.html#paket-stringr"><i class="fa fa-check"></i><b>10.2.2</b> Paket <code>stringr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datumi.html"><a href="datumi.html#zadaci-za-vjezbu-8"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
 </ul>
 
@@ -328,7 +366,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Izvršne datoteke možete pokrenuti i pustiti čarobnjaka da instalira sve potrebne komponente na vaše računalo. Preporučuje se prihvatiti sve nazivne opcije osim mape instalacije - umjesto podmape “<em>Program Files</em>” bolje je instalirati R direktno u osnovnu mapu (npr. “<em>C:\R\R-3.3.2</em>”). Na ovaj način biti će lakše pronaći trenutno instaliranu inačicu i eventualno kasnije ažurirati. Iz istih razloga preporučuje se <em>RStudio</em> instalirati u mapu “<em>C:\R\RStudio</em>”. U slučaju da niste mogućnosti ili ne želite odabrati ove mape, možete definirati neke druge ili zadržati nazivne opcije - ovaj izbor ne bi u konačnici trebao bitno utjecati na daljnji rad.</p>
 <p>Nakon instalacije sučelja <em>RStudio</em> dovoljno je isto jednostavno pokrenuti uz pomoć stvorene kratice na radnoj mapi (ili alternativno, uz pomoć izvršne datoteke <em>RStudio.exe</em> u odabranoj mapi za instalaciju). Nakon pokretanja aplikacija bi trebala izgledati slično sljedećoj slici:</p>
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<img src="figures/RStudio1.PNG" alt="Izgled sučelja RStudio"  />
+<img src="figures/RStudio1.PNG" alt="Izgled sučelja RStudio" width="583" />
 <p class="caption">
 Slika 1.1: Izgled sučelja RStudio
 </p>
@@ -347,7 +385,7 @@ Slika 1.1: Izgled sučelja RStudio
 <p>Prikažimo kako radi interaktivna konzola. Uz pomoć tipkovnice možemo utipkati jednostavan matematički izraz - npr. <code>3 + 2</code> i stisnuti tipku <em>ENTER</em>. Vidimo da će nam R odmah pružiti rezultat - možemo ga koristiti i kao kalkulator!</p>
 <p>Za matematičke izraze koje nije jednostavno “utipkati” moramo koristiti funkcije. Tako npr. drugi korijen možemo izračunati uz pomoć funkcije <code>sqrt()</code>. Pokušajmo u konzolu utipkati <code>sqrt(10)</code> i stisnuti <em>ENTER</em>. R nam opet odmah prikazuje rezultat. U ovom trenutku zaslon bi nam trebao izgledati otprilike kao na sljedećoj slici.</p>
 <div class="figure"><span id="fig:unnamed-chunk-4"></span>
-<img src="figures/RStudio2.PNG" alt="R kao kalkulator"  />
+<img src="figures/RStudio2.PNG" alt="R kao kalkulator" width="587" />
 <p class="caption">
 Slika 1.2: R kao kalkulator
 </p>
@@ -361,7 +399,7 @@ Slika 1.2: R kao kalkulator
 <p>Vidimo da se “radni dio” na lijevoj strani razdvojio na dva dijela. Gornji dio predstavlja prostor za našu “skriptu” - zapravo niz naredbi koje želimo izvršiti - dok interaktivna konzola sada zauzima donji dio radne plohe. Ukoliko želimo, možemo pomicanjem granice promijeniti veličinu ovih (a i ostalih prozora), no za sada je bitno da imamo pregled i skripte i konzole.</p>
 <p>Upišimo dvije naredbe u prozor za pisanje skripte - prva neka bude <code>print(&quot;Pozdrav!&quot;)</code> a ispod nje opet jednostavan matematički izraz <code>3 + 4</code>. Vratimo kursor na prvi redak i stisnimo kombinaciju tipki CTRL + ENTER. Ukoliko smo ispravno pratili navedene korake, naredba na mjestu koje se nalazio kursor automatski će se preslikati u interaktivnu konzolu i izvršiti. Kursor će sada biti na mjestu sljedeće naredbe koju također možemo izvršiti sa CTRL + ENTER. Zaslon bi sada trebao izgledati slično sljedećoj slici.</p>
 <div class="figure"><span id="fig:unnamed-chunk-5"></span>
-<img src="figures/RStudio3.PNG" alt="R skripta"  />
+<img src="figures/RStudio3.PNG" alt="R skripta" width="582" />
 <p class="caption">
 Slika 1.3: R skripta
 </p>
@@ -382,7 +420,7 @@ Slika 1.3: R skripta
 <p>Isječak koda ponaša se isto kao i standardna R skripta - možemo upisivati naredbe i izvršavati ih. Razlika je samo u tome što - ukoliko želimo - rezultate možemo vidjeti i odmah u samom <em>R Markdown</em> dokumentu. Ako nam ova opcija smeta možemo ju isključiti (klik na zupčanik u alatnoj traci i odabir <code>Chunk output in console</code>) no u pravilu nam odgovara da se rezultat ugradi u dokument kako bi naknadno mogli ponovo pregledavati rezultate prethodnih isječaka.</p>
 <p>Ako smo pratili upute, zaslon bi mogao izgledati slično sljedećoj slici:</p>
 <div class="figure"><span id="fig:unnamed-chunk-6"></span>
-<img src="figures/RStudio4.PNG" alt="R Markdown dokument"  />
+<img src="figures/RStudio4.PNG" alt="R Markdown dokument" width="584" />
 <p class="caption">
 Slika 1.4: R Markdown dokument
 </p>
@@ -406,10 +444,10 @@ Slika 1.4: R Markdown dokument
 <hr />
 <strong>Primjer - nekoliko jednostavnih naredbi R programskog jezika</strong>
 <div class="fold o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>         <span class="co">#zbrajanje</span>
-<span class="kw">log</span>(<span class="dv">10</span>)    <span class="co"># prirodni logaritam!</span>
-<span class="kw">log10</span>(<span class="dv">10</span>)   <span class="co"># ovo je logaritam baze 10! Usput, komentare pišemo znakom &quot;#&quot;</span>
-<span class="kw">sin</span>(<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>pi)      <span class="co"># pi je jedna od ugrađenih konstanti</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">3</span><span class="op">+</span><span class="dv">2</span>         <span class="co">#zbrajanje</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">log</span>(<span class="dv">10</span>)    <span class="co"># prirodni logaritam!</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">log10</span>(<span class="dv">10</span>)   <span class="co"># ovo je logaritam baze 10! Usput, komentare pišemo znakom &quot;#&quot;</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">sin</span>(<span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>pi)      <span class="co"># pi je jedna od ugrađenih konstanti</span></a></code></pre></div>
 <pre><code>## [1] 5
 ## [1] 2.302585
 ## [1] 1
@@ -419,23 +457,23 @@ Slika 1.4: R Markdown dokument
 <p>Zadaci s druge strane uvijek traže određenu - makar minimalnu - intervenciju.</p>
 <hr />
 <p><strong>Zadatak 1.1 - naredbe za provjeru i izmjenu radne mape</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># izvršite sljedeće naredbe uklanjanjem znaka komentara</span>
-
-<span class="co">#getwd()     # mapa u kojoj trenutno radimo</span>
-<span class="co">#setwd(&quot;.&quot;)  # ovdje možemo navesti novu radnu mapu ukoliko želimo</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># izvršite sljedeće naredbe uklanjanjem znaka komentara</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#getwd()     # mapa u kojoj trenutno radimo</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#setwd(&quot;.&quot;)  # ovdje možemo navesti novu radnu mapu ukoliko želimo</span></a></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()     <span class="co"># mapa u kojoj trenutno radimo</span>
-<span class="kw">setwd</span>(<span class="st">&quot;.&quot;</span>)  <span class="co"># ovdje možemo navesti novu radnu mapu ukoliko želimo</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">getwd</span>()     <span class="co"># mapa u kojoj trenutno radimo</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">setwd</span>(<span class="st">&quot;.&quot;</span>)  <span class="co"># ovdje možemo navesti novu radnu mapu ukoliko želimo</span></a></code></pre></div>
 </div>
 <hr />
 <p>Zadatak će se često odnositi na upravo uvedeni koncept. Npr. zgodno je za napomenuti da, iako jezik R podržava operator <code>=</code> za pridruživanje vrijednosti nekoj varijabli, preporučuje se korištenje operatora <code>&lt;-</code> u tu svrhu koji je nešto više “R-ovski”. Također, uočimo da R podržava tzv. <em>autoprint</em>, tj. uvijek će ispisati rezultat zadnje naredbe na zaslon. To znači da ako u isječku stvaramo novu varijablu <code>x</code> te ju želimo ispisati na zaslon, ne moramo kao zadnju naredbu staviti <code>print(x)</code> već je dovoljno staviti samo <code>x</code>. Isprobajmo ovo u zadatku.</p>
 <hr />
 <p><strong>Zadatak 1.2 - R-ovski operator pridruživanja</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># upišite `5` u varijablu `x`</span>
-<span class="co"># potom ispišite varijablu `x` na zaslon</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># upišite `5` u varijablu `x`</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># potom ispišite varijablu `x` na zaslon</span></a></code></pre></div>
 <div class="fold s o">
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
-x</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">x</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 </div>
 <hr />
@@ -469,6 +507,7 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
@@ -503,9 +542,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
