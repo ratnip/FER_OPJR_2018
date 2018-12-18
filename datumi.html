@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2018-12-11">
+<meta name="date" content="2018-12-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -307,6 +307,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.8" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#integracija-sa-relacijskim-bazama-podataka"><i class="fa fa-check"></i><b>11.8</b> Integracija sa relacijskim bazama podataka</a></li>
 <li class="chapter" data-level="" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#zadaci-za-vjezbu-9"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Vizualizacija podataka uz paket <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#eksploratorna-analiza-podataka"><i class="fa fa-check"></i><b>12.1</b> Eksploratorna analiza podataka</a></li>
+<li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#vizualizacija-podataka-uz-pomoc-jezika-r"><i class="fa fa-check"></i><b>12.2</b> Vizualizacija podataka uz pomoć jezika R</a></li>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#graficka-gramatika-i-paket-ggplot2"><i class="fa fa-check"></i><b>12.3</b> Grafička gramatika i paket <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#aspekti-podataka-estetike-i-geometrije"><i class="fa fa-check"></i><b>12.3.1</b> Aspekti podataka, estetike i geometrije</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ggplot2.html"><a href="ggplot2.html#fiksni-parametri-geometrije"><i class="fa fa-check"></i><b>12.3.2</b> Fiksni parametri geometrije</a></li>
+<li class="chapter" data-level="12.3.3" data-path="ggplot2.html"><a href="ggplot2.html#aspekti-statistike-i-pozicije"><i class="fa fa-check"></i><b>12.3.3</b> Aspekti statistike i pozicije</a></li>
+<li class="chapter" data-level="12.3.4" data-path="ggplot2.html"><a href="ggplot2.html#povezanost-geometrije-i-statistike"><i class="fa fa-check"></i><b>12.3.4</b> Povezanost geometrije i statistike</a></li>
+<li class="chapter" data-level="12.3.5" data-path="ggplot2.html"><a href="ggplot2.html#aspekti-skale-koordinatnog-sustava-i-teme"><i class="fa fa-check"></i><b>12.3.5</b> Aspekti skale, koordinatnog sustava i teme</a></li>
+<li class="chapter" data-level="12.3.6" data-path="ggplot2.html"><a href="ggplot2.html#uvjetni-facetirani-grafovi"><i class="fa fa-check"></i><b>12.3.6</b> Uvjetni (facetirani) grafovi</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#grafovi-u-eksploratornoj-analizi-i-izvjestavanju"><i class="fa fa-check"></i><b>12.4</b> Grafovi u eksploratornoj analizi i izvještavanju</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#zadaci-za-vjezbu-10"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -367,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb370-7" data-line-number="7"><span class="kw">as.Date</span>(<span class="st">&#39;2016-31-05&#39;</span>, <span class="dt">format =</span> <span class="st">&#39;%Y-%d-%m&#39;</span>)</a>
 <a class="sourceLine" id="cb370-8" data-line-number="8"><span class="kw">as.Date</span>(<span class="st">&#39;17. 10. 2015.&#39;</span>,  <span class="dt">format =</span> <span class="st">&#39;%d. %m. %Y&#39;</span>)</a>
 <a class="sourceLine" id="cb370-9" data-line-number="9"><span class="kw">as.Date</span>(<span class="st">&#39;01#01#2001&#39;</span>, <span class="dt">format =</span> <span class="st">&#39;%d#%m#%Y&#39;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2018-12-11&quot;
+<pre><code>## [1] &quot;2018-12-18&quot;
 ## [1] &quot;1986-12-27&quot;
 ## [1] &quot;2016-05-31&quot;
 ## [1] &quot;2015-10-17&quot;
@@ -392,10 +406,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb373-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb373-8" data-line-number="8"><span class="co"># ispišite koliko je dana prošlo od 1.1.2000. do danas</span></a>
 <a class="sourceLine" id="cb373-9" data-line-number="9"><span class="kw">Sys.Date</span>() <span class="op">-</span><span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&#39;2000-01-01&#39;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2016-03-16&quot;
+<pre><code>## [1] &quot;2016-03-23&quot;
 ## [1] &quot;2015-03-01&quot;
 ## [1] &quot;2016-02-29&quot;
-## Time difference of 6919 days</code></pre>
+## Time difference of 6926 days</code></pre>
 </div>
 <hr />
 <p>Zadnji izraz će zapravo rezultirati objektom klase <code>difftime</code> koja označava vremenski interval. Ispis koristi tzv. “automatski” odabir jedinice (konkretno, parametar <code>units</code> postavljen na <code>&quot;auto&quot;</code>) koji će pokušati odabrati najprikladniju vremensku jedinicu za ispis. Ukoliko želimo eksplicitno odabrati koju vremensku jedinicu želimo (sekunde, minute, sate, dane ili tjedne) onda možemo umjesto operatora <code>-</code> koristiti funkciju <code>difftime</code> uz parametar <code>units</code> postavljen na znakovni niz odabrane vremenski jedinice (<code>&quot;seconds&quot;</code>, <code>&quot;minutes&quot;</code>, itd.).</p>
@@ -417,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb376-7" data-line-number="7"><span class="co"># koliko je prošlo sati od 1.3.2015. do danas?</span></a>
 <a class="sourceLine" id="cb376-8" data-line-number="8"><span class="kw">difftime</span>(<span class="kw">Sys.Date</span>(), <span class="st">&#39;2015-03-01&#39;</span>, <span class="dt">units =</span> <span class="st">&quot;hours&quot;</span>)</a></code></pre></div>
 <pre><code>## Time difference of 52.28571 weeks
-## Time difference of 33145 hours</code></pre>
+## Time difference of 33313 hours</code></pre>
 </div>
 <hr />
 <p>Funkcija <code>difftime</code> zapravo radi i sa vremenskim oznakama, tj. ne moramo nužno raditi na razini datuma, već se možemo spustiti do razine sekunde. Ovo ćemo isprobati kada naučimo klasu <code>POSIXct</code> u nastavku. Isto tako, ako nam treba samo broj (sekundi, sati, dana i sl.), lako transformiramo izlaz u cijeli broj uz pomoć funkcije <code>as.numeric</code>.</p>
@@ -469,16 +483,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [36] &quot;2027-07-01&quot; &quot;2028-01-01&quot; &quot;2028-07-01&quot; &quot;2029-01-01&quot; &quot;2029-07-01&quot;
 ## [41] &quot;2030-01-01&quot;
 ##    broj_stana prezime   ciscenje
-## 1           1   Ebert 2018-12-11
-## 2           2 Ladovac 2019-01-01
-## 3           3   Ceric 2019-01-22
-## 4           4   Dikla 2019-02-12
-## 5           5    Anic 2019-03-05
-## 6           6   Peric 2019-03-26
-## 7           7   Žužic 2019-04-16
-## 8           8   Babic 2019-05-07
-## 9           9    Ibiz 2019-05-28
-## 10         10  Radler 2019-06-18</code></pre>
+## 1           1   Ebert 2018-12-18
+## 2           2 Ladovac 2019-01-08
+## 3           3   Ceric 2019-01-29
+## 4           4   Dikla 2019-02-19
+## 5           5    Anic 2019-03-12
+## 6           6   Peric 2019-04-02
+## 7           7   Žužic 2019-04-23
+## 8           8   Babic 2019-05-14
+## 9           9    Ibiz 2019-06-04
+## 10         10  Radler 2019-06-25</code></pre>
 </div>
 <hr />
 </div>
@@ -506,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb383-6" data-line-number="6"><span class="co"># &quot;01-12-2001 14:30&quot;   &lt;-- oznaka očitana u New York-u, SAD, vremenska zona EST</span></a>
 <a class="sourceLine" id="cb383-7" data-line-number="7"><span class="kw">as.POSIXct</span>(<span class="st">&quot;2015-10-28 15:30:42&quot;</span>)</a>
 <a class="sourceLine" id="cb383-8" data-line-number="8"><span class="kw">as.POSIXct</span>(<span class="st">&quot;01-12-2001 14:30&quot;</span>, <span class="dt">tz =</span> <span class="st">&quot;EST&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;%d-%m-%Y %H:%M&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2018-12-11 11:08:03 CET&quot;
+<pre><code>## [1] &quot;2018-12-18 14:53:01 CET&quot;
 ## [1] &quot;2015-10-28 15:30:42 CET&quot;
 ## [1] &quot;2001-12-01 14:30:00 EST&quot;</code></pre>
 </div>
@@ -542,8 +556,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb389-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb389-4" data-line-number="4"><span class="co"># ispišite koliko je prošlo sati od ponoći 1.1.2015. do sad</span></a>
 <a class="sourceLine" id="cb389-5" data-line-number="5"><span class="kw">difftime</span>(<span class="kw">Sys.time</span>(), <span class="st">&quot;2015-01-01 00:00:00&quot;</span>, <span class="dt">units =</span> <span class="st">&quot;hours&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;2018-12-11 11:24:44 CET&quot;
-## Time difference of 34571.13 hours</code></pre>
+<pre><code>## [1] &quot;2018-12-18 15:09:41 CET&quot;
+## Time difference of 34742.88 hours</code></pre>
 </div>
 <hr />
 <p>Klasa <code>POSIXlt</code> se ponaša isto kao i <code>POSIXct</code> (za stvaranje se koristimo funkcijom <code>as.POSIXlt</code>), no zapravo se radi o listi koja nam omogućuje jednostavno izvlačenje određenih parametara iz vremenske oznake, kao što su broj sekundi, broj minuta, dan u tjednu i sl. Sve elemente liste lako možemo vidjeti ako napravimo <code>POSIXlt</code> objekt i onda pozovemo funkciju <code>unclass</code> nad njim, pri čemu će se on pretvoriti u “običnu” listu. Možemo ići i korak dalje - ako listu ubacimo u funkciju <code>unlist</code>, kao rezultat dobivamo obični znakovni vektor.</p>
@@ -685,8 +699,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb406-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb406-4" data-line-number="4"><span class="co"># ispišite koliko je bilo sati, minuta i sekundi prije točno sat vremena</span></a>
 <a class="sourceLine" id="cb406-5" data-line-number="5"><span class="kw">now</span>() <span class="op">-</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">60</span></a></code></pre></div>
-<pre><code>## [1] &quot;2018-12-12&quot;
-## [1] &quot;2018-12-11 10:08:05 CET&quot;</code></pre>
+<pre><code>## [1] &quot;2018-12-19&quot;
+## [1] &quot;2018-12-18 13:53:02 CET&quot;</code></pre>
 </div>
 <hr />
 <p>Već smo rekli da upravljanje vremenskom komponentom u podacima može postati vrlo kompleksno, pogotovo ako uzmemo u obzir da vremenski intervali mogu biti zadani generički (npr. “2 godine”) ili konkretno (raspon između dva datuma) te da se matematički i kalendarski način računanja vremena često ne poklapaju (npr. “za godinu dana” može značiti točan matematički izračun sekundi u 365 dana, ili kalendarski “isti datum iduće godine”).</p>
@@ -717,7 +731,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb409-9" data-line-number="9"><span class="kw">today</span>() <span class="op">+</span><span class="st"> </span>v</a></code></pre></div>
 <pre><code>## [1] &quot;21d 0H 0M 0S&quot;
 ## [1] &quot;1814400s (~3 weeks)&quot;
-## [1] &quot;2024-03-13&quot;</code></pre>
+## [1] &quot;2024-03-20&quot;</code></pre>
 </div>
 <hr />
 <p>Uočite da gornji izraz nismo lako mogli dobiti “matematički”.</p>
@@ -753,8 +767,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb412-15" data-line-number="15">interval1</a>
 <a class="sourceLine" id="cb412-16" data-line-number="16">interval2</a>
 <a class="sourceLine" id="cb412-17" data-line-number="17">interval3</a></code></pre></div>
-<pre><code>## [1] 2018-09-11 UTC--2019-03-11 UTC
-## [1] 2018-12-11 UTC--2019-05-04 UTC
+<pre><code>## [1] 2018-09-18 UTC--2019-03-18 UTC
+## [1] 2018-12-18 UTC--2019-05-11 UTC
 ## [1] 2002-05-01 UTC--2002-07-01 UTC</code></pre>
 </div>
 <hr />
@@ -781,7 +795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb415-6" data-line-number="6"><span class="co"># ispišite njihov presjek</span></a>
 <a class="sourceLine" id="cb415-7" data-line-number="7"><span class="cf">if</span> (<span class="kw">int_overlaps</span>(interval1, interval1)) <span class="kw">intersect</span>(interval1, interval2)</a></code></pre></div>
 <pre><code>## [1] TRUE
-## [1] 2018-12-11 UTC--2019-03-11 UTC</code></pre>
+## [1] 2018-12-18 UTC--2019-03-18 UTC</code></pre>
 </div>
 <hr />
 <p>U ovom dijelu upoznali smo se sa jednim dijelom funkcionalnosti koje nude klase za upravljanje datumima i vremenskim oznakama jezika R te paket <code>lubridate</code>. Za dodatne informacije pogledajte službenu dokumentaciju jezika R i paketa <code>lubridate</code>, a dobar izvor je i članak <em>“Dates and Times Made Easy with lubridate”</em> kojeg je napisao sam autor paketa Hadley Wickham a koji je dostupan na <a href = "https://www.jstatsoft.org/article/view/v040i03/v40i03.pdf">ovoj poveznici</a>.</p>
