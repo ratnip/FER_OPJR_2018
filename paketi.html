@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2019-01-15">
+<meta name="date" content="2019-01-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -330,6 +330,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.2" data-path="regresija.html"><a href="regresija.html#visestruka-multipla-linearna-regresija"><i class="fa fa-check"></i><b>13.2</b> Višestruka (multipla) linearna regresija</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html"><i class="fa fa-check"></i><b>14</b> Uvod u prediktivno modeliranje</a><ul>
+<li class="chapter" data-level="14.1" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#sto-je-prediktivno-modeliranje"><i class="fa fa-check"></i><b>14.1</b> Što je prediktivno modeliranje?</a></li>
+<li class="chapter" data-level="14.2" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#podaci-za-treniranje-i-testirane-modela"><i class="fa fa-check"></i><b>14.2</b> Podaci za treniranje i testirane modela</a></li>
+<li class="chapter" data-level="14.3" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#klasifikacijski-prediktivni-modeli---knn-klasifikacija"><i class="fa fa-check"></i><b>14.3</b> Klasifikacijski prediktivni modeli - kNN klasifikacija</a></li>
+<li class="chapter" data-level="14.4" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#paket-caret-i-prediktivno-modeliranje"><i class="fa fa-check"></i><b>14.4</b> Paket <code>caret</code> i prediktivno modeliranje</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -361,18 +367,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="fold s o">
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="co"># pozovite funkciju `search` (bez parametara) i pogledajte koji paketi su učitani u okolinu</span></a>
 <a class="sourceLine" id="cb203-2" data-line-number="2"><span class="kw">search</span>()</a></code></pre></div>
-<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:corrplot&quot;  &quot;package:broom&quot;    
-##  [4] &quot;package:car&quot;       &quot;package:carData&quot;   &quot;package:Hmisc&quot;    
-##  [7] &quot;package:Formula&quot;   &quot;package:survival&quot;  &quot;package:lattice&quot;  
-## [10] &quot;package:sn&quot;        &quot;package:stats4&quot;    &quot;package:gridExtra&quot;
-## [13] &quot;package:RSQLite&quot;   &quot;package:hflights&quot;  &quot;package:lubridate&quot;
-## [16] &quot;package:GGally&quot;    &quot;package:forcats&quot;   &quot;package:stringr&quot;  
-## [19] &quot;package:dplyr&quot;     &quot;package:purrr&quot;     &quot;package:readr&quot;    
-## [22] &quot;package:tidyr&quot;     &quot;package:tibble&quot;    &quot;package:ggplot2&quot;  
-## [25] &quot;package:tidyverse&quot; &quot;package:MASS&quot;      &quot;package:stats&quot;    
-## [28] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
-## [31] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
-## [34] &quot;package:base&quot;</code></pre>
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:kernlab&quot;   &quot;package:ranger&quot;   
+##  [4] &quot;package:caret&quot;     &quot;package:e1071&quot;     &quot;package:corrplot&quot; 
+##  [7] &quot;package:broom&quot;     &quot;package:car&quot;       &quot;package:carData&quot;  
+## [10] &quot;package:Hmisc&quot;     &quot;package:Formula&quot;   &quot;package:survival&quot; 
+## [13] &quot;package:lattice&quot;   &quot;package:sn&quot;        &quot;package:stats4&quot;   
+## [16] &quot;package:gridExtra&quot; &quot;package:RSQLite&quot;   &quot;package:hflights&quot; 
+## [19] &quot;package:lubridate&quot; &quot;package:GGally&quot;    &quot;package:forcats&quot;  
+## [22] &quot;package:stringr&quot;   &quot;package:dplyr&quot;     &quot;package:purrr&quot;    
+## [25] &quot;package:readr&quot;     &quot;package:tidyr&quot;     &quot;package:tibble&quot;   
+## [28] &quot;package:ggplot2&quot;   &quot;package:tidyverse&quot; &quot;package:MASS&quot;     
+## [31] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+## [34] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
+## [37] &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
 </div>
 <hr />
 <p>Vidimo da većina paketa ima svoju stavku oblika <code>&quot;package:ime_paketa&quot;</code>. Raspored paketa predstavlja i njihov “prioritet” glede pretrage imenskog područja, o čemu će više riječi biti kasnije.</p>
@@ -407,18 +414,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="fold s o">
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1"><span class="co"># ispišite stazu pretrage</span></a>
 <a class="sourceLine" id="cb209-2" data-line-number="2"><span class="kw">search</span>()</a></code></pre></div>
-<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:corrplot&quot;  &quot;package:broom&quot;    
-##  [4] &quot;package:car&quot;       &quot;package:carData&quot;   &quot;package:Hmisc&quot;    
-##  [7] &quot;package:Formula&quot;   &quot;package:survival&quot;  &quot;package:lattice&quot;  
-## [10] &quot;package:sn&quot;        &quot;package:stats4&quot;    &quot;package:gridExtra&quot;
-## [13] &quot;package:RSQLite&quot;   &quot;package:hflights&quot;  &quot;package:lubridate&quot;
-## [16] &quot;package:GGally&quot;    &quot;package:forcats&quot;   &quot;package:stringr&quot;  
-## [19] &quot;package:dplyr&quot;     &quot;package:purrr&quot;     &quot;package:readr&quot;    
-## [22] &quot;package:tidyr&quot;     &quot;package:tibble&quot;    &quot;package:ggplot2&quot;  
-## [25] &quot;package:tidyverse&quot; &quot;package:MASS&quot;      &quot;package:stats&quot;    
-## [28] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
-## [31] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
-## [34] &quot;package:base&quot;</code></pre>
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:kernlab&quot;   &quot;package:ranger&quot;   
+##  [4] &quot;package:caret&quot;     &quot;package:e1071&quot;     &quot;package:corrplot&quot; 
+##  [7] &quot;package:broom&quot;     &quot;package:car&quot;       &quot;package:carData&quot;  
+## [10] &quot;package:Hmisc&quot;     &quot;package:Formula&quot;   &quot;package:survival&quot; 
+## [13] &quot;package:lattice&quot;   &quot;package:sn&quot;        &quot;package:stats4&quot;   
+## [16] &quot;package:gridExtra&quot; &quot;package:RSQLite&quot;   &quot;package:hflights&quot; 
+## [19] &quot;package:lubridate&quot; &quot;package:GGally&quot;    &quot;package:forcats&quot;  
+## [22] &quot;package:stringr&quot;   &quot;package:dplyr&quot;     &quot;package:purrr&quot;    
+## [25] &quot;package:readr&quot;     &quot;package:tidyr&quot;     &quot;package:tibble&quot;   
+## [28] &quot;package:ggplot2&quot;   &quot;package:tidyverse&quot; &quot;package:MASS&quot;     
+## [31] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+## [34] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
+## [37] &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
 </div>
 <p>Napomena: u pravilu pakete instaliramo samo jednom i to preko konzole tako da nikad nema potrebe naredbe za instalaciju paketa ugrađivati u <em>R Markdown</em> dokumente; također, zbog lakše organizacije izvještaja, učitavanje svih potrebnih paketa se po konvenciji obavlja na početku dokumenta, u isječku koda nazvanom <code>setup</code>.</p>
 <hr />
@@ -545,11 +553,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="fold s o">
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="co"># ispišite okolinu-roditelja globalne okoline i objasnite rezultat</span></a>
 <a class="sourceLine" id="cb224-2" data-line-number="2"><span class="kw">parent.env</span>(e)</a></code></pre></div>
-<pre><code>## &lt;environment: package:corrplot&gt;
+<pre><code>## &lt;environment: package:kernlab&gt;
 ## attr(,&quot;name&quot;)
-## [1] &quot;package:corrplot&quot;
+## [1] &quot;package:kernlab&quot;
 ## attr(,&quot;path&quot;)
-## [1] &quot;C:/R/R-3.5.1/library/corrplot&quot;</code></pre>
+## [1] &quot;C:/R/R-3.5.1/library/kernlab&quot;</code></pre>
 </div>
 <hr />
 <p>Pomalo neočekivano, roditelj globalne okoline jest zadnje učitani paket! Ovo zapravo nije neobično - globalna okolina ima “prioritet” kod referenciranja varijable, ali prioritetno odmah “ispod” nje su oni objekti i funkcije koje smo zadnje učitali u okolinu (što nam odgovara budući da je pretpostavka da je “najsvježije” učitani paket onaj kojeg namjeravamo odmah koristiti). Drugim riječima, učitavanjem paketa novi paket se uvijek “namjesti” između globalne okoline i paketa koji je prije njega bio zadnji učitan. Kada smo pozivali funkciju <code>search</code>, zapravo smo dobili hijerarhiju okolina koje predstavljaju učitane pakete. Ova hijerarhija okolina ujedno predstavlja i već spominjanu “stazu pretrage”.</p>
@@ -638,18 +646,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb231-21" data-line-number="21"></a>
 <a class="sourceLine" id="cb231-22" data-line-number="22"><span class="co"># uz pomoć funkcije `detach` uklonite tablicu `mjesto` iz staze pretrage</span></a>
 <a class="sourceLine" id="cb231-23" data-line-number="23"><span class="kw">detach</span>(mjesto)</a></code></pre></div>
-<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;mjesto&quot;            &quot;package:corrplot&quot; 
-##  [4] &quot;package:broom&quot;     &quot;package:car&quot;       &quot;package:carData&quot;  
-##  [7] &quot;package:Hmisc&quot;     &quot;package:Formula&quot;   &quot;package:survival&quot; 
-## [10] &quot;package:lattice&quot;   &quot;package:sn&quot;        &quot;package:stats4&quot;   
-## [13] &quot;package:gridExtra&quot; &quot;package:RSQLite&quot;   &quot;package:hflights&quot; 
-## [16] &quot;package:lubridate&quot; &quot;package:GGally&quot;    &quot;package:forcats&quot;  
-## [19] &quot;package:stringr&quot;   &quot;package:dplyr&quot;     &quot;package:purrr&quot;    
-## [22] &quot;package:readr&quot;     &quot;package:tidyr&quot;     &quot;package:tibble&quot;   
-## [25] &quot;package:ggplot2&quot;   &quot;package:tidyverse&quot; &quot;package:MASS&quot;     
-## [28] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
-## [31] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
-## [34] &quot;Autoloads&quot;         &quot;package:base&quot;     
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;mjesto&quot;            &quot;package:kernlab&quot;  
+##  [4] &quot;package:ranger&quot;    &quot;package:caret&quot;     &quot;package:e1071&quot;    
+##  [7] &quot;package:corrplot&quot;  &quot;package:broom&quot;     &quot;package:car&quot;      
+## [10] &quot;package:carData&quot;   &quot;package:Hmisc&quot;     &quot;package:Formula&quot;  
+## [13] &quot;package:survival&quot;  &quot;package:lattice&quot;   &quot;package:sn&quot;       
+## [16] &quot;package:stats4&quot;    &quot;package:gridExtra&quot; &quot;package:RSQLite&quot;  
+## [19] &quot;package:hflights&quot;  &quot;package:lubridate&quot; &quot;package:GGally&quot;   
+## [22] &quot;package:forcats&quot;   &quot;package:stringr&quot;   &quot;package:dplyr&quot;    
+## [25] &quot;package:purrr&quot;     &quot;package:readr&quot;     &quot;package:tidyr&quot;    
+## [28] &quot;package:tibble&quot;    &quot;package:ggplot2&quot;   &quot;package:tidyverse&quot;
+## [31] &quot;package:MASS&quot;      &quot;package:stats&quot;     &quot;package:graphics&quot; 
+## [34] &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot; 
+## [37] &quot;package:methods&quot;   &quot;Autoloads&quot;         &quot;package:base&quot;     
 ## -------------------------
 ## [1] 10000 51000 21000 31000  2000
 ## -------------------------

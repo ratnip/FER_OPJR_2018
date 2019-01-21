@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Programirajmo u R-u</title>
+  <meta name="description" content="Udzbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i racunarstva, Sveuciliste u Zagrebu.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Programirajmo u R-u" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Udzbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i racunarstva, Sveuciliste u Zagrebu." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Programirajmo u R-u" />
+  
+  <meta name="twitter:description" content="Udzbenik za vještinu ‘Osnove programskog jezika R’ na Fakultetu elektrotehnike i racunarstva, Sveuciliste u Zagrebu." />
+  
+
+<meta name="author" content="Damir Pintar">
+
+
+<meta name="date" content="2019-01-21">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="regresija.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<style type="text/css">
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF; 
+  width: 140px;
+  height: 4	0px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  font-size:10 pt;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
+}
+</style>
+
+<script>
+ $(document).ready(function() {
+
+  $chunks = $('.fold');
+
+  $chunks.each(function () {
+
+    // add button to source code chunks
+    if ( $(this).hasClass('s') ) {
+      $('pre.r', this).prepend("<div class=\"showopt\">Prikaži rješenje</div><br style=\"line-height:22px;\"/>");
+      $('pre.r', this).children('code').attr('class', 'folded');
+    }
+
+    // add button to output chunks
+    if ( $(this).hasClass('o') ) {
+      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\">Prikaži ispis</div><br style=\"line-height:22px;\"/>");
+      $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
+
+      // add button to plots
+      $(this).find('img').wrap('<pre class=\"plot\"></pre>');
+      $('pre.plot', this).prepend("<div class=\"showopt\">Prikaži sliku</div><br style=\"line-height:22px;\"/>");
+      $('pre.plot', this).children('img').addClass('folded');
+
+    }
+  });
+
+  // hide all chunks when document is loaded
+  $('.folded').css('display', 'none')
+
+  // function to toggle the visibility
+  $('.showopt').click(function() {
+    var label = $(this).html();
+    if (label.indexOf("Prikaži") >= 0) {
+      $(this).html(label.replace("Prikaži", "Sakrij"));
+    } else {
+      $(this).html(label.replace("Sakrij", "Prikaži"));
+    }
+    $(this).siblings('code, img').slideToggle('fast', 'swing');
+  });
+});
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>(Udžbenik za vještinu “Osnove programskog jezika R”)</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#predgovor"><i class="fa fa-check"></i>Predgovor</a></li>
+</ul></li>
+<li class="part"><span><b>I Osnovni elementi jezika R</b></span></li>
+<li class="chapter" data-level="1" data-path="uvod.html"><a href="uvod.html"><i class="fa fa-check"></i><b>1</b> Uvod</a><ul>
+<li class="chapter" data-level="1.1" data-path="uvod.html"><a href="uvod.html#sto-je-programski-jezik-r"><i class="fa fa-check"></i><b>1.1</b> Što je programski jezik R?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="uvod.html"><a href="uvod.html#opcenito-o-r-u"><i class="fa fa-check"></i><b>1.1.1</b> Općenito o R-u</a></li>
+<li class="chapter" data-level="1.1.2" data-path="uvod.html"><a href="uvod.html#alternative-jeziku-r"><i class="fa fa-check"></i><b>1.1.2</b> Alternative jeziku R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="uvod.html"><a href="uvod.html#instalacija-programske-podrske"><i class="fa fa-check"></i><b>1.2</b> Instalacija programske podrške</a></li>
+<li class="chapter" data-level="1.3" data-path="uvod.html"><a href="uvod.html#pregled-razvojnog-sucelja-rstudio"><i class="fa fa-check"></i><b>1.3</b> Pregled razvojnog sučelja <em>RStudio</em></a><ul>
+<li class="chapter" data-level="1.3.1" data-path="uvod.html"><a href="uvod.html#interaktivna-konzola"><i class="fa fa-check"></i><b>1.3.1</b> Interaktivna konzola</a></li>
+<li class="chapter" data-level="1.3.2" data-path="uvod.html"><a href="uvod.html#pisanje-r-skripti"><i class="fa fa-check"></i><b>1.3.2</b> Pisanje R skripti</a></li>
+<li class="chapter" data-level="1.3.3" data-path="uvod.html"><a href="uvod.html#r-markdown"><i class="fa fa-check"></i><b>1.3.3</b> <em>R Markdown</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="uvod.html"><a href="uvod.html#kako-koristiti-ovaj-udzbenik"><i class="fa fa-check"></i><b>1.4</b> Kako koristiti ovaj udžbenik?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tipovi.html"><a href="tipovi.html"><i class="fa fa-check"></i><b>2</b> Osnovni tipovi podataka i operatori</a><ul>
+<li class="chapter" data-level="2.1" data-path="tipovi.html"><a href="tipovi.html#osnovni-tipovi-podataka"><i class="fa fa-check"></i><b>2.1</b> Osnovni tipovi podataka</a></li>
+<li class="chapter" data-level="2.2" data-path="tipovi.html"><a href="tipovi.html#operatori"><i class="fa fa-check"></i><b>2.2</b> Operatori</a></li>
+<li class="chapter" data-level="2.3" data-path="tipovi.html"><a href="tipovi.html#nedostajuce-nepoznate-i-nemoguce-vrijednosti"><i class="fa fa-check"></i><b>2.3</b> Nedostajuće, nepoznate i nemoguće vrijednosti</a></li>
+<li class="chapter" data-level="" data-path="tipovi.html"><a href="tipovi.html#zadaci-za-vjezbu"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="vektori.html"><a href="vektori.html"><i class="fa fa-check"></i><b>3</b> Vektori, matrice i liste</a><ul>
+<li class="chapter" data-level="3.1" data-path="vektori.html"><a href="vektori.html#vektori-1"><i class="fa fa-check"></i><b>3.1</b> Vektori</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="vektori.html"><a href="vektori.html#stvaranje-vektora"><i class="fa fa-check"></i><b>3.1.1</b> Stvaranje vektora</a></li>
+<li class="chapter" data-level="3.1.2" data-path="vektori.html"><a href="vektori.html#operator"><i class="fa fa-check"></i><b>3.1.2</b> Operator <code>[</code></a></li>
+<li class="chapter" data-level="3.1.3" data-path="vektori.html"><a href="vektori.html#principi-vektorizacije-i-recikliranja"><i class="fa fa-check"></i><b>3.1.3</b> Principi vektorizacije i recikliranja</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vektori.html"><a href="vektori.html#indeksni-vektori"><i class="fa fa-check"></i><b>3.2</b> Indeksni vektori</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="vektori.html"><a href="vektori.html#lokacijsko-referenciranje"><i class="fa fa-check"></i><b>3.2.1</b> Lokacijsko referenciranje</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vektori.html"><a href="vektori.html#uvjetno-referenciranje"><i class="fa fa-check"></i><b>3.2.2</b> Uvjetno referenciranje</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vektori.html"><a href="vektori.html#imensko-referenciranje"><i class="fa fa-check"></i><b>3.2.3</b> Imensko referenciranje</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="vektori.html"><a href="vektori.html#matrice-i-polja"><i class="fa fa-check"></i><b>3.3</b> Matrice i polja</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="vektori.html"><a href="vektori.html#rezanje-matrica"><i class="fa fa-check"></i><b>3.3.1</b> Rezanje matrica</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="vektori.html"><a href="vektori.html#liste"><i class="fa fa-check"></i><b>3.4</b> Liste</a></li>
+<li class="chapter" data-level="" data-path="vektori.html"><a href="vektori.html#zadaci-za-vjezbu-1"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="okviri.html"><a href="okviri.html"><i class="fa fa-check"></i><b>4</b> Podatkovni okviri i faktori</a><ul>
+<li class="chapter" data-level="4.1" data-path="okviri.html"><a href="okviri.html#podatkovni-okviri"><i class="fa fa-check"></i><b>4.1</b> Podatkovni okviri</a></li>
+<li class="chapter" data-level="4.2" data-path="okviri.html"><a href="okviri.html#odabir-redaka-i-stupaca-podatkovnih-okvira"><i class="fa fa-check"></i><b>4.2</b> Odabir redaka i stupaca podatkovnih okvira</a></li>
+<li class="chapter" data-level="4.3" data-path="okviri.html"><a href="okviri.html#dodavanje-i-brisanje-redaka-i-stupaca"><i class="fa fa-check"></i><b>4.3</b> Dodavanje i brisanje redaka i stupaca</a></li>
+<li class="chapter" data-level="4.4" data-path="okviri.html"><a href="okviri.html#faktori"><i class="fa fa-check"></i><b>4.4</b> Faktori</a></li>
+<li class="chapter" data-level="" data-path="okviri.html"><a href="okviri.html#zadaci-za-vjezbu-2"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="kontrola.html"><a href="kontrola.html"><i class="fa fa-check"></i><b>5</b> Kontrola toka i objekti</a><ul>
+<li class="chapter" data-level="5.1" data-path="kontrola.html"><a href="kontrola.html#naredbe-kontrole-toka"><i class="fa fa-check"></i><b>5.1</b> Naredbe kontrole toka</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="kontrola.html"><a href="kontrola.html#uvjetno-izvoenje-naredbi"><i class="fa fa-check"></i><b>5.1.1</b> Uvjetno izvođenje naredbi</a></li>
+<li class="chapter" data-level="5.1.2" data-path="kontrola.html"><a href="kontrola.html#programske-petlje"><i class="fa fa-check"></i><b>5.1.2</b> Programske petlje</a></li>
+<li class="chapter" data-level="5.1.3" data-path="kontrola.html"><a href="kontrola.html#petlja-repeat"><i class="fa fa-check"></i><b>5.1.3</b> Petlja <code>repeat</code></a></li>
+<li class="chapter" data-level="5.1.4" data-path="kontrola.html"><a href="kontrola.html#petlja-while"><i class="fa fa-check"></i><b>5.1.4</b> Petlja <code>while</code></a></li>
+<li class="chapter" data-level="5.1.5" data-path="kontrola.html"><a href="kontrola.html#petlja-for"><i class="fa fa-check"></i><b>5.1.5</b> Petlja <code>for</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="kontrola.html"><a href="kontrola.html#objektni-modeli-u-jeziku-r"><i class="fa fa-check"></i><b>5.2</b> Objektni modeli u jeziku R</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="kontrola.html"><a href="kontrola.html#pregled-objektnog-modela-s3"><i class="fa fa-check"></i><b>5.2.1</b> Pregled objektnog modela S3</a></li>
+<li class="chapter" data-level="5.2.2" data-path="kontrola.html"><a href="kontrola.html#genericke-funkcije"><i class="fa fa-check"></i><b>5.2.2</b> Generičke funkcije</a></li>
+<li class="chapter" data-level="5.2.3" data-path="kontrola.html"><a href="kontrola.html#zakljucci-o-s3-objektima"><i class="fa fa-check"></i><b>5.2.3</b> Zaključci o S3 objektima</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="kontrola.html"><a href="kontrola.html#zadaci-za-vjezbu-3"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="paketi.html"><a href="paketi.html"><i class="fa fa-check"></i><b>6</b> Paketi, ugrađene funkcije i okoline</a><ul>
+<li class="chapter" data-level="6.1" data-path="paketi.html"><a href="paketi.html#rad-s-paketima"><i class="fa fa-check"></i><b>6.1</b> Rad s paketima</a></li>
+<li class="chapter" data-level="6.2" data-path="paketi.html"><a href="paketi.html#ugraene-funkcije"><i class="fa fa-check"></i><b>6.2</b> Ugrađene funkcije</a></li>
+<li class="chapter" data-level="6.3" data-path="paketi.html"><a href="paketi.html#okoline"><i class="fa fa-check"></i><b>6.3</b> Okoline</a></li>
+<li class="chapter" data-level="" data-path="paketi.html"><a href="paketi.html#zadaci-za-vjezbu-4"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="korisnik.html"><a href="korisnik.html"><i class="fa fa-check"></i><b>7</b> Korisnički definirane funkcije</a><ul>
+<li class="chapter" data-level="7.1" data-path="korisnik.html"><a href="korisnik.html#kako-definirati-funkciju"><i class="fa fa-check"></i><b>7.1</b> Kako definirati funkciju</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="korisnik.html"><a href="korisnik.html#princip-kopiranja-kod-izmjene-copy-on-modify"><i class="fa fa-check"></i><b>7.1.1</b> Princip “kopiranja kod izmjene” (copy-on-modify)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="korisnik.html"><a href="korisnik.html#funkcija-kao-objekt"><i class="fa fa-check"></i><b>7.1.2</b> Funkcija kao objekt</a></li>
+<li class="chapter" data-level="7.1.3" data-path="korisnik.html"><a href="korisnik.html#genericke-funkcije-1"><i class="fa fa-check"></i><b>7.1.3</b> Generičke funkcije</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="korisnik.html"><a href="korisnik.html#zadaci-za-vjezbu-5"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="apply.html"><a href="apply.html"><i class="fa fa-check"></i><b>8</b> Porodica funkcija <code>apply</code></a><ul>
+<li class="chapter" data-level="8.1" data-path="apply.html"><a href="apply.html#sto-su-apply-funkcije"><i class="fa fa-check"></i><b>8.1</b> Što su <code>apply</code> funkcije?</a></li>
+<li class="chapter" data-level="8.2" data-path="apply.html"><a href="apply.html#funkcija-apply"><i class="fa fa-check"></i><b>8.2</b> Funkcija <code>apply</code></a></li>
+<li class="chapter" data-level="8.3" data-path="apply.html"><a href="apply.html#funkcije-lapply-sapply-i-vapply"><i class="fa fa-check"></i><b>8.3</b> Funkcije <code>lapply</code>, <code>sapply</code> i <code>vapply</code></a></li>
+<li class="chapter" data-level="8.4" data-path="apply.html"><a href="apply.html#ostale-funkcije-iz-porodice-apply-i-dostupne-alternative"><i class="fa fa-check"></i><b>8.4</b> Ostale funkcije iz porodice <code>apply</code> i dostupne alternative</a></li>
+<li class="chapter" data-level="" data-path="apply.html"><a href="apply.html#zadaci-za-vjezbu-6"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="part"><span><b>II Upravljanje podacima i vizualizacije</b></span></li>
+<li class="chapter" data-level="9" data-path="cijev.html"><a href="cijev.html"><i class="fa fa-check"></i><b>9</b> Operator cjevovoda i uredni podaci</a><ul>
+<li class="chapter" data-level="9.1" data-path="cijev.html"><a href="cijev.html#operator-cjevovoda"><i class="fa fa-check"></i><b>9.1</b> Operator cjevovoda</a></li>
+<li class="chapter" data-level="9.2" data-path="cijev.html"><a href="cijev.html#uredni-podaci"><i class="fa fa-check"></i><b>9.2</b> Uredni podaci</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="cijev.html"><a href="cijev.html#funkcije-gather-i-spread"><i class="fa fa-check"></i><b>9.2.1</b> Funkcije <code>gather</code> i <code>spread</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="cijev.html"><a href="cijev.html#funkcije-separate-i-unite"><i class="fa fa-check"></i><b>9.2.2</b> Funkcije <code>separate</code> i <code>unite</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="cijev.html"><a href="cijev.html#zadaci-za-vjezbu-7"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datumi.html"><a href="datumi.html"><i class="fa fa-check"></i><b>10</b> Rad sa datumima i znakovnim nizovima</a><ul>
+<li class="chapter" data-level="10.1" data-path="datumi.html"><a href="datumi.html#rad-sa-datumima"><i class="fa fa-check"></i><b>10.1</b> Rad sa datumima</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="datumi.html"><a href="datumi.html#klasa-date"><i class="fa fa-check"></i><b>10.1.1</b> Klasa <code>Date</code></a></li>
+<li class="chapter" data-level="10.1.2" data-path="datumi.html"><a href="datumi.html#klase-posixct-i-posixlt"><i class="fa fa-check"></i><b>10.1.2</b> Klase <code>POSIXct</code> i <code>POSIXlt</code></a></li>
+<li class="chapter" data-level="10.1.3" data-path="datumi.html"><a href="datumi.html#paket-lubridate"><i class="fa fa-check"></i><b>10.1.3</b> Paket <code>lubridate</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="datumi.html"><a href="datumi.html#rad-sa-znakovnim-nizovima"><i class="fa fa-check"></i><b>10.2</b> Rad sa znakovnim nizovima</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datumi.html"><a href="datumi.html#analiza-teksta-i-regularni-izrazi"><i class="fa fa-check"></i><b>10.2.1</b> Analiza teksta i regularni izrazi</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datumi.html"><a href="datumi.html#paket-stringr"><i class="fa fa-check"></i><b>10.2.2</b> Paket <code>stringr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="datumi.html"><a href="datumi.html#zadaci-za-vjezbu-8"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><i class="fa fa-check"></i><b>11</b> Prilagodba podatkovnih skupova uz paket <code>dplyr</code></a><ul>
+<li class="chapter" data-level="11.1" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#ogledni-podatkovni-skup-titanic"><i class="fa fa-check"></i><b>11.1</b> Ogledni podatkovni skup: <em>Titanic</em></a></li>
+<li class="chapter" data-level="11.2" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#stvaranje-podskupa-obzervacija-uz-filter-i-slice"><i class="fa fa-check"></i><b>11.2</b> Stvaranje podskupa obzervacija uz <code>filter</code> i <code>slice</code></a></li>
+<li class="chapter" data-level="11.3" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#stvaranje-podskupa-varijabli-uz-select"><i class="fa fa-check"></i><b>11.3</b> Stvaranje podskupa varijabli uz <code>select</code></a></li>
+<li class="chapter" data-level="11.4" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#stvaranje-novih-stupaca-uz-mutate"><i class="fa fa-check"></i><b>11.4</b> Stvaranje novih stupaca uz <code>mutate</code></a></li>
+<li class="chapter" data-level="11.5" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#ogledni-podatkovni-skup-houston-flights"><i class="fa fa-check"></i><b>11.5</b> Ogledni podatkovni skup: <em>Houston flights</em></a></li>
+<li class="chapter" data-level="11.6" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#grupiranje-i-agregacija-uz-group_by-i-summarise"><i class="fa fa-check"></i><b>11.6</b> Grupiranje i agregacija uz <code>group_by</code> i <code>summarise</code></a></li>
+<li class="chapter" data-level="11.7" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#spajanje-podatkovnih-okvira-uz-join-funkcije"><i class="fa fa-check"></i><b>11.7</b> Spajanje podatkovnih okvira uz join funkcije</a></li>
+<li class="chapter" data-level="11.8" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#integracija-sa-relacijskim-bazama-podataka"><i class="fa fa-check"></i><b>11.8</b> Integracija sa relacijskim bazama podataka</a></li>
+<li class="chapter" data-level="" data-path="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html"><a href="prilagodba-podatkovnih-skupova-uz-paket-dplyr.html#zadaci-za-vjezbu-9"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>12</b> Vizualizacija podataka uz paket <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.1" data-path="ggplot2.html"><a href="ggplot2.html#eksploratorna-analiza-podataka"><i class="fa fa-check"></i><b>12.1</b> Eksploratorna analiza podataka</a></li>
+<li class="chapter" data-level="12.2" data-path="ggplot2.html"><a href="ggplot2.html#vizualizacija-podataka-uz-pomoc-jezika-r"><i class="fa fa-check"></i><b>12.2</b> Vizualizacija podataka uz pomoć jezika R</a></li>
+<li class="chapter" data-level="12.3" data-path="ggplot2.html"><a href="ggplot2.html#graficka-gramatika-i-paket-ggplot2"><i class="fa fa-check"></i><b>12.3</b> Grafička gramatika i paket <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="12.3.1" data-path="ggplot2.html"><a href="ggplot2.html#aspekti-podataka-estetike-i-geometrije"><i class="fa fa-check"></i><b>12.3.1</b> Aspekti podataka, estetike i geometrije</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ggplot2.html"><a href="ggplot2.html#fiksni-parametri-geometrije"><i class="fa fa-check"></i><b>12.3.2</b> Fiksni parametri geometrije</a></li>
+<li class="chapter" data-level="12.3.3" data-path="ggplot2.html"><a href="ggplot2.html#aspekti-statistike-i-pozicije"><i class="fa fa-check"></i><b>12.3.3</b> Aspekti statistike i pozicije</a></li>
+<li class="chapter" data-level="12.3.4" data-path="ggplot2.html"><a href="ggplot2.html#povezanost-geometrije-i-statistike"><i class="fa fa-check"></i><b>12.3.4</b> Povezanost geometrije i statistike</a></li>
+<li class="chapter" data-level="12.3.5" data-path="ggplot2.html"><a href="ggplot2.html#aspekti-skale-koordinatnog-sustava-i-teme"><i class="fa fa-check"></i><b>12.3.5</b> Aspekti skale, koordinatnog sustava i teme</a></li>
+<li class="chapter" data-level="12.3.6" data-path="ggplot2.html"><a href="ggplot2.html#uvjetni-facetirani-grafovi"><i class="fa fa-check"></i><b>12.3.6</b> Uvjetni (facetirani) grafovi</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="ggplot2.html"><a href="ggplot2.html#grafovi-u-eksploratornoj-analizi-i-izvjestavanju"><i class="fa fa-check"></i><b>12.4</b> Grafovi u eksploratornoj analizi i izvještavanju</a></li>
+<li class="chapter" data-level="" data-path="ggplot2.html"><a href="ggplot2.html#zadaci-za-vjezbu-10"><i class="fa fa-check"></i>Zadaci za vježbu</a></li>
+</ul></li>
+<li class="part"><span><b>III Strojno učenje i prediktivna analitika</b></span></li>
+<li class="chapter" data-level="13" data-path="regresija.html"><a href="regresija.html"><i class="fa fa-check"></i><b>13</b> Odabrane metode strojnog učenja: regresijska analiza</a><ul>
+<li class="chapter" data-level="13.1" data-path="regresija.html"><a href="regresija.html#strojno-ucenje"><i class="fa fa-check"></i><b>13.1</b> Strojno učenje</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="regresija.html"><a href="regresija.html#jednostavna-linearna-regresija"><i class="fa fa-check"></i><b>13.1.1</b> Jednostavna linearna regresija</a></li>
+<li class="chapter" data-level="13.1.2" data-path="regresija.html"><a href="regresija.html#funkcija-lm"><i class="fa fa-check"></i><b>13.1.2</b> Funkcija <code>lm</code></a></li>
+<li class="chapter" data-level="13.1.3" data-path="regresija.html"><a href="regresija.html#linearna-regresija-i-kategorijske-varijable"><i class="fa fa-check"></i><b>13.1.3</b> Linearna regresija i kategorijske varijable</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="regresija.html"><a href="regresija.html#visestruka-multipla-linearna-regresija"><i class="fa fa-check"></i><b>13.2</b> Višestruka (multipla) linearna regresija</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html"><i class="fa fa-check"></i><b>14</b> Uvod u prediktivno modeliranje</a><ul>
+<li class="chapter" data-level="14.1" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#sto-je-prediktivno-modeliranje"><i class="fa fa-check"></i><b>14.1</b> Što je prediktivno modeliranje?</a></li>
+<li class="chapter" data-level="14.2" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#podaci-za-treniranje-i-testirane-modela"><i class="fa fa-check"></i><b>14.2</b> Podaci za treniranje i testirane modela</a></li>
+<li class="chapter" data-level="14.3" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#klasifikacijski-prediktivni-modeli---knn-klasifikacija"><i class="fa fa-check"></i><b>14.3</b> Klasifikacijski prediktivni modeli - kNN klasifikacija</a></li>
+<li class="chapter" data-level="14.4" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#paket-caret-i-prediktivno-modeliranje"><i class="fa fa-check"></i><b>14.4</b> Paket <code>caret</code> i prediktivno modeliranje</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programirajmo u R-u</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prediktivno_modeliranje" class="section level1">
+<h1><span class="header-section-number">14</span> Uvod u prediktivno modeliranje</h1>
+<hr />
+<div id="sto-je-prediktivno-modeliranje" class="section level2">
+<h2><span class="header-section-number">14.1</span> Što je prediktivno modeliranje?</h2>
+<p>U prethodnom poglavlju prikazali smo kako uz pomoć linearne regresije možemo istražiti i modelirati međuodnos dvaju (ili više) varijabli. Ukoliko postoji kolinearnost između dvije promatrane varijable, onda se njihov odnos može modelirati uz pomoć jednostavne jednadžbe pravca, koja potom omogućuje da iz poznate vrijednosti jedne od varijabli pokušamo procijeniti vrijednost druge varijable. Ovo je osnovna ideja tzv. “prediktivnog modeliranja” - postupak kojim na osnovu poznatih ulaza i razvijenih prediktivnih modela dobivamo informaciju o nepoznatim izlazima, tj. ciljevima. Što su modeli bolji, to je naše “pogađanje” nepoznatih izlaza kvalitetnije. Ili, kako to definiraju Kuhn i Johnson u svojoj knjizi “Applied Predictive Modelling”:</p>
+<p><em>Prediktivno modeliranje je proces razvoja matematičkog alata ili modela koji je u mogućnosti stvoriti točne predikcije.</em></p>
+<p>Prediktivno modeliranje ima brojne mogućnosti uporabe u raznim domenama npr.:</p>
+<ul>
+<li>predviđanje količine prodanih proizvoda ili profita</li>
+<li>identifikacija korisnika koji planiraju otkazati pretplatu</li>
+<li>dijagnostika bolesti</li>
+<li>procjena vrijednosti nekretnine</li>
+<li>predviđanje gledanosti filma na prvi vikend prikazivanja</li>
+<li>detekcija spama u elektroničkoj pošti</li>
+<li>itd.</li>
+</ul>
+<p>Kod razvoja prediktivnih modela jako je važno:</p>
+<ul>
+<li>imati kvalitetne i adekvatno pripremljene podatke</li>
+<li>odabrati prikladnu metodu za stvaranje modela</li>
+<li>ispravno provesti proces evaluacije i validacije modela</li>
+</ul>
+<p>Uloga analitičara u ovom procesu jest da kvalitetno provede sve korake analize te izbjegne sve potencijalne zamke i pogreške koje se tu mogu pronaći. Naime, prediktivni modeli mogu u konačnici imati loše performanse iz niza razloga - loše pripremljeni podaci, loše provedena validacija, primjena modela na neadekvatnom skupu, izrada modela koji nemaju sposobnost generalizacije itd.</p>
+<p>U ovom poglavlju upoznati ćemo se sa nekim osnovnim smjernicama kojih se moramo pridržavati tijekom prediktivnog modeliranja. Također ćemo se upoznati sa paketima jezika R koji omogućuju da mnoge složene korake prepustimo računalu, tj. da pristupimo modeliranju sa visoke razine apstrakcije dok računalo samostalno obavlja niskorazinske korake pripreme podataka, modeliranja i validacije.</p>
+</div>
+<div id="podaci-za-treniranje-i-testirane-modela" class="section level2">
+<h2><span class="header-section-number">14.2</span> Podaci za treniranje i testirane modela</h2>
+<p>Kada smo u prethodnom poglavlju stvarali linearne modele koji su mapirali ulaze u izlaz, tj. “prediktore” u “ciljnu varijablu”, nakon stvaranja modela smo uz pomoć funkcije <code>summary</code> gledali sažete informacije o modelu - procjenu povezanosti prediktora i cilja, prosječnu standardnu grešku kod predviđanja, mjeru R-kvadrat koja procjenjuje objašnjenu varijabilnost itd. Ove informacije omogućile su nam evaluaciju kvalitete razvijenih modela.</p>
+<p>No u cijelom ovom procesu zanemarili smo jednu ključnu stvar - sve ove informacije ticale su se <em>podataka korištenih za stvaranje samog modela</em>. Drugim riječima, dobili smo uvid koliko dobro model radi nad <em>poznatim podacima</em>, tj. podacima koje je model već vidio tijekom stvaranja modela. U pravilu nam je puno važnije procijeniti koliko dobro model radi nad <em>nepoznatim podacima</em>, tj. kakva će biti kvaliteta predikcija jednom kad model dobije nove podatke. Kažemo da želimo modele koji dobro <strong>generaliziraju</strong>, tj. modele koji su dobro naučili neke općenite karakteristike entiteta iz domene opisanih dobivenim podacima, a ne samo specifičnosti skupa podataka korištenih za razvijanje samog modela. Ovu potonju pojavu zovemo “prenaučenost” (engl. <em>overfitting</em>).</p>
+<p>Vrlo često u trenutku stvaranja modela imamo samo jedan podatkovni skup kojeg bismo trebali koristiti i za treniranje i za evaluaciju modela. Kao što smo već rekli, korištenje istih podataka u obje svrhe ne daje nam dovoljno dobru informaciju o tome kako model generalizira. Zbog toga je uobičajena procedura da <em>inicijalni skup dijelimo na dva dijela - skup za treniranje i skup za testiranje</em>.</p>
+<p>Kako odlučiti koje opservacije pridijeliti kojem skupu? Koliko opservacija staviti u jedan, a koliko u drugi skup? U pravilu bi i skup za treniranje i skup za testiranje trebali imati dovoljan broj opservacija kako bi dobiveni rezultati mogli biti statistički relevantni, tako da bi uz pretpostavku dovoljno velikog skupa podjela na dva jednaka dijela mogla biti zadovoljavajuće rješenje. Ipak, u praksi se najčešće nešto više opservacija ostavlja za treniranje nego za testiranje, tako da je uobičajeno skup rezati prema omjeru <em>70 : 30</em>, tj. 70% opservacija staviti u skup za treniranje, a ostatak u skup za testiranje.</p>
+<p>Što se postupka odabira opservacija (tj. “uzorkovanja”) tiče, postoji nekoliko uobičajenih postupaka:</p>
+<ul>
+<li>nasumični odabir</li>
+<li>stratificirani nasumični odabir (osiguravanje jednake zastupljenosti određenih kategorija u oba skupa)</li>
+<li>odabir prema vremenskoj oznaci (ako nam je vremenska komponenta ključna, tj. bitno nam je procijeniti koliko dobro podaci iz prošlosti predviđaju događaje iz budućnosti)</li>
+</ul>
+<p>Nasumični odabir je uobičajena metoda, a sofisticiraniju metodu uzorkovanja možemo odabrati ako za to postoji jasna potreba.</p>
+<p>Pokušajmo sada primjeniti ova saznanja na razvoju modela linearne regresije pri čemu ćemu usporediti njegovu učinkovitost nad trening skupom, a potom nad testnim podacima. Za ovo ćemo se poslužiti novim skupom podataka vezanim uz karakteristike i kvalitetu vina, <code>wines.csv</code>. Ovaj skup nastao je prilagodbom skupa “Wine Quality Data Set” sa portala “UCI Machine Learning Repository”, dostupnom na <a href="https://archive.ics.uci.edu/ml/datasets/wine+quality">ovoj poveznici</a>.</p>
+<p>U sljedećem zadatku učitati ćemo ovaj skup te napraviti neke prilagodbe - kategorizirati ćemo stupce koji očito sadržavaju kategorijsku varijablu te izbaciti retke sa nedostajućim vrijednostima. Retci sa nedostajućim vrijednostima često zahtijevaju malo više pažnje te sofisticiraniji pristup od jednostavnog uklanjanja, pogotovo kod veće količine nedostajućih vrijednosti ili potencijalnih dodatnih informacija koje te vrijednosti donose. No u našem slučaju ovakvih redaka je iznimno malo, a kod primjene određenih metoda prediktivnog modeliranja mogu stvarati probleme, tako da ćemo ih jednostavno ukloniti. Jedan od brzih načina kako ovo provesti je korištenje funkcije <code>complete.cases</code>, koja za dani podatkovni okvir vraća indekse svih redaka koji <em>nemaju niti jednu nedostajuću vrijednost</em>.</p>
+<p><strong>Zadatak 14.1 - skup <code>wine quality</code></strong></p>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb665-1" data-line-number="1"><span class="co"># u varijablu `wine` učitajte podatke iz datoteke `wines.csv`</span></a>
+<a class="sourceLine" id="cb665-2" data-line-number="2"><span class="co"># proučite učitani podatkovni okvir</span></a>
+<a class="sourceLine" id="cb665-3" data-line-number="3"><span class="co"># kategorizirajte stupce prema potrebi</span></a>
+<a class="sourceLine" id="cb665-4" data-line-number="4"><span class="co"># i uklonite retke sa nedostajućim vrijednostima ako ih ima</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb666-1" data-line-number="1"><span class="co"># u varijablu `wine` učitajte podatke iz datoteke `wines.csv`</span></a>
+<a class="sourceLine" id="cb666-2" data-line-number="2"><span class="co"># proučite učitani podatkovni okvir</span></a>
+<a class="sourceLine" id="cb666-3" data-line-number="3"><span class="co"># i kategorizirajte stupce prema potrebi</span></a>
+<a class="sourceLine" id="cb666-4" data-line-number="4">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wines.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> F, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</a>
+<a class="sourceLine" id="cb666-5" data-line-number="5"><span class="kw">glimpse</span>(wine)</a>
+<a class="sourceLine" id="cb666-6" data-line-number="6">wine<span class="op">$</span>type &lt;-<span class="st"> </span><span class="kw">factor</span>(wine<span class="op">$</span>type)</a>
+<a class="sourceLine" id="cb666-7" data-line-number="7">wine &lt;-<span class="st"> </span>wine[<span class="kw">complete.cases</span>(wine),]</a></code></pre></div>
+<pre><code>## Observations: 6,497
+## Variables: 13
+## $ fixed.acidity        &lt;int&gt; 7, 63, 81, 72, 72, 81, 62, 7, 63, 81, 81,...
+## $ volatile.acidity     &lt;dbl&gt; 0.27, 0.30, 0.28, 0.23, 0.23, 0.28, 0.32,...
+## $ citric.acid          &lt;dbl&gt; 0.36, 0.34, 0.40, 0.32, 0.32, 0.40, 0.16,...
+## $ residual.sugar       &lt;dbl&gt; 20.70, 1.60, 6.90, 8.50, 8.50, 6.90, 7.00...
+## $ chlorides            &lt;dbl&gt; 0.045, 0.049, 0.050, 0.058, 0.058, 0.050,...
+## $ free.sulfur.dioxide  &lt;int&gt; 45, 14, 30, 47, 47, 30, 30, 45, 14, 28, 1...
+## $ total.sulfur.dioxide &lt;int&gt; 170, 132, 97, 186, 186, 97, 136, 170, 132...
+## $ density              &lt;dbl&gt; 1.0010, 0.9940, 0.9951, 0.9956, 0.9956, 0...
+## $ pH                   &lt;int&gt; 3, 33, 326, 319, 319, 326, 318, 3, 33, 32...
+## $ sulphates            &lt;dbl&gt; 0.45, 0.49, 0.44, 0.40, 0.40, 0.44, 0.47,...
+## $ alcohol              &lt;dbl&gt; 88, 95, 101, 99, 99, 101, 96, 88, 95, 11,...
+## $ quality              &lt;int&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 7,...
+## $ type                 &lt;chr&gt; &quot;white&quot;, &quot;white&quot;, &quot;white&quot;, &quot;white&quot;, &quot;whit...</code></pre>
+</div>
+<p>Pretpostavimo da je atribut <code>quality</code> ciljna varijabla, a svi ostali stupci potencijalni prediktori.</p>
+<p>Kako rastaviti ovaj skup nasumičnim odabirom na skup za treniranje i skup za testiranje? Postoji više načina kako ovo provesti, pa čak i specijaliziranih funkcija i paketa za ovu svrhu, no mi ćemo naučiti jednostavno i lako razumljivu metodu koja koristi funkciju <code>sample</code>. Ako prepostavimo da je <code>df</code> podatkovni okvir koje želimo rastaviti na trening i test skup koje ćemo pohraniti u varijable <code>df.train</code> i <code>df.test</code>, onda rastavljanje nasumičnim odabirom možemo provesti ovako:</p>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb668-1" data-line-number="1">train_size &lt;-<span class="st"> </span><span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(df) <span class="op">%&gt;%</span><span class="st"> </span>round   <span class="co"># otprilike 70%</span></a>
+<a class="sourceLine" id="cb668-2" data-line-number="2">train_ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), train_size) <span class="co"># indeksi trening opservacija</span></a>
+<a class="sourceLine" id="cb668-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb668-4" data-line-number="4">df.train &lt;-<span class="st"> </span>df[train_ind, ]</a>
+<a class="sourceLine" id="cb668-5" data-line-number="5">df.test &lt;-<span class="st"> </span>df[<span class="op">-</span>train_ind, ]</a></code></pre></div>
+<p>Primjenimo to na našem podakovnom skupu o vinima, a potom istrenirajmo model linearne regresije na trening skupu.</p>
+<p><strong>Zadatak 14.2 - Stvaranje i korištenje skupa za treniranje</strong></p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb669-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb669-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb669-3" data-line-number="3"><span class="co"># rastavite podatkovni okvir `wine` na `wine.train` i `wine.test`</span></a>
+<a class="sourceLine" id="cb669-4" data-line-number="4"><span class="co"># metodom nasumičnog odabira prema omjeru 70:30</span></a>
+<a class="sourceLine" id="cb669-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb669-6" data-line-number="6"><span class="co"># istrenirajte model linearne regresije `linMod` nad skupom `wine.train`</span></a>
+<a class="sourceLine" id="cb669-7" data-line-number="7"><span class="co"># ciljna varijabla je `quality` a sve ostale prediktori</span></a>
+<a class="sourceLine" id="cb669-8" data-line-number="8"><span class="co"># proučite sažetak dobivenog modela</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb670-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb670-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb670-3" data-line-number="3"><span class="co"># rastavite podatkovni okvir `wine` na `wine.train` i `wine.test`</span></a>
+<a class="sourceLine" id="cb670-4" data-line-number="4"><span class="co"># metodom nasumičnog odabira prema omjeru 70:30</span></a>
+<a class="sourceLine" id="cb670-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb670-6" data-line-number="6">train_ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(wine), <span class="fl">0.7</span> <span class="op">*</span><span class="st"> </span><span class="kw">nrow</span>(wine) <span class="op">%&gt;%</span><span class="st"> </span>round) <span class="co"># indeksi trening opservacija</span></a>
+<a class="sourceLine" id="cb670-7" data-line-number="7">wine.train &lt;-<span class="st"> </span>wine[train_ind, ]</a>
+<a class="sourceLine" id="cb670-8" data-line-number="8">wine.test &lt;-<span class="st"> </span>wine[<span class="op">-</span>train_ind, ]</a></code></pre></div>
+</div>
+<div class="fold s o">
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb671-1" data-line-number="1"><span class="co"># istrenirajte model linearne regresije `linMod` nad skupom `wine.train`</span></a>
+<a class="sourceLine" id="cb671-2" data-line-number="2"><span class="co"># ciljna varijabla je `quality` a sve ostale prediktori</span></a>
+<a class="sourceLine" id="cb671-3" data-line-number="3"><span class="co"># proučite sažetak dobivenog modela</span></a>
+<a class="sourceLine" id="cb671-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb671-5" data-line-number="5">linMod &lt;-<span class="st"> </span><span class="kw">lm</span>(quality <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> wine.train)</a>
+<a class="sourceLine" id="cb671-6" data-line-number="6"><span class="kw">summary</span>(linMod)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = quality ~ ., data = wine.train)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.1979 -0.5375 -0.0454  0.5078  4.9346 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           9.723e+01  4.451e+00  21.843  &lt; 2e-16 ***
+## fixed.acidity        -4.744e-04  4.133e-04  -1.148 0.251125    
+## volatile.acidity     -1.351e+00  1.011e-01 -13.366  &lt; 2e-16 ***
+## citric.acid           3.106e-01  9.469e-02   3.280 0.001047 ** 
+## residual.sugar        1.648e-03  4.832e-04   3.411 0.000654 ***
+## chlorides            -3.657e+00  4.188e-01  -8.733  &lt; 2e-16 ***
+## free.sulfur.dioxide   1.041e-04  2.445e-04   0.426 0.670234    
+## total.sulfur.dioxide  1.090e-04  9.830e-05   1.109 0.267442    
+## density              -9.150e+01  4.484e+00 -20.404  &lt; 2e-16 ***
+## pH                   -7.765e-05  1.259e-04  -0.617 0.537511    
+## sulphates             8.632e-01  9.224e-02   9.358  &lt; 2e-16 ***
+## alcohol               3.983e-16  3.991e-16   0.998 0.318384    
+## typewhite            -3.714e-01  4.514e-02  -8.229 2.44e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7853 on 4533 degrees of freedom
+## Multiple R-squared:  0.1851, Adjusted R-squared:  0.183 
+## F-statistic: 85.82 on 12 and 4533 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Vidimo da je prilagođena R-kvadrat mjera relativno niska a prosječna greška dosta visoka, tako da je moguće da linearna regresija nije previše dobar odabir za ovaj scenarij (ili dobivene karakteristike vina jednostavno nisu dovoljno dobre za predviđanje njegove kvalitete). Usprkos tome, provjerimo koliko dobro model generalizira, tj. koliko dobro “pogađamo” kvalitetu na testnom skupu opservacija.</p>
+<p>Kako bismo provjerili kvalitetu našeg modela, moramo odabrati kriterij prema kojemu ćemo se ravnati. Kod pogađanja numeričkih vrijednosti najčešće se koristi tzv. <strong>RMSE</strong> (engl. <em>root mean square error</em>). Konkretno, za svaki opservaciju izračunamo pogrešku (rezidual), kvadriramo i sumiramo sve pogreške, potom podijelimo sa brojem opservacija i korjenujemo konačni rezultat:</p>
+<p><span class="math display">\[RMSE = \sqrt{\frac{\sum_{i = 1}^{n}(\widehat{y}_{i} - y_{i})^2}{n}}\]</span></p>
+<p>gdje je <code>n</code> broj opservacija, <span class="math inline">\(\widehat{y}_{i}\)</span> predikcija i-te opservacije a <span class="math inline">\(y_{i}\)</span> stvarna vrijednost ciljne varijable te opservacije.</p>
+<p>Iako postoje paketi koji sadrže ovu funkciju, možemo ju vrlo jednostavno samostalno isprogramirati.</p>
+<p><strong>Zadatak 14.3 - Funkcija za racunanje RMSE mjere</strong></p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb673-1" data-line-number="1"><span class="co"># stvorite funkciju `rmse` koja će za zadane vektore `pred` i `stv`</span></a>
+<a class="sourceLine" id="cb673-2" data-line-number="2"><span class="co"># izračunati RMSE mjeru prema gornjoj formuli</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb674-1" data-line-number="1"><span class="co"># stvorite funkciju `rmse` koja će za zadane vektore `pred` i `stv`</span></a>
+<a class="sourceLine" id="cb674-2" data-line-number="2"><span class="co"># izračunati RMSE mjeru prema gornjoj formuli</span></a>
+<a class="sourceLine" id="cb674-3" data-line-number="3">rmse &lt;-<span class="st"> </span><span class="cf">function</span>(pred, stv) <span class="kw">sqrt</span>(<span class="kw">mean</span>((pred <span class="op">-</span><span class="st"> </span>stv) <span class="op">**</span><span class="st"> </span><span class="dv">2</span>))</a></code></pre></div>
+</div>
+<p>Dodajmo sada skupovima <code>wine.train</code> i <code>wine.test</code> stupac koji će sadržavati predikcije dobivene našim modelom linearne regresije, a potom izračunajmo vrijednost RMSE mjere nad jednim i drugim skupom.</p>
+<p><strong>Zadatak 14.4 - Evaluacija modela na trening i test skupu</strong></p>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb675-1" data-line-number="1"><span class="co"># uz pomoć funkcije `predict` i modela `linMod`</span></a>
+<a class="sourceLine" id="cb675-2" data-line-number="2"><span class="co"># skupovima `wine.train` i `wine.test` dodajte stupac `predQualityLR`</span></a>
+<a class="sourceLine" id="cb675-3" data-line-number="3"><span class="co"># koji će sadržavati predikciju kvalitete vina</span></a>
+<a class="sourceLine" id="cb675-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb675-5" data-line-number="5"><span class="co"># ispišite vrijednost RMSE mjere za jedan i drugi skup</span></a>
+<a class="sourceLine" id="cb675-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb675-7" data-line-number="7"><span class="co"># uklonite stupac `predQualityLR` iz skupa `wine.train`</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb676-1" data-line-number="1"><span class="co"># uz pomoć funkcije `predict` i modela `linMod`</span></a>
+<a class="sourceLine" id="cb676-2" data-line-number="2"><span class="co"># skupovima `wine.train` i `wine.test` dodajte stupac `predQuality`</span></a>
+<a class="sourceLine" id="cb676-3" data-line-number="3"><span class="co"># koji će sadržavati predikciju kvalitete vina</span></a>
+<a class="sourceLine" id="cb676-4" data-line-number="4">wine.train<span class="op">$</span>predQualityLR &lt;-<span class="st"> </span><span class="kw">predict</span>(linMod, wine.train)</a>
+<a class="sourceLine" id="cb676-5" data-line-number="5">wine.test<span class="op">$</span>predQualityLR &lt;-<span class="st"> </span><span class="kw">predict</span>(linMod, wine.test)</a>
+<a class="sourceLine" id="cb676-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb676-7" data-line-number="7"><span class="co"># ispišite vrijednost RMSE mjere za jedan i drugi skup</span></a>
+<a class="sourceLine" id="cb676-8" data-line-number="8"><span class="kw">rmse</span>(wine.train<span class="op">$</span>predQualityLR, wine.train<span class="op">$</span>quality)</a>
+<a class="sourceLine" id="cb676-9" data-line-number="9"><span class="kw">rmse</span>(wine.test<span class="op">$</span>predQualityLR, wine.test<span class="op">$</span>quality)</a>
+<a class="sourceLine" id="cb676-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb676-11" data-line-number="11"><span class="co"># uklonite stupac `predQualityLR` iz skupa `wine.train`</span></a>
+<a class="sourceLine" id="cb676-12" data-line-number="12">wine.train<span class="op">$</span>predQualityLR &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<pre><code>## [1] 0.7841708
+## [1] 0.8078178</code></pre>
+</div>
+<p>Vidimo da RMSE za trening skup otprilike odgovara rezidualnoj standardnoj grešci dobivenoj u sažetku modela (mala razlika očituje se u tome što smo mi dijelili sa ukupnim brojem opservacija, dok je kod izračuna rezidualne standardne greške korišten broj stupnjeva sloboda, tj. broj opservacija umanjem za broj “zavisnih” varijabli, tj. prediktora). Ono što nam je interesantno jest činjenica da vrijednost RMSE mjere testnog skupa nije dramatično veća od RMSE mjere, što znači da model gotovo jednako dobro (ili loše) radi i nad novim podacima.</p>
+<hr />
+</div>
+<div id="klasifikacijski-prediktivni-modeli---knn-klasifikacija" class="section level2">
+<h2><span class="header-section-number">14.3</span> Klasifikacijski prediktivni modeli - kNN klasifikacija</h2>
+<p>Metoda linearne regresije omogućila nam je “pogađanje” numeričke ciljne varijable. Opravdano je postaviti pitanje - možemo li raziviti prediktivni model koji će pokušati pogoditi vrijednost kategorijske varijable? Ovo je iznimno važan segment prediktivnog modeliranja, budući da se u mnogim domenama pojavljuju problemi vezani uz određivanje vrijednosti neke kategorije (pacijent je bolestan ili nije, uređaj je pokvaren ili ispravan, transakcija je regularna ili rezultat prijevare, klijent banke je sposoban vratiti krediti ili ne i sl.)</p>
+<p>Ovo je tzv. “klasifikacijski” problem za kojeg - kao i za “regresijski”, tj. pogađanje numeričkih vrijednosti - postoji iznimno veliki skup razvijenih metoda. Vrlo često se slične metode mogu koristiti i za jednu i drugu svrhu (nekad uz određene prilagodbe), pa tako iako linearna regresija nije napodobnija za klasifikacijske probleme, njoj srodna “logistička regresija” predstavlja vrlo učinkoviti i popularni pristup takvom tipu problema.</p>
+<p>U ovom dijelu usredotočiti ćemo se na jednu drugu, također vrlo popularnu klasifikacijsku metodu, čiji način rada je vrlo intuitivan i lako objašnjiv, ali koja omogućuje uvid u niz zanimljivih elemenata prediktivnog modeliranja koje do sada nismo spominjali. Radi se o metode “k najbližih susjeda”, ili “kNN klasifikaciji” (engl. <em>K nearest neighbours</em>).</p>
+<p>Ova metoda radi na vrlo jednostavan način. Ako ne znamo kategoriju neke opservacije, jednostavno pronađemo određeni broj opservacija “najbližih” toj novoj opservaciji, pogledamo njihove kategorije i potom većinskim glasovanjem odredimo koju kategoriju pridijeliti novoj opservaciji. Pokušajmo ovo vizualizirati.</p>
+<p><strong>Zadatak 14.5 - Vizualizacija metode kNN klasifikacije</strong></p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb678-1" data-line-number="1"><span class="co"># nacrtajte točkasti graf skupa `wine.train`</span></a>
+<a class="sourceLine" id="cb678-2" data-line-number="2"><span class="co"># postavite `chlorides` na os x</span></a>
+<a class="sourceLine" id="cb678-3" data-line-number="3"><span class="co"># i `volatile.acidity` na os y</span></a>
+<a class="sourceLine" id="cb678-4" data-line-number="4"><span class="co"># točke obojajte prema tipu vina</span></a>
+<a class="sourceLine" id="cb678-5" data-line-number="5"><span class="co"># postavite prozirnost točaka na 0.5</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb679-1" data-line-number="1"><span class="co"># nacrtajte točkasti graf skupa `wine.train`</span></a>
+<a class="sourceLine" id="cb679-2" data-line-number="2"><span class="co"># postavite `chlorides` na os x</span></a>
+<a class="sourceLine" id="cb679-3" data-line-number="3"><span class="co"># i `volatile.acidity` na os y</span></a>
+<a class="sourceLine" id="cb679-4" data-line-number="4"><span class="co"># točke obojajte prema tipu vina</span></a>
+<a class="sourceLine" id="cb679-5" data-line-number="5"><span class="co"># postavite prozirnost točaka na 0.5</span></a>
+<a class="sourceLine" id="cb679-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb679-7" data-line-number="7"><span class="kw">ggplot</span>(wine.train, <span class="kw">aes</span>(chlorides, volatile.acidity, <span class="dt">col =</span> type)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<p><img src="osnoveR_files/figure-html/unnamed-chunk-525-1.png" width="672" /></p>
+</div>
+<p>Na grafu možemo jasno vidjeti kako točke formiraju “grozdove” istih boja na određenim područjima. Ako bismo uzeli novu opservaciju vezanu uz vino nepoznatog tipa, ali poznatih vrijednosti mjera postavljenih na osi x i y grafa, gledanjem njenog neposrednog susjedstva mogli bismo zaključiti o kojem se tipu vina radi. Opservacija koja se nalazi duboko unutar jednog od “oblaka” vrlo vjerojatno pripada prikazanom tipu (iako vidimo da ima iznimaka!). S druge strane, opservacija koja se nalazi unutar “graničnih” područja ima puno veću vjerojatnost da će biti pogrešno klasificirana, a različit odabir broja susjeda mogao bi rezultirati različiti rezultatom klasifikacije.</p>
+<p>kNN klasifikacija zasniva se na <strong>konceptu udaljenosti</strong>. Iako postoje različite opcije za odabir udaljenosti, često se oslanjamo na tzv. “Euklidsku udaljenost”, koju u dvo- i trodimenzionalnom kartezijevom sustavu vrlo lako predočimo najkraćim putem između dvije točke, a samu vrijednost računamo uz pomoć njihovih koordinata i Pitagorinog teorema. Ova udaljenost lako se primjenjuje na n-dimenzionalne prostore, tako da iako ne možemo lako predočiti točke u prostoru čija dimenzija odgovara broju prediktora, i dalje možemo lako izračunati vrijednost Euklidske udaljenosti između točaka.</p>
+<p>Dakle, način rada kNN klasifikacije možemo jednostavno opisati ovako:</p>
+<ul>
+<li>skup za treniranje sam za sebe zapravo predstavlja “znanje o sustavu” tj. sam prediktivni model</li>
+<li>za svaku novu opservaciju pronalazimo <em>k</em> najbližih opservacija iz trening skupa i pridjelimo joj kategoriju odabranu većinskim glasovanjem</li>
+</ul>
+<p>Iako ovo djeluje jednostavno, postoje neka otvorena pitanja. Prvo - kako odabrati parametar <em>k</em>? Drugo, nešto manje očito je pitanje da li moramo obaviti neke dodatne pripremne radnje nad podatkovnim skupom prije nego isprobamo kNN klasifikaciju?</p>
+<p>Pozabavimo se prvo ovim drugim problemom. Pogledajmo još jednom graf koji smo nacrtali, točnije njegove koordinatne osi. Možemo uvidjeti da duljine na osima ne odgovaraju nužno numeričkim vrijednostima, tj. jedinični interval na osi x nije nužno jednak jediničnom intervalu na osi y. Ovo je normalno i očekivano, budući da vrijednosti na osima ne moraju nužno koristiti istu mjernu skalu, pa čak ni mjernu jedinicu. No tu se krije jedan problem - kad računamo Euklidsku udaljenost ona će sve osi tretirati jednako, što znači da će one varijable sa većim rasponima automatski dobivati veću važnost (npr. maksimalna vrijednost varijable <code>chlorides</code> kreće se oko 0.611, dok varijabla <code>total.sulfur.dioxide</code> dostiže preko 3000!)</p>
+<p>Ovdje vidimo važnost <strong>pretprocesiranja podataka</strong>. Kod kNN klasifikacije preporučuje se <strong>normalizacija numeričkih varijabli</strong>, tj. transformacija numeričkih varijabli na način da od njih oduzmemo njihov prosjek i podijelimo ih sa standardnom devijacijom, čime ih sve svodimo na istu skalu. Ovaj postupak je nešto kompleksniji nego što se čini, jer moramo voditi računa da <em>nove opservacije budu normalizirane na isti način</em>.</p>
+<p>Kako bismo malo pojednostavili ovaj proces, vratiti ćemo se na originalni skup <code>wine</code>, normalizirati numeričke stupce i potom ga spremiti u varijablu <code>wineNorm</code>. Potom ćemo ovaj skup podijeliti na skupove <code>wineNorm.train</code> i <code>wineNorm.test</code> analogno prethodnoj proceduri.</p>
+<p>r zadHead(“Normalizacija numeričkih varijabli skupa”)`</p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" data-line-number="1"><span class="co"># normalizirajte sve numeričke stupce podatkovnog okvira `wine` </span></a>
+<a class="sourceLine" id="cb680-2" data-line-number="2"><span class="co"># rezultat pohranite u okvir `wineNorm`</span></a>
+<a class="sourceLine" id="cb680-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb680-4" data-line-number="4"><span class="co"># iskoristite objekt `train_ind` i podijelite skup `wineNorm`</span></a>
+<a class="sourceLine" id="cb680-5" data-line-number="5"><span class="co"># na `wineNorm.train` i `wineNorm.test`</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb681-1" data-line-number="1"><span class="co"># normalizirajte sve numeričke stupce podatkovnog okvira `wine` </span></a>
+<a class="sourceLine" id="cb681-2" data-line-number="2"><span class="co"># rezultat pohranite u okvir `wineNorm`</span></a>
+<a class="sourceLine" id="cb681-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb681-4" data-line-number="4">wineNorm &lt;-<span class="st"> </span><span class="kw">lapply</span>(wine, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb681-5" data-line-number="5">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(x)) (x <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(x))<span class="op">/</span><span class="kw">sd</span>(x)</a>
+<a class="sourceLine" id="cb681-6" data-line-number="6">  <span class="cf">else</span> x</a>
+<a class="sourceLine" id="cb681-7" data-line-number="7">}) <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame</a>
+<a class="sourceLine" id="cb681-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb681-9" data-line-number="9"><span class="co"># iskoristite objekt `train_ind` i podijelite skup `wineNorm`</span></a>
+<a class="sourceLine" id="cb681-10" data-line-number="10"><span class="co"># na `wineNorm.train` i `wineNorm.test`</span></a>
+<a class="sourceLine" id="cb681-11" data-line-number="11">wineNorm.train &lt;-<span class="st"> </span>wineNorm[train_ind, ]</a>
+<a class="sourceLine" id="cb681-12" data-line-number="12">wineNorm.test &lt;-<span class="st"> </span>wineNorm[<span class="op">-</span>train_ind, ]</a></code></pre></div>
+</div>
+<p>Vratimo se na problem odabira vrijednosti parametra <code>k</code>. Kako odabrati adekvatnu vrijednost? U općenitom slučaju ovakav problem zovemo “odabirom hiperparametara modela”, budući da model pored ulaznih podataka zahtijeva i neke dodatne ulazne parametre kako bi mogao obavljati svoju funkciju. U općenitom slučaju, kada nema jasne metode izračuna hiperparametara, jedina opcija koju imamo je treniranje modela sa raznim kombinacijama hiperparametara te konačni odabir onog modela koji pokazuje najbolje performanse. U tom slučaju često pored trening i test skupa trebamo još jedan, tzv. “validacijski” skup, koji predstavlja dodatni korak prije testiranja skupa u kojem odabiremo vrijednosti hiperparametara za “konačni” model. Konkretno, za kNN klasifikaciju:</p>
+<ul>
+<li>nad trening skupom treniramo veći broj modela za različite vrijednosti parametra <code>k</code></li>
+<li>uz pomoć validacijskog skupa pronađemo model koji ima najbolje performanse</li>
+<li>napravimo konačnu evaluaciju nad testnim skupom</li>
+</ul>
+<p>U nastavku nećemo provoditi cijeli ovaj proces, jer usprkos dodatnoj komplikaciji, sami koraci su jednostavni, tj. sam postupak višestrukog treniranja i većeg broja evaluacija zapravo uvijek koristi iste funkcije, samo se ponavljaju više puta. Zbog toga ćemo u nastavku proizvoljno postaviti vrijednost parametra <code>k</code> na <code>5</code>, a pronalaženje bolje vrijednosti hiperparametra ostaviti čitateljima kao opciju za dodatno vježbanje. Isto tako, kao što ćemo vidjeti na kraju ovog poglavlja, vrlo često ćemo poslove kao što je odabir hiperparametara zadavati samo deklarativno, korištenjem funkcija visoke razine, bez potrebe da se bavimo niskorazinskim detaljima oko provedbe samog procesa.</p>
+<p>Pokušajmo vidjeti da li možemo ispravno klasificirati vino kao “bijelo” ili “crveno” uz pomoć varijabli koje opisuju njegov kemijski sastav. Koristiti ćemo metodu kNN, uz broj susjeda postavljen na 5. Prediktori će biti sve varijable skupa osim <code>quality</code> i <code>type</code>.</p>
+<p>Za kNN klasifikaciju osnovni R nudi funkciju <code>knn</code>. Za naše potrebe mi ćemo koristiti funkciju <code>knn3</code> iz paketa <code>caret</code>. Funkcija <code>knn3</code> naslanja se na osnovnu funkciju <code>knn</code> na način da nam omogućuje njezin poziv prateći standardne konvencije koje smo već naučili kod treniranja linearne regresije:</p>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb682-1" data-line-number="1">model &lt;-<span class="st"> </span><span class="kw">odabrana_metoda</span>(formula, trening_podaci, dodatni_parametri)</a>
+<a class="sourceLine" id="cb682-2" data-line-number="2">predikcije &lt;-<span class="st"> </span><span class="kw">predict</span>(model, testni_podaci, dodatni_parametri)</a></code></pre></div>
+<p>U slučaju funkcije <code>knn3</code>, nužan dodatni parametar kod treniranja modela jest <code>k</code> kojeg ćemo postaviti na <code>5</code>. S druge strane, kod stvaranja predikcija uz pomoć parametra <code>type</code> možemo birati želimo li da nam klasifikator vrati vjerojatnosti klasa (vrijednost <code>prob</code>) ili same predikcije (vrijednost <code>class</code>).</p>
+<p>Pokušajmo sada stvoriti kNN model uz pomoć trening skupa <code>wineNorm.train</code> te potom za skup <code>wineNorm.test</code> stvoriti predikcije.</p>
+<p><strong>Zadatak 14.6 - kNN klasifikacija</strong></p>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb683-1" data-line-number="1"><span class="co"># stvorite varijablu `kNN5Mod` koja će predstavljati </span></a>
+<a class="sourceLine" id="cb683-2" data-line-number="2"><span class="co"># rezultat poziva funkcije `knn3` nad skupom `wineNorm.train`</span></a>
+<a class="sourceLine" id="cb683-3" data-line-number="3"><span class="co"># ciljna varijabla je `type`</span></a>
+<a class="sourceLine" id="cb683-4" data-line-number="4"><span class="co"># a prediktori su sve ostale varijable osim `quality`</span></a>
+<a class="sourceLine" id="cb683-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb683-6" data-line-number="6"><span class="co"># skupu `wineNorm.test` dodajte stupad `predikcije`</span></a>
+<a class="sourceLine" id="cb683-7" data-line-number="7"><span class="co"># u kojem će biti rezultat primjene klasifikatora `kNN5Mod`</span></a>
+<a class="sourceLine" id="cb683-8" data-line-number="8"><span class="co"># nad tim skupom</span></a>
+<a class="sourceLine" id="cb683-9" data-line-number="9"><span class="co"># postavite parametar `type` na `&quot;class&quot;`</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" data-line-number="1"><span class="co"># stvorite varijablu `kNN5Mod` koja će predstavljati </span></a>
+<a class="sourceLine" id="cb684-2" data-line-number="2"><span class="co"># rezultat poziva funkcije `knn3` nad skupom `wineNorm.train`</span></a>
+<a class="sourceLine" id="cb684-3" data-line-number="3"><span class="co"># ciljna varijabla je `type`, a broj susjeda `k` je 5</span></a>
+<a class="sourceLine" id="cb684-4" data-line-number="4"><span class="co"># a prediktori su sve ostale varijable osim `quality`</span></a>
+<a class="sourceLine" id="cb684-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb684-6" data-line-number="6"><span class="co">#library(caret)   # ako je potrebno</span></a>
+<a class="sourceLine" id="cb684-7" data-line-number="7">kNN5Mod &lt;-<span class="st"> </span><span class="kw">knn3</span>(type <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>quality, <span class="dt">data =</span> wineNorm.train, <span class="dt">k =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb684-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb684-9" data-line-number="9"><span class="co"># skupu `wineNorm.test` dodajte stupad `predictedType`</span></a>
+<a class="sourceLine" id="cb684-10" data-line-number="10"><span class="co"># u kojem će biti rezultat primjene klasifikatora `kNN5Mod`</span></a>
+<a class="sourceLine" id="cb684-11" data-line-number="11"><span class="co"># nad tim skupom</span></a>
+<a class="sourceLine" id="cb684-12" data-line-number="12"><span class="co"># postavite parametar `type` na `&quot;class&quot;`</span></a>
+<a class="sourceLine" id="cb684-13" data-line-number="13">wineNorm.test<span class="op">$</span>predictedType &lt;-<span class="st"> </span><span class="kw">predict</span>(kNN5Mod, wineNorm.test, <span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</a></code></pre></div>
+</div>
+<p>Uočite da nismo tražili sažetak modela budući da u ovom slučaju ne možemo dobiti previše bitne informacije. kNN klasifikator nam ne može dati nekakve agregirane informacije o izvučenom “znanju”, on samo predstavlja “naučeni prostor kategorija” kojeg onda za svaku novu opservaciju koristi kako bi odredio kojoj kategoriji pripada.</p>
+<p>Kako možemo provjeriti uspješnost klasifikatora? Tipična procedura (kod binarnih klasifikatora) jest izrada tzv. “matrice konfuzije” (engl. <em>confusion matrix</em>). Ovo jednostavno znači da ćemo napraviti tablicu koja će pokazati koliko se dobro poklapaju predviđene vrijednosti sa stvarnim vrijednostima. Najlakši način za izradu ove tablice jest jednostavno pozvati funkciju <code>table</code> sa stupcem predikcija i stupcem stvarnih vrijednosti kao parametrima.</p>
+<p><strong>Zadatak 14.7 - Jednostavna matrica konfuzije</strong></p>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb685-1" data-line-number="1"><span class="co"># ispišite matricu konfuzije pozivom funkcije `table`</span></a>
+<a class="sourceLine" id="cb685-2" data-line-number="2"><span class="co"># nad odgovarajućim stupcima skupa `wineNorm.test`</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" data-line-number="1"><span class="co"># ispišite matricu konfuzije pozivom funkcije `table`</span></a>
+<a class="sourceLine" id="cb686-2" data-line-number="2"><span class="co"># nad odgovarajućim stupcima skupa `wineNorm.test`</span></a>
+<a class="sourceLine" id="cb686-3" data-line-number="3"><span class="kw">table</span>(wineNorm.test<span class="op">$</span>predictedType, wineNorm.test<span class="op">$</span>type)</a></code></pre></div>
+<pre><code>##        
+##          red white
+##   red    476    14
+##   white    9  1450</code></pre>
+</div>
+<p>Gledajući rezultate možemo intuitivno zaključiti da u ovom slučaju klasifikator radi iznimno dobro, tj. da bijela i crvena vina možemo na ovaj način vrlo dobro razlikovati uz pomoć njihovih kemijskih sredstava. No vrlo često kvalitetu klasifikatora želimo opisati objektivnom, numeričkom mjerom. Postoji veći broj takvih mjera, a većinu njih možemo direktno izračunati korištenjem podataka iz matrice konfuzije.</p>
+<p>Konkretno, nazovimo kućice matrice konfuzije <em>TP</em>, <em>TN</em>, <em>FP</em>, <em>FN</em> (engl. <em>true positive</em>, <em>true negative</em>, <em>false positive</em> - “lažna uzbuna”, <em>false negative</em> - “promašaj”), gdje smo jednu klasu nazvali “pozitivnom” te prema tome pridjelili nazive pripadnih kućica u ovisnosti da li je klasifikator ispravno pogodio klasu (glavna dijagonala) ili ne (sporedna dijagonala). U ovom slučaju iz matrice konfuzije možemo izvesti sljedeće mjere (navodimo samo neke):</p>
+<ul>
+<li>točnost (engl. <em>accuracy</em>): <span class="math inline">\(\frac{TP + TN}{TP + FP + TN + FN}\)</span></li>
+<li>osjetljivost (engl. <em>sensitivity</em> ili <em>recall</em>): <span class="math inline">\(\frac{TP}{TP + FN}\)</span></li>
+<li>preciznost (engl. <em>precision</em>): <span class="math inline">\(\frac{TP}{TP + FP}\)</span></li>
+<li>udio pozitivnih/negativnih pogrešaka (engl. <em>false positive rate</em>/<em>false negative rate</em>): <span class="math inline">\(\frac{FP}{FP + TN}\)</span> ; <span class="math inline">\(\frac{FN}{TP + FN}\)</span></li>
+</ul>
+<p>Ovdje smo naveli samo neke od mogućih mjera. Iako je točnost možda najlogičniji odabir (jer nam zapravo daje postotak “pogođenih” kategorija), vrlo često moramo biti oprezni jer nam može davati iskrivljenu sliku učinkovitosti klasifikatora, pogotovo kod velikog disbalansa kategorija ili slučajeva kada nam je jedan tip pogrešaka puno opasniji od drugog. Tipičan primjer je dijagnostika rijetke bolesti - ako se bolest javlja u samo 0.1% slučajeva, onda trivijalni klasifikator koji za sve opservacije dijagnosticira da bolest nije prisutna dobro radi u 99.9% slučajeva. Isto tako, ako se radi o opasnoj bolesti, onda nam je <em>FP</em> greška (bolest je dijagnosticirana iako nije prisutna) daleko manje važna od <em>FN</em> greške (bolest je prisutna ali nije prepoznata). U ovim slučajevima odabir neke druge mjere (npr. “osjetljivost” ili “udio negativnih pogrešaka”) je često puno bolji pokazatelj kvalitete klasifikatora.</p>
+<p>Uz pomoć jezika R vrlo je lako “ručno” izračunati sve ove mjere. No funkcija <code>confusionMatrix</code> paketa <code>caret</code> (koja se usput naslanja na paket <code>e1071</code>) nam daje isti rezultat kao i funkcija <code>table</code>, ali uz dodatnu pogodnost izračuna velikog broja mjera koju nam mogu pomoći pri procjeni kvalitete klasifikatora.</p>
+<p><strong>Zadatak 14.8 - Funkcija <code>confusionMatrix</code></strong></p>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1"><span class="co"># u varijablu `confMat` učitajte matricu konfuzije</span></a>
+<a class="sourceLine" id="cb688-2" data-line-number="2"><span class="co"># nastalu pozivom funkcije `confusionMatrix`</span></a>
+<a class="sourceLine" id="cb688-3" data-line-number="3"><span class="co"># nad odgovarajućim stupcima skupa `wineNorm.test`</span></a>
+<a class="sourceLine" id="cb688-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb688-5" data-line-number="5"><span class="co"># ispišite varijablu `confMat`</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb689-1" data-line-number="1"><span class="co"># u varijablu `confMat` učitajte matricu konfuzije</span></a>
+<a class="sourceLine" id="cb689-2" data-line-number="2"><span class="co"># nastalu pozivom funkcije `confusionMatrix`</span></a>
+<a class="sourceLine" id="cb689-3" data-line-number="3"><span class="co"># nad odgovarajućim stupcima skupa `wineNorm.test`</span></a>
+<a class="sourceLine" id="cb689-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb689-5" data-line-number="5"><span class="co">#library(e1071)  # ako je potrebno</span></a>
+<a class="sourceLine" id="cb689-6" data-line-number="6">confMat &lt;-<span class="st"> </span><span class="kw">confusionMatrix</span>(wineNorm.test<span class="op">$</span>predictedType, wineNorm.test<span class="op">$</span>type)</a>
+<a class="sourceLine" id="cb689-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb689-8" data-line-number="8"><span class="co"># ispišite varijablu `confMat`</span></a>
+<a class="sourceLine" id="cb689-9" data-line-number="9">confMat</a></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  red white
+##      red    476    14
+##      white    9  1450
+##                                           
+##                Accuracy : 0.9882          
+##                  95% CI : (0.9823, 0.9925)
+##     No Information Rate : 0.7512          
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.9685          
+##  Mcnemar&#39;s Test P-Value : 0.4042          
+##                                           
+##             Sensitivity : 0.9814          
+##             Specificity : 0.9904          
+##          Pos Pred Value : 0.9714          
+##          Neg Pred Value : 0.9938          
+##              Prevalence : 0.2488          
+##          Detection Rate : 0.2442          
+##    Detection Prevalence : 0.2514          
+##       Balanced Accuracy : 0.9859          
+##                                           
+##        &#39;Positive&#39; Class : red             
+## </code></pre>
+</div>
+<p>Budući da je varijabla <code>confMat</code> S3 objekt, uz pomoć funkcije <code>unlist</code> i odabir željenog elementa vrlo lako možemo dobiti samo numeričku vrijednost mjere koja nas zanima, npr. za potrebe usporedbe većeg broja modela unutar programske skripte.</p>
+</div>
+<div id="paket-caret-i-prediktivno-modeliranje" class="section level2">
+<h2><span class="header-section-number">14.4</span> Paket <code>caret</code> i prediktivno modeliranje</h2>
+<p>U prethodnom poglavlju već smo upoznali paket <code>caret</code>, točnije neke njegove funkcije koje nam pomažu kod prediktivnog modeliranja. Ovaj paket zapravo nudi puno više od do sada viđenog. Konkretno, paket <code>caret</code> predstavlja skup alata za učinkovito obavljanje svih elemenata procesa prediktivnog modeliranja:</p>
+<ul>
+<li>razdvajanje skupa na podskupove za treniranje / testiranje / validaciju</li>
+<li>pretprocesiranje podataka</li>
+<li>odabir značajki</li>
+<li>podešavanje modela uz pomoć ponovnog uzorkovanja</li>
+<li>procjena važnosti varijabli</li>
+</ul>
+<p>Kao što paket <code>dplyr</code> zapravo mijenja način kako koristimo jezik R za upravljanje podatkovnim okvirima, tako i paket <code>caret</code> omogućuje temeljitu izmjenu pristupa prediktivnom modeliranju uz pomoć ovog jezika. Funkcije paketa <code>caret</code> ne samo da omogućuju čišću, pregledniju sintaksu kod obavljanja niskorazinskih poslova, one također daju i mogućnost prediktivnog modeliranja na visokoj razini, gdje deklarativnim pozivima objašnjavamo <em>što</em> želimo provesti, i puštamo R da sam odradi niskorazinske poslove i vrati nam odgovarajući rezultat.</p>
+<p>Detalje o ovom paketu možemo naći na <a href="https://topepo.github.io/caret/index.html">ovoj poveznici</a>, a u nastavku ćemo dati samo kratki uvid u neke od impresivnih mogućnosti ovog paketa.</p>
+<p>Kako bi demonstrirali deklarativnu prirodu prediktivnog modeliranja uz pomoć ovog paketa, pobliže ćemo pogledati dvije funkcije: <code>train</code> i <code>trainControl</code>.</p>
+<p>Funkcija <code>train</code> zapravo predstavlja jedinstveno sučelje prema velikom broju prediktivnih modela (popis svih modela koje funkcija trenutno podržava možemo naći <a href="http://topepo.github.io/caret/train-models-by-tag.html">ovdje</a>). U velikom broju slučajeva poziv ove funkcije ne razlikuje se bitno od poziva funkcija metoda prediktivnog modeliranja koje smo do sada upoznali, konkretno <code>lm</code> i <code>knn3</code>. I ova funkcija podržava sučelje preko “formule”, a najveća razlika je što umjesto konkretnog naziva funkcije kod poziva, ovdje metodu prediktivnog modeliranja definiramo uz pomoć parametra <code>method</code>.</p>
+<p>Pokušajmo trenirati model linearne regresije uz pomoć funkcije <code>train</code> i već pripremljenog skupa <code>wine.train</code>.</p>
+<p><strong>Zadatak 14.9 - Funkcija <code>train</code> i linearna regresija</strong></p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb691-1" data-line-number="1"><span class="co"># uz pomoć funkcije `train` paketa `caret`</span></a>
+<a class="sourceLine" id="cb691-2" data-line-number="2"><span class="co"># istrenirajte model linearne regresije `linMod` nad skupom `wine.train`</span></a>
+<a class="sourceLine" id="cb691-3" data-line-number="3"><span class="co"># ciljna varijabla je `quality` a sve ostale prediktori</span></a>
+<a class="sourceLine" id="cb691-4" data-line-number="4"><span class="co"># parametar `method` postavite na `&quot;lm&quot;`</span></a>
+<a class="sourceLine" id="cb691-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb691-6" data-line-number="6"><span class="co"># proučite sažetak dobivenog modela</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" data-line-number="1"><span class="co"># uz pomoć funkcije `train` paketa `caret`</span></a>
+<a class="sourceLine" id="cb692-2" data-line-number="2"><span class="co"># istrenirajte model linearne regresije `linMod` nad skupom `wine.train`</span></a>
+<a class="sourceLine" id="cb692-3" data-line-number="3"><span class="co"># ciljna varijabla je `quality` a sve ostale prediktori</span></a>
+<a class="sourceLine" id="cb692-4" data-line-number="4"><span class="co"># proučite sažetak dobivenog modela</span></a>
+<a class="sourceLine" id="cb692-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb692-6" data-line-number="6">linMod &lt;-<span class="st"> </span><span class="kw">train</span>(quality <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> wine.train, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb692-7" data-line-number="7"><span class="kw">summary</span>(linMod)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = .outcome ~ ., data = dat)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.1979 -0.5375 -0.0454  0.5078  4.9346 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           9.723e+01  4.451e+00  21.843  &lt; 2e-16 ***
+## fixed.acidity        -4.744e-04  4.133e-04  -1.148 0.251125    
+## volatile.acidity     -1.351e+00  1.011e-01 -13.366  &lt; 2e-16 ***
+## citric.acid           3.106e-01  9.469e-02   3.280 0.001047 ** 
+## residual.sugar        1.648e-03  4.832e-04   3.411 0.000654 ***
+## chlorides            -3.657e+00  4.188e-01  -8.733  &lt; 2e-16 ***
+## free.sulfur.dioxide   1.041e-04  2.445e-04   0.426 0.670234    
+## total.sulfur.dioxide  1.090e-04  9.830e-05   1.109 0.267442    
+## density              -9.150e+01  4.484e+00 -20.404  &lt; 2e-16 ***
+## pH                   -7.765e-05  1.259e-04  -0.617 0.537511    
+## sulphates             8.632e-01  9.224e-02   9.358  &lt; 2e-16 ***
+## alcohol               3.983e-16  3.991e-16   0.998 0.318384    
+## typewhite            -3.714e-01  4.514e-02  -8.229 2.44e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7853 on 4533 degrees of freedom
+## Multiple R-squared:  0.1851, Adjusted R-squared:  0.183 
+## F-statistic: 85.82 on 12 and 4533 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Vidimo da smo dobili identičan rezultat kao kada smo pozvali funkciju <code>lm</code> direktno na početku ovog poglavlja.</p>
+<p>Uočite da smo u ovom slučaju propustili upotrijebiti veliki broj parametara funkcije <code>train</code> koje možemo vidjeti u dokumentaciji. Npr. parametar <code>preprocess</code> može automatski obaviti neke postupke pripreme podataka, kao što je normalizacija, BoxCox transformacija, imputiranje nedostajućih vrijednosti i sl.</p>
+<p>Pokušajmo sada istrenirati malo kompleksniji prediktivni model. Prvo objasnim pojam “kontrolnog objekta” kojeg stvaramo preko funkcije <code>trainControl</code>.</p>
+<p>Funkciju <code>trainControl</code> možemo zamisliti kao funkciju za stvaranje “kontrolnu ploče” koja nam omogućuje fino podešavanje svih parametara vezanih uz treniranje našeg prediktivnog modela. Neki od tih parametara tiču se tzv. “ponovnog uzorkovanja” podataka iz trening skupa - naime, za bolju procjenu ponašanja razvijenih prediktivnih modela često se odlučujemo na tzv. “krosvalidaciju”, gdje trening skup više puta dodatno rastavljamo na manje podskupove (engl. <em>folds</em>) te potom opetovano treniramo na jednom dijelu i testiramo na preostalom dijelu skupa. Na ovaj način zapravo dobivamo veći broj modela, svaki sa svojim rezultatima, koji nam daju informaciju ne samo o kvaliteti, nego i stabilnosti modela.</p>
+<p>Pored ovoga imamo mogućnost odabira dodatnih parametara, kao npr. koju funkciju sažetka želimo primjeniti nad modelom, ili da li želimo da model (u slučaju klasifikacije) vraća vjerojatnosti ili same predikcije kategorija. Kada složimo jedan ovakav “kontrolni objekt”, onda ga možemo reciklirati koliko god želimo puta u daljnjim koracima prediktivnog modeliranja, bez potrebe da svaki put unosimo veliki broj parametara vezanih uz postupak treniranja.</p>
+<p>Primjer jednostavnog kontrolnog objekta:</p>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" data-line-number="1"><span class="co"># u treniranju želimo ponavljati postupak krosvalidacije 5 puta</span></a>
+<a class="sourceLine" id="cb694-2" data-line-number="2">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</a>
+<a class="sourceLine" id="cb694-3" data-line-number="3">                     <span class="dt">repeats =</span> <span class="dv">5</span>)</a></code></pre></div>
+<p>Prikažimo za kraj dvije naprednije metode prediktivnog modeliranja - metodu slučajne šume (metoda <code>ranger</code> iz istoimeng paketa) i metodu potpornih vektora (metoda <code>svmRadial</code> iz paketa <code>kernalb</code>. Nećemo ulaziti dublje u same detalje vezane uz ove metode, već ćemo se usredotočiti na način njihovog pozivanja uz pomoć funkcija <code>trainCtrl</code> i <code>train</code>.</p>
+<p>Pojasnimo samo prije treniranja funkciju <code>expand.grid</code>. Ova funkcija jednostavno izrađuje podatkovni okvir sa svim kombinacijama parametara koje smo joj dali, točnije kartezijevim produktom elemenata vektora koje smo joj poslali kao parametre. Nju najčešće koristimo uz parametar <code>tuneGrid</code> za zadavanje kandidata za svaki pojedini hiperparametar prediktivnog modela - na taj način će funkcija <code>train</code> isprobati sve kombinacije zadanih parametara i (u suradnji sa krosvalidacijskom metodom) za konačni model odabrati parametre koji pokazuju najbolje performanse.</p>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb695-1" data-line-number="1"><span class="co">#library(ranger) # ukoliko je potrebno</span></a>
+<a class="sourceLine" id="cb695-2" data-line-number="2"><span class="co">#library(kernlab) # ukoliko je potrebno</span></a>
+<a class="sourceLine" id="cb695-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb695-4" data-line-number="4"><span class="co"># koristiti ćemo isti kontrolni objekt za oba treniranja</span></a>
+<a class="sourceLine" id="cb695-5" data-line-number="5"><span class="co"># postaviti `verboseIter` na TRUE </span></a>
+<a class="sourceLine" id="cb695-6" data-line-number="6"><span class="co"># za bolji uvid u brzinu treniranja!</span></a>
+<a class="sourceLine" id="cb695-7" data-line-number="7">ctrl &lt;-<span class="st"> </span><span class="kw">trainControl</span>(</a>
+<a class="sourceLine" id="cb695-8" data-line-number="8">  <span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>,</a>
+<a class="sourceLine" id="cb695-9" data-line-number="9">  <span class="dt">number =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb695-10" data-line-number="10">  <span class="dt">repeats =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb695-11" data-line-number="11">  <span class="dt">verboseIter =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb695-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb695-13" data-line-number="13"><span class="co"># treniramo model slučajne šume</span></a>
+<a class="sourceLine" id="cb695-14" data-line-number="14">rfMod &lt;-<span class="st"> </span><span class="kw">train</span>(quality <span class="op">~</span><span class="st"> </span>., </a>
+<a class="sourceLine" id="cb695-15" data-line-number="15">                 <span class="dt">data =</span> wine.train,</a>
+<a class="sourceLine" id="cb695-16" data-line-number="16">                 <span class="dt">method =</span> <span class="st">&#39;ranger&#39;</span>,</a>
+<a class="sourceLine" id="cb695-17" data-line-number="17">                 <span class="dt">tuneLength =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb695-18" data-line-number="18">                 <span class="dt">trControl =</span> ctrl,</a>
+<a class="sourceLine" id="cb695-19" data-line-number="19">                 <span class="dt">num.trees =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb695-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb695-21" data-line-number="21"><span class="co"># treniramo model potpornih vektora</span></a>
+<a class="sourceLine" id="cb695-22" data-line-number="22"><span class="co"># koristimo &quot;mrežu&quot; hiperparametara</span></a>
+<a class="sourceLine" id="cb695-23" data-line-number="23"><span class="co"># i pretprocesiranje normalizacijom</span></a>
+<a class="sourceLine" id="cb695-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb695-25" data-line-number="25">svm.grid &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">C =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>), <span class="dt">sigma =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb695-26" data-line-number="26">svmMod &lt;-<span class="st"> </span><span class="kw">train</span>(quality <span class="op">~</span><span class="st"> </span>., </a>
+<a class="sourceLine" id="cb695-27" data-line-number="27">                   <span class="dt">data =</span> wine.train, </a>
+<a class="sourceLine" id="cb695-28" data-line-number="28">                   <span class="dt">method =</span> <span class="st">&quot;svmRadial&quot;</span>,</a>
+<a class="sourceLine" id="cb695-29" data-line-number="29">                   <span class="dt">trControl =</span> ctrl, </a>
+<a class="sourceLine" id="cb695-30" data-line-number="30">                   <span class="dt">tuneGrid =</span> svm.grid,</a>
+<a class="sourceLine" id="cb695-31" data-line-number="31">                   <span class="dt">preProcess =</span> <span class="kw">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>))</a></code></pre></div>
+<p>Konačno, provedimo jednostavnu evaluaciju modela uz pomoć mjere RMSE.</p>
+<p><strong>Zadatak 14.10 - Jednostavna evaluacija modela</strong></p>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" data-line-number="1"><span class="co"># uz pomoć funkcije `predict` i modela `rfMod` i `svmMod`</span></a>
+<a class="sourceLine" id="cb696-2" data-line-number="2"><span class="co"># skupu `wine.test` dodajte stupce `predQualityRF` i `predQualitySVM`</span></a>
+<a class="sourceLine" id="cb696-3" data-line-number="3"><span class="co"># koji će sadržavati predikciju kvalitete vina</span></a>
+<a class="sourceLine" id="cb696-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb696-5" data-line-number="5"><span class="co"># ispišite vrijednost RMSE mjere za sve dobivene modele</span></a></code></pre></div>
+<div class="fold s o">
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb697-1" data-line-number="1"><span class="co"># uz pomoć funkcije `predict` i modela `rfMod` i `svmMod`</span></a>
+<a class="sourceLine" id="cb697-2" data-line-number="2"><span class="co"># skupu `wine.test` dodajte stupce `predQualityRF` i `predQualitySVM`</span></a>
+<a class="sourceLine" id="cb697-3" data-line-number="3"><span class="co"># koji će sadržavati predikciju kvalitete vina</span></a>
+<a class="sourceLine" id="cb697-4" data-line-number="4">wine.test<span class="op">$</span>predQualityRF &lt;-<span class="st"> </span><span class="kw">predict</span>(rfMod, wine.test)</a>
+<a class="sourceLine" id="cb697-5" data-line-number="5">wine.test<span class="op">$</span>predQualitySVM &lt;-<span class="st"> </span><span class="kw">predict</span>(svmMod, wine.test)</a>
+<a class="sourceLine" id="cb697-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb697-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb697-8" data-line-number="8"><span class="co"># ispišite vrijednost RMSE mjere za sve dobivene modele</span></a>
+<a class="sourceLine" id="cb697-9" data-line-number="9"><span class="kw">cat</span>(<span class="st">&quot;RMSE Linearna regresija: &quot;</span>, <span class="kw">rmse</span>(wine.test<span class="op">$</span>predQualityLR, wine.test<span class="op">$</span>quality))</a>
+<a class="sourceLine" id="cb697-10" data-line-number="10"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">RMSE Slučajna šuma: &quot;</span>, <span class="kw">rmse</span>(wine.test<span class="op">$</span>predQualityRF, wine.test<span class="op">$</span>quality))</a>
+<a class="sourceLine" id="cb697-11" data-line-number="11"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">RMSE Potporni vektori: &quot;</span>, <span class="kw">rmse</span>(wine.test<span class="op">$</span>predQualitySVM, wine.test<span class="op">$</span>quality))</a></code></pre></div>
+<pre><code>## RMSE Linearna regresija:  0.8078178
+## RMSE Slucajna šuma:  0.6772888
+## RMSE Potporni vektori:  0.7011601</code></pre>
+</div>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Programirajmo u R-u</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.fer.unizg.hr/en/damir.pintar" property="cc:attributionName" rel="cc:attributionURL">Damir Pintar</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://ratnip.github.io/FER_OPJR/" rel="dct:source">https://ratnip.github.io/FER_OPJR/</a></p>
+
+<div id="refs" class="references">
+<div>
+<p>Bache, Stefan Milton, and Hadley Wickham. 2014. <em>Magrittr: A Forward-Pipe Operator for R</em>. <a href="https://CRAN.R-project.org/package=magrittr">https://CRAN.R-project.org/package=magrittr</a>.</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regresija.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed",
+"edit": null,
+"download": null,
+"search": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

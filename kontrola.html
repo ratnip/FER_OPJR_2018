@@ -25,7 +25,7 @@
 <meta name="author" content="Damir Pintar">
 
 
-<meta name="date" content="2019-01-15">
+<meta name="date" content="2019-01-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -330,6 +330,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13.2" data-path="regresija.html"><a href="regresija.html#visestruka-multipla-linearna-regresija"><i class="fa fa-check"></i><b>13.2</b> Višestruka (multipla) linearna regresija</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html"><i class="fa fa-check"></i><b>14</b> Uvod u prediktivno modeliranje</a><ul>
+<li class="chapter" data-level="14.1" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#sto-je-prediktivno-modeliranje"><i class="fa fa-check"></i><b>14.1</b> Što je prediktivno modeliranje?</a></li>
+<li class="chapter" data-level="14.2" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#podaci-za-treniranje-i-testirane-modela"><i class="fa fa-check"></i><b>14.2</b> Podaci za treniranje i testirane modela</a></li>
+<li class="chapter" data-level="14.3" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#klasifikacijski-prediktivni-modeli---knn-klasifikacija"><i class="fa fa-check"></i><b>14.3</b> Klasifikacijski prediktivni modeli - kNN klasifikacija</a></li>
+<li class="chapter" data-level="14.4" data-path="prediktivno-modeliranje.html"><a href="prediktivno-modeliranje.html#paket-caret-i-prediktivno-modeliranje"><i class="fa fa-check"></i><b>14.4</b> Paket <code>caret</code> i prediktivno modeliranje</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -582,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## function (object, ...) 
 ## standardGeneric(&quot;summary&quot;)
-## &lt;environment: 0x000000000fcfc1c8&gt;
+## &lt;environment: 0x000000001861f0c8&gt;
 ## Methods may be defined for arguments: object
 ## Use  showMethods(&quot;summary&quot;)  for currently available ones.
 ## function (object, maxsum = 100L, ...) 
@@ -603,7 +609,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         c(tt, `NA&#39;s` = sum(nas))
 ##     else tt
 ## }
-## &lt;bytecode: 0x000000001d0a6ba8&gt;
+## &lt;bytecode: 0x000000001ffc5708&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>Razumijevanjem principa rada generičkih funkcija upotpunili smo sliku o S3 objektima. Najvažnija stvar koju moramo usvojiti jest da kod ovog modela funkcije nisu dio samog objekta, već se definiraju zasebno, a poveznica između objekta i “njegove” metode jest samo u nazivu funkcije pomoću kojeg će R “povezati” generičku funkciju i taj objekt. Iako je ovaj princip primitivan i podložan greškama u rukama nepažljivog programera, on je neumitno jednostavan za uporabu i vrlo učinkovit. Konačno, uočimo da ovaj pristup nije u potpunosti svojstven isključivo jeziku R - slične principe nalazimo i u drugim programskim jezicima (npr. <em>Python</em> povezuje <em>print</em> funkciju i objekt preko posebne metode objekta <code>__str__</code>). R je samo specifičan po tome što taj princip koristi otvoreno i gotovo isključivo.</p>
 <p>Objekte i generičke funkcije ćemo ponovo posjetiti kada naučimo stvarati vlastite funkcije, što će nam omogućiti da stvorimo kako konstruktore naših objekata, tako i njihove generičke funkcije.</p>
